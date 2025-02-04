@@ -1,0 +1,129 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dceaff;
+    color: #001f54;
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #dceaff;
+}
+
+header h1 {
+    font-size: 90px;
+    color: #001f54;
+    margin: 0;
+    font-weight: normal;
+    
+}
+
+header h2 {
+    font-size: 50px;
+    color: #004080;
+    margin: 10px 0 0;
+    font-style: italic;
+    font-weight: bold; 
+}
+
+
+
+/* Banner section */
+.banner {
+    position: relative;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    color: white;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.banner-text {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    text-align: left;
+    color: #003366;
+}
+
+
+.banner-text h1 {
+    font-size: 40px; 
+    color: #003366; 
+    margin: 0;
+}
+
+
+
+
+.banner-text .info {
+    margin-top: 10px;
+}
+
+.banner-text .info p {
+    margin: 5px 0;
+}
+
+.banner-text .info p strong {
+    font-size: 40px; /* Highlighted text */
+    color: #003366; /* Dark blue for emphasis */
+}
+
+.banner-text .info p span {
+    font-size: 40px; /* Smaller font size for description */
+    color: #003366; /* Dark gray for secondary text */
+}
+
+
+
+
+
+.banner-text h2{
+    font-size: 50px;
+    text-transform: uppercase;
+}
+.banner-text h3 {
+    font-size: 50px;
+   
+}
+
+.banner-text p {
+    font-size: 40px;
+    margin: 5px 0;
+}
+
+/* Features section */
+.features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.feature {
+    text-align: center;
+    border: 2px solid #001f54;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.feature h3 {
+    font-size: 30px;
+    color: #004080; 
+}
+
+.feature p {
+    font-size: 20px;
+    color: #001f54;
+}

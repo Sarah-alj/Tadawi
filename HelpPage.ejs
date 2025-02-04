@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Page</title>
+    <link rel="stylesheet" href="/css/HelpPage.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/Main.css">
+</head>
+<body>
+
+    <!-- Include Header Partial -->
+    <%- include("partials/header") %>
+
+    <div class="container">
+        <a href="/" class="back-link">&larr; Back</a>
+        <h1>Help Page</h1>
+
+        <h2>How to Use the Website as a Patient</h2>
+        <ul>
+            <li>Register/login via the sign-up button on the top right.</li>
+            <li>Edit your profile and postings via the "edit profile" button in the top right.</li>
+            <li>Locate clinical trials via the "Clinical Trials" tab at the top.</li>
+            <li>Inquire about trials via the "Inquire" button on every individual clinical trial posting.</li>
+            <li>The notifications tab in the top right provides updates regarding clinical trial-approved matches or direct messages received.</li>
+            <li>Use the sign-out button at the top right to end your session.</li>
+            <li>The "Matches" tab shows all approved matches to clinical trials, offering the next step of contacting the doctor via the "Contact" button.</li>
+            <li>A feedback form is offered at the bottom of every page for your inquiries, along with our Contact Us email.</li>
+        </ul>
+
+        <h2>How to Use the Website as a Doctor</h2>
+        <ul>
+            <li>Register/login via the sign-up button on the top right.</li>
+            <li>Edit your profile and postings via the "edit profile" button in the top right.</li>
+            <li>Locate possible patient candidates via the "Patients" tab at the top, with options to match them or "Inquire" for further details.</li>
+            <li>The notifications tab in the top right provides updates regarding new matches or direct messages received.</li>
+            <li>Use the sign-out button at the top right to end your session.</li>
+            <li>The "Matches" tab shows all patients matched to your clinical trial. Confirm matches via the "Confirm & Contact" button or deny unsuitable matches.</li>
+            <li>Book labs via the "Labs" tab to choose a laboratory, date, time, and patient details, specifying the bloodwork needed.</li>
+            <li>A feedback form is offered at the bottom of every page for your inquiries, along with our Contact Us email.</li>
+        </ul>
+
+        <h2>FAQs</h2>
+        <ol>
+            <li><strong>What is a clinical trial?</strong> A research study to evaluate medical, surgical, or behavioral interventions, determining their safety and effectiveness.</li>
+            <li><strong>Who can participate in a clinical trial?</strong> Participation depends on meeting eligibility criteria like age, gender, medical history, and health status.</li>
+            <li><strong>What is informed consent?</strong> A process where participants learn about the trial's purpose, risks, benefits, and procedures to make an informed decision.</li>
+            <li><strong>Will I be paid for participating in a clinical trial?</strong> Compensation varies by study and may include reimbursement for time, travel, or expenses.</li>
+            <li><strong>Can I leave a clinical trial after enrolling?</strong> Yes, participation is voluntary, and you can withdraw anytime without penalty.</li>
+            <li><strong>What happens if I experience side effects during the trial?</strong> Report them immediately to the research team for guidance and support.</li>
+        </ol>
+        
+        <p>If you need further assistance, please reach out to our support team.</p>
+    </div>
+
+    <!-- Include Footer Partial -->
+    <%- include("partials/footer") %>
+
+</body>
+</html>

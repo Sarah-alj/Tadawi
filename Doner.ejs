@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/Doner.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/Main.css">
+
+    <!-- Scripts -->
+    <script src="/js/footer.js"></script>
+    <script src="/js/Validation.js"></script>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Header Partial -->
+    <%- include("partials/header") %>
+
+    <div class="container">
+        <a href="/" class="back">← Back</a>
+        <h1>Sign Up</h1>
+
+        <form id="signupForm" action="/donor-signup" method="POST">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Please Enter a valid email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Please use a strong password" required>
+            <span class="error" id="error-message"></span>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
+
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+
+            <label for="title">Title</label>
+            <select id="title" name="title" required>
+                <option value="" disabled selected>Select your title</option>
+                <option value="Dr">Dr</option>
+                <option value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+            </select>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+966" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label for="nationality">Nationality</label>
+            <select id="nationality" name="nationality" required>
+                <option value="" disabled selected>Select your nationality</option>
+                <option value="saudi">Saudi</option>
+                <option value="other">Other</option>
+            </select>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">
+                    I agree to the <a href="#" id="terms-link" style="text-decoration: underline;color:#18375d">terms and conditions</a>
+                </label>
+            </div>            
+
+            <button type="submit">Continue</button>
+        </form>
+
+        <!-- Terms Modal -->
+        <div id="terms-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Terms and Conditions</h2>
+                <div class="terms-text">
+                    <p>1. Introduction</p>
+                    <p>Welcome to Tadawi, a platform dedicated to matching patients to clinical trials...</p>
+                    <p>2. Purpose of the Website</p>
+                    <p>This Website is intended to:</p>
+                    <ul>
+                        <li>Provide general information about ongoing and upcoming clinical trials.</li>
+                        <li>Facilitate participant registration and engagement in clinical research studies.</li>
+                        <li>Promote awareness of clinical research and its potential benefits.</li>
+                    </ul>
+                    <p>... (Other sections remain unchanged) ...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript -->
+        <script>
+            // Terms & Conditions Modal Logic
+            const termsLink = document.getElementById('terms-link');
+            const termsModal = document.getElementById('terms-modal');
+            const closeModal = document.querySelector('.close');
+
+            termsLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                termsModal.style.display = 'flex';
+            });
+
+            closeModal.addEventListener('click', function () {
+                termsModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (e) {
+                if (e.target === termsModal) {
+                    termsModal.style.display = 'none';
+                }
+            });
+
+            // Password Validation
+            document.getElementById("signupForm").addEventListener("submit", function (event) {
+                let password = document.getElementById("password").value;
+                let confirmPassword = document.getElementById("confirm-password").value;
+
+                if (password !== confirmPassword) {
+                    event.preventDefault();
+                    document.getElementById("error-message").innerText = "Passwords do not match!";
+                }
+            });
+        </script>
+    </div>
+
+    <!-- Include Footer Partial -->
+    <%- include("partials/footer") %>
+
+</body>
+</html>

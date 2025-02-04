@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forget Password</title>
+    
+    <!-- Corrected Paths for CSS -->
+    <link rel="stylesheet" href="/css/styleForgetPass.css">
+    <link rel="stylesheet" href="/css/header.css">
+
+    <!-- Scripts -->
+    <script src="/js/ForgetPass.js"></script>
+    <script src="/js/footer.js"></script>
+</head>
+
+<body>
+    <!-- Include Header Partial -->
+    <%- include("partials/header") %>
+
+    <div class="container">
+        <main>
+            <section>
+                <form method="post" action="/reset-password">
+                    <div>
+                        <a href="/" class="back"> ← Back</a> 
+                        <h2>Reset Your Password</h2>
+
+                        <label for="newpass">New Password</label>
+                        <input
+                            type="password"
+                            id="newpass"
+                            name="newpass"
+                            required
+                            placeholder="Enter a strong password"
+                        />
+
+                        <label for="confpass">Confirm New Password</label>
+                        <input
+                            type="password"
+                            id="confpass"
+                            name="confpass"
+                            required
+                            placeholder="Re-enter your password"
+                        />
+
+                        <button type="submit">Reset Password</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Include Footer Partial -->
+    <%- include("partials/footer") %>
+
+</body>
+</html>
