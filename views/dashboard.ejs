@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <header class="header">
+        <h2>Welcome, <%= user.fullname %></h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="stats">
+            <div class="stat-card">
+                <h3>Total Doctors</h3>
+                <p><%= totalDoctors %></p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Patients</h3>
+                <p><%= totalPatients %></p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Donors</h3>
+                <p><%= totalDonors %></p>
+            </div>
+            <div class="stat-card">
+                <h3>Clinical Trials</h3>
+                <p><%= totalClinicalTrials %></p>
+            </div>
+            <div class="stat-card">
+                <h3>Donations</h3>
+                <p><%= totalDonations %></p>
+            </div>
+        </section>
+
+        <section class="latest">
+            <h2>Latest Users</h2>
+            <ul>
+                <% latestUsers.forEach(user => { %>
+                    <li><%= user.fullname %> - <%= user.role %></li>
+                <% }) %>
+            </ul>
+
+            <h2>Latest Clinical Trials</h2>
+            <ul>
+                <% latestTrials.forEach(trial => { %>
+                    <li><%= trial.title %> - <%= trial.status %></li>
+                <% }) %>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TADAWI</p>
+    </footer>
+</body>
+</html>

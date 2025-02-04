@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/Otp.css">
+    <link rel="stylesheet" href="/css/Main.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <a href="/" class="back">← Back</a>
+        </div>
+
+        <h1>Enter <b>OTP (One Time Password)</b></h1>
+
+        <form action="/verify-otp" method="POST">
+            <input type="text" name="otp" placeholder="Enter OTP" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+
+</body>
+</html>
