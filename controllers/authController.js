@@ -1,4 +1,5 @@
-const User = require("../models/User");
+const User = require('../models/users');  // Updated to match new file name
+
 
 // Signup Controller
 exports.signup = async (req, res) => {
