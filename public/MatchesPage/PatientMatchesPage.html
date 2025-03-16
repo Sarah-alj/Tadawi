@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="PatientMatchesPage.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.js" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <!--<div class="container" id="trials-container"></div> to retrieve the info from db-->
+        <a href="../Home/HomePage-Patient.html">Home</a>
+        <a href="../ClinicalTrialPage/CTpage.html">Clinical Trials</a>
+        <a href="../MatchesPage/PatientMatchesPage.html">Matches</a>
+        <a href="../About-us/About-usPostPatient.html">About us</a>
+        <a href="../HelpPage/Help-Patient.html">Help</a>
+        <a href="../NotificationsPage/P-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <a href="../Chatbox/Patient-Chatbox.html" id="chatbox">
+          <button>ChatBox</button>
+        </a>
+
+        <!-- Sign Out Button -->
+        <a href="../Home/HomePage.html" id="signout-btn">
+          <button>Sign Out</button>
+        </a>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Patient.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <div class="container" id="matchesContainer"></div>
+
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <h3>Providers</h3>
+          <p>MedNova Pharma</p>
+          <p>BioGenesis Pharma</p>
+          <p>CureTech Solutions</p>
+          <p>LifeBridge Investments</p>
+          <p>MedStrive Holdings</p>
+          <p>SummitCare Hospital</p>
+        </div>
+        <div class="column">
+          <h3>Publications</h3>
+          <p>The Journal of Global Health Insights</p>
+          <p>Biotech Review</p>
+          <p>PharmaProgress</p>
+          <p>Innovative Medical Research</p>
+          <p>Future of Healthcare</p>
+        </div>
+        <div class="column">
+          <h3>Investors</h3>
+          <p>CapitalCore Ventures</p>
+          <p>SilverStone Investments</p>
+          <p>Pioneer Growth Partners</p>
+          <p>Summit Ridge Capital</p>
+          <p>Horizon Equity Group</p>
+        </div>
+      </div>
+      <div class="contact">
+        Contact us at :
+        <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+      </div>
+      <div class="logos">
+        <img
+          src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png"
+          alt="Logo 2"
+        />
+        <img src="../img/logo (1).png" alt="Logo 3" />
+        <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+      </div>
+    </footer>
+  </body>
+
+  <script type="module">
+    import { fetchData } from '/js/http-calls.js';
+
+    //   document.addEventListener('DOMContentLoaded', function () {
+    //     // Contact button redirection
+    //     document.querySelectorAll('.contact').forEach((button) => {
+    //       button.addEventListener('click', function () {
+    //         window.location.href = '../matchespage/PcontactDr.html';
+    //       });
+    //     });
+
+    //     // Matched button alert
+    //     document.querySelectorAll('.matched').forEach((button) => {
+    //       button.addEventListener('click', function () {
+    //         alert('You are matched with this clinical trial.');
+    //       });
+    //     });
+
+    // Sign out button logic
+    document
+      .getElementById('signout-btn')
+      .addEventListener('click', function (event) {
+        event.preventDefault();
+        alert('You have signed out!');
+        window.location.href = '../Home/HomePage.html';
+      });
+
+    // Underline the current tab
+    let currentLocation = window.location.pathname.split('/').pop();
+    let navLinks = document.querySelectorAll('.nav a');
+    navLinks.forEach((link) => {
+      if (link.getAttribute('href').includes(currentLocation)) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    /*
+    <div class="card">
+        <p><strong>Name: DR. Mahmoud Ali</strong></p>
+        <p><strong>Duration: Six Months</strong></p>
+        <p><strong>Disease: Breast Cancer</strong></p>
+        <p><strong>Risk Level: Low </strong></p>
+        <p><strong>Start Date: 22/02/2025 </strong></p>
+        <p>
+          <strong
+            >Status:
+            <span class="status" data-trial-id="trial1"
+              >Loading...</span
+            ></strong
+          >
+        </p>
+        <div class="buttons">
+          <button class="matched">Matched</button>
+          <button class="contact">Contact</button>
+        </div>
+      </div>
+    */
+
+    async function init() {
+      const matchesResponse = await fetchData('/api/matches/my-matches');
+      console.log(matchesResponse);
+
+      if (!matchesResponse.isOk) {
+        alert('Failed to fetch matches');
+        return;
+      }
+
+      const matches = matchesResponse.data;
+
+      if (matches.length === 0) {
+        const noMatchesElement = document.createElement('p');
+        noMatchesElement.innerHTML = 'No matches found';
+        document
+          .getElementById('matchesContainer')
+          .appendChild(noMatchesElement);
+        return;
+      }
+
+      const matchesContainer = document.getElementById('matchesContainer');
+
+      while (matchesContainer.firstChild) {
+        matchesContainer.removeChild(matchesContainer.firstChild);
+      }
+
+      matches.forEach((match) => {
+        const matchCard = createMatchCard(match);
+        matchesContainer.appendChild(matchCard);
+      });
+    }
+
+    function createMatchCard(match) {
+      const card = document.createElement('div');
+      card.classList.add('card');
+
+      card.appendChild(createInfoElement('Name', match.profile.name));
+      card.appendChild(
+        createInfoElement('duration', formatDuration(match.profile.duration))
+      );
+      card.appendChild(
+        createInfoElement('specialization', match.profile.specialization)
+      );
+      card.appendChild(createInfoElement('riskLevel', match.profile.riskLevel));
+
+      if (match.status === 'accepted') {
+        const info = createStatusMessage('✅ Match confirmed', 'success');
+        card.appendChild(info);
+      }
+
+      if (match.status === 'rejected') {
+        const info = createStatusMessage('❌ Match denied', 'error');
+        card.appendChild(info);
+      }
+
+      if (match.sentByMe) {
+        const info = document.createElement('p');
+        info.classList.add('match-info');
+        info.innerHTML = '📤 You sent this match request';
+        card.appendChild(info);
+      }
+
+      // TODO: ADD BUTTON TO GO TO CHAT PAGE
+
+      return card;
+    }
+
+    function createActionButton(label, className, onClick) {
+      const button = document.createElement('button');
+      button.classList.add(className);
+      button.innerHTML = label;
+      button.addEventListener('click', onClick);
+      return button;
+    }
+
+    function createStatusMessage(message, type) {
+      const info = document.createElement('p');
+      info.classList.add('match-info');
+      info.classList.add(type);
+      info.innerHTML = message;
+      return info;
+    }
+
+    function createInfoElement(label, value) {
+      const infoElement = document.createElement('p');
+      infoElement.innerHTML = `<strong>${label}:</strong> ${value}`;
+      return infoElement;
+    }
+
+    function formatDuration(ms) {
+      const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+      if (days >= 365) {
+        const years = Math.floor(days / 365);
+        return `${years} ${years === 1 ? 'Year' : 'Years'}`;
+      } else if (days >= 30) {
+        const months = Math.floor(days / 30);
+        return `${months} ${months === 1 ? 'Month' : 'Months'}`;
+      } else if (days >= 7) {
+        const weeks = Math.floor(days / 7);
+        return `${weeks} ${weeks === 1 ? 'Week' : 'Weeks'}`;
+      } else {
+        return `${days} ${days === 1 ? 'Day' : 'Days'}`;
+      }
+    }
+  </script>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="DrMatches.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.js" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Dr.html">Home</a>
+        <a href="../PatientsTabPage/PatientTabPage.html">Patients</a>
+        <a href="../MatchesPage/DrMatches.html">Matches</a>
+        <a href="../About-us/About-usPostDr.html">About us</a>
+        <a href="../LabPage/Lab.html">Labs</a>
+        <a href="../HelpPage/Help-Dr.html">Help</a>
+        <a href="../NotificationsPage/DR-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <a href="../Chatbox/Dr-Chatbox.html" id="chatbox">
+          <button>ChatBox</button>
+        </a>
+        <!-- Sign Out Button -->
+        <a href="../Home/HomePage.html" id="signout-btn">
+          <button>Sign Out</button>
+        </a>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Doctor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+
+    <div class="container" id="matchesContainer"></div>
+
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <h3>Providers</h3>
+          <p>MedNova Pharma</p>
+          <p>BioGenesis Pharma</p>
+          <p>CureTech Solutions</p>
+          <p>LifeBridge Investments</p>
+          <p>MedStrive Holdings</p>
+          <p>SummitCare Hospital</p>
+        </div>
+        <div class="column">
+          <h3>Publications</h3>
+          <p>The Journal of Global Health Insights</p>
+          <p>Biotech Review</p>
+          <p>PharmaProgress</p>
+          <p>Innovative Medical Research</p>
+          <p>Future of Healthcare</p>
+        </div>
+        <div class="column">
+          <h3>Investors</h3>
+          <p>CapitalCore Ventures</p>
+          <p>SilverStone Investments</p>
+          <p>Pioneer Growth Partners</p>
+          <p>Summit Ridge Capital</p>
+          <p>Horizon Equity Group</p>
+        </div>
+      </div>
+      <div class="contact">
+        Contact us at :
+        <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+      </div>
+      <div class="logos">
+        <img
+          src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png"
+          alt="Logo 2"
+        />
+        <img src="../img/logo (1).png" alt="Logo 3" />
+        <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+      </div>
+    </footer>
+  </body>
+  <script type="module">
+    import { fetchData } from '/js/http-calls.js';
+
+    // document.addEventListener('DOMContentLoaded', function () {
+    //   document.querySelectorAll('.Deny').forEach((button) => {
+    //     button.addEventListener('click', function () {
+    //       window.location.href = '../matchespage/Drdenymatch.html';
+    //     });
+    //   });
+
+    //   document.querySelectorAll('.Confirm').forEach((button) => {
+    //     button.addEventListener('click', function () {
+    //       window.location.href = '../patientstabpage/drconfirmmatch.html';
+    //     });
+    //   });
+    // });
+
+    document
+      .getElementById('signout-btn')
+      .addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent immediate redirection
+        alert('You have signed out!');
+        window.location.href = '../Home/HomePage.html'; // Redirect after alert, same function as what the html header redirect does
+      });
+
+    //underline the current tab
+    document.addEventListener('DOMContentLoaded', function () {
+      let currentLocation = window.location.pathname.split('/').pop();
+      let navLinks = document.querySelectorAll('.nav a');
+
+      navLinks.forEach((link) => {
+        if (link.getAttribute('href').includes(currentLocation)) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+
+    // API INTEGRATION
+    document.addEventListener('DOMContentLoaded', init);
+
+    async function init() {
+      const matchesResponse = await fetchData('/api/matches/my-matches');
+      console.log(matchesResponse);
+
+      if (!matchesResponse.isOk) {
+        alert('Failed to fetch matches');
+        return;
+      }
+
+      const matches = matchesResponse.data;
+
+      if (matches.length === 0) {
+        const noMatchesElement = document.createElement('p');
+        noMatchesElement.innerHTML = 'No matches found';
+        document
+          .getElementById('matchesContainer')
+          .appendChild(noMatchesElement);
+        return;
+      }
+
+      const matchesContainer = document.getElementById('matchesContainer');
+
+      while (matchesContainer.firstChild) {
+        matchesContainer.removeChild(matchesContainer.firstChild);
+      }
+
+      matches.forEach((match) => {
+        const matchCard = createMatchCard(match);
+        matchesContainer.appendChild(matchCard);
+      });
+    }
+
+    function createMatchCard(match) {
+      const card = document.createElement('div');
+      card.classList.add('card');
+
+      card.appendChild(createInfoElement('Name', match.profile.name));
+      card.appendChild(createInfoElement('Age', match.profile.age));
+      card.appendChild(createInfoElement('Disease', match.profile.disease));
+      card.appendChild(createInfoElement('Region', match.profile.region));
+
+      if (match.status === 'pending' && !match.sentByMe) {
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.classList.add('buttons');
+
+        const confirmButton = createActionButton(
+          '✅ Confirm & Contact',
+          'confirm-btn',
+          () => {
+            window.location.href = `../patientstabpage/drconfirmmatch.html?matchId=${match.matchId}`;
+          }
+        );
+
+        const denyButton = createActionButton('❌ Deny', 'deny-btn', () => {
+          window.location.href = `drdenymatch.html?matchId=${match.matchId}`;
+        });
+
+        buttonsContainer.appendChild(confirmButton);
+        buttonsContainer.appendChild(denyButton);
+        card.appendChild(buttonsContainer);
+      }
+
+      if (match.status === 'accepted') {
+        const info = createStatusMessage('✅ Match confirmed', 'success');
+        card.appendChild(info);
+      }
+
+      if (match.status === 'rejected') {
+        const info = createStatusMessage('❌ Match denied', 'error');
+        card.appendChild(info);
+      }
+
+      if (match.sentByMe) {
+        const info = document.createElement('p');
+        info.classList.add('match-info');
+        info.innerHTML = '📤 You sent this match request';
+        card.appendChild(info);
+      }
+
+      return card;
+    }
+
+    function createActionButton(label, className, onClick) {
+      const button = document.createElement('button');
+      button.classList.add(className);
+      button.innerHTML = label;
+      button.addEventListener('click', onClick);
+      return button;
+    }
+
+    function createStatusMessage(message, type) {
+      const info = document.createElement('p');
+      info.classList.add('match-info');
+      info.classList.add(type);
+      info.innerHTML = message;
+      return info;
+    }
+
+    function createInfoElement(label, value) {
+      const infoElement = document.createElement('p');
+      infoElement.innerHTML = `<strong>${label}:</strong> ${value}`;
+      return infoElement;
+    }
+  </script>
+</html>

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+
+    <link rel="stylesheet" href="PatientTabPage.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Dr.html">Home</a>
+        <a href="../PatientsTabPage/PatientTabPage.html">Patients</a>
+        <a href="../MatchesPage/DrMatches.html">Matches</a>
+        <a href="../About-us/About-usPostDr.html">About us</a>
+        <a href="../LabPage/Lab.html">Labs</a>
+        <a href="../HelpPage/Help-Dr.html">Help</a>
+        <a href="../NotificationsPage/DR-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <!-- Sign Out Button -->
+        <a href="../Home/HomePage.html" id="signout-btn">
+          <button>Sign Out</button>
+        </a>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Doctor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <div class="filter-container">
+      <label for="filter"><strong>Filter:</strong></label>
+      <input type="text" id="filter" placeholder="ex: age, gender, disease" />
+    </div>
+
+    <div class="container" id="patientsContainer">
+      <div
+        class="card"
+        data-age="55"
+        data-gender="female"
+        data-disease="breast cancer"
+      >
+        <p><strong>Age: 55</strong></p>
+        <p><strong>Gender: Female</strong></p>
+        <p><strong>Disease: Breast Cancer</strong></p>
+        <p><strong>Allergies: None </strong></p>
+        <p><strong>Region: Riyadh </strong></p>
+        <p>
+          <strong
+            >Medical History: HTPL chemo, 3 doses, no other medications.</strong
+          >
+        </p>
+        <p><strong>Life style: No smoking, active 3 days a week. </strong></p>
+        <div class="buttons">
+          <button class="match">Match</button>
+          <button class="inquire">Inquire</button>
+        </div>
+      </div>
+
+      <div class="card" data-age="22" data-gender="Male" data-disease="TB">
+        <p><strong>Age: 22</strong></p>
+        <p><strong>DGender: Male</strong></p>
+        <p><strong>Disease: TB</strong></p>
+        <p><strong>Allergies: Horses. </strong></p>
+        <p><strong>Region: Jeddah </strong></p>
+        <p><strong>Medical History: Asthma, no medications.</strong></p>
+        <p><strong>Life style: No smoking, active 5 days a week. </strong></p>
+        <div class="buttons">
+          <button class="match">Match</button>
+          <button class="inquire">Inquire</button>
+        </div>
+      </div>
+
+      <div
+        class="card"
+        data-age="38"
+        data-gender="female"
+        data-disease="sickel cell"
+      >
+        <p><strong>Age: 38</strong></p>
+        <p><strong>DGender: Female</strong></p>
+        <p><strong>Disease: Sickel Cell</strong></p>
+        <p><strong>Allergies: None </strong></p>
+        <p><strong>Region: Riyadh </strong></p>
+        <p><strong>Medical History: Two rounds of STT.</strong></p>
+        <p><strong>Life style: Daily smoker. </strong></p>
+        <div class="buttons">
+          <button class="match">Match</button>
+          <button class="inquire">Inquire</button>
+        </div>
+      </div>
+      <div class="card" data-age="28" data-gender="female" data-disease="MS">
+        <p><strong>Age: 28</strong></p>
+        <p><strong>DGender: Female</strong></p>
+        <p><strong>Disease: MS</strong></p>
+        <p><strong>Allergies: Possible cat allergies. </strong></p>
+        <p><strong>Region: Makkah </strong></p>
+        <p>
+          <strong
+            >Medical History: Just allergies medications when needed.</strong
+          >
+        </p>
+        <p><strong>Life style: Social smoker, overweight.</strong></p>
+        <div class="buttons">
+          <button class="match">Match</button>
+          <button class="inquire">Inquire</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <h3>Providers</h3>
+          <p>MedNova Pharma</p>
+          <p>BioGenesis Pharma</p>
+          <p>CureTech Solutions</p>
+          <p>LifeBridge Investments</p>
+          <p>MedStrive Holdings</p>
+          <p>SummitCare Hospital</p>
+        </div>
+        <div class="column">
+          <h3>Publications</h3>
+          <p>The Journal of Global Health Insights</p>
+          <p>Biotech Review</p>
+          <p>PharmaProgress</p>
+          <p>Innovative Medical Research</p>
+          <p>Future of Healthcare</p>
+        </div>
+        <div class="column">
+          <h3>Investors</h3>
+          <p>CapitalCore Ventures</p>
+          <p>SilverStone Investments</p>
+          <p>Pioneer Growth Partners</p>
+          <p>Summit Ridge Capital</p>
+          <p>Horizon Equity Group</p>
+        </div>
+      </div>
+      <div class="contact">
+        Contact us at :
+        <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+      </div>
+      <div class="logos">
+        <img
+          src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png"
+          alt="Logo 2"
+        />
+        <img src="../img/logo (1).png" alt="Logo 3" />
+        <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+      </div>
+    </footer>
+
+    <style>
+      .footer {
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        left: 0;
+      }
+
+      .footer .columns {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: auto;
+        padding: 10px 20px;
+      }
+
+      .footer .column {
+        flex: 1;
+        padding: 10px;
+        min-width: 200px;
+      }
+
+      .footer h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .footer p {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+
+      .footer .contact {
+        margin-top: 15px;
+        font-size: 16px;
+      }
+
+      .footer .logos {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .footer .logos img {
+        height: 50px;
+        max-width: 100px;
+      }
+
+      .filter-container {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        height: auto !important;
+      }
+    </style>
+
+    <script type="module">
+      import { fetchData } from '/js/http-calls.js';
+
+      //for the inquire button
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.inquire').forEach((button) => {
+          button.addEventListener('click', function () {
+            window.location.href = '../patientsTabPage/DrInquire.html';
+          });
+        });
+        //for the match button
+        document.querySelectorAll('.match').forEach((button) => {
+          button.addEventListener('click', function () {
+            alert('You are now matched to this patient.');
+            window.location.href = 'drconfirmmatch.html';
+          });
+        });
+      });
+
+      document
+        .getElementById('signout-btn')
+        .addEventListener('click', function (event) {
+          event.preventDefault(); // Prevent immediate redirection
+          alert('You have signed out!');
+          window.location.href = '../Home/HomePage.html'; // Redirect after alert, same as the redirect in html in header
+        });
+      //filter system
+      document.getElementById('filter').addEventListener('input', function () {
+        const filterValue = this.value.toLowerCase();
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach((card) => {
+          const age = card.getAttribute('data-age');
+          const gender = card.getAttribute('data-gender').toLowerCase();
+          const disease = card.getAttribute('data-disease').toLowerCase();
+
+          // Check if any field matches the filter input
+          if (
+            age.includes(filterValue) ||
+            gender.includes(filterValue) ||
+            disease.includes(filterValue)
+          ) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+
+      //underline the current tab
+      document.addEventListener('DOMContentLoaded', function () {
+        let currentLocation = window.location.pathname.split('/').pop();
+        let navLinks = document.querySelectorAll('.nav a');
+
+        navLinks.forEach((link) => {
+          if (link.getAttribute('href').includes(currentLocation)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      });
+
+      //# API INTERACTION
+      document.addEventListener('DOMContentLoaded', initApp);
+
+      async function initApp() {
+        await fetchAndShowPatients();
+      }
+
+      async function fetchAndShowPatients() {
+        const patientsResponse = await fetchData('/api/patients');
+
+        if (!patientsResponse.isOk) {
+          alert('Failed to fetch patients data');
+          return;
+        }
+
+        const patients = patientsResponse.data;
+
+        const patientsContainer = document.getElementById('patientsContainer');
+        while (patientsContainer.firstChild) {
+          patientsContainer.removeChild(patientsContainer.firstChild);
+        }
+
+        if (patients.length === 0) {
+          const noPatientsMessage = document.createElement('p');
+          noPatientsMessage.textContent = 'No patients found';
+          noPatientsMessage.style.textAlign = 'center';
+          noPatientsMessage.style.gridColumn = '1 / -1';
+          patientsContainer.appendChild(noPatientsMessage);
+          return;
+        }
+
+        patients.forEach((patient) => {
+          const card = document.createElement('div');
+          card.classList.add('card');
+          card.setAttribute('data-age', patient.user.age);
+          card.setAttribute('data-gender', patient.user?.gender);
+          card.setAttribute(
+            'data-disease',
+            patient.medicalHistory?.disease?.name
+          );
+
+          card.appendChild(createInfoElement('Age', patient.user.age));
+          card.appendChild(createInfoElement('Gender', patient.user.gender));
+          card.appendChild(
+            createInfoElement('Disease', patient.medicalHistory.disease)
+          );
+          card.appendChild(
+            createInfoElement('Allergies', patient.profile.allergies)
+          );
+          card.appendChild(createInfoElement('Region', patient.user.region));
+          card.appendChild(
+            createInfoElement(
+              'Medical History',
+              patient.medicalHistory?.medicalHistory
+            )
+          );
+          card.appendChild(
+            createInfoElement('Life style', patient.profile.lifestyle)
+          );
+
+          const buttons = document.createElement('div');
+          buttons.classList.add('buttons');
+          card.appendChild(buttons);
+
+          // MATCH BUTTON
+          const matchButton = document.createElement('button');
+          matchButton.textContent = 'Match';
+          matchButton.classList.add('match');
+          matchButton.addEventListener('click', function () {
+            window.location.href = `drconfirmmatch.html?patientId=${patient.user._id}`;
+          });
+          buttons.appendChild(matchButton);
+
+          // INQUIRE BUTTON
+          const inquireButton = document.createElement('button');
+          inquireButton.textContent = 'Inquire';
+          inquireButton.classList.add('inquire');
+          inquireButton.addEventListener('click', function () {
+            window.location.href = `../patientsTabPage/DrInquire.html?patientId=${patient.user._id}`;
+          });
+          buttons.appendChild(inquireButton);
+
+          patientsContainer.appendChild(card);
+        });
+      }
+
+      function createInfoElement(label, value) {
+        const infoElement = document.createElement('p');
+        infoElement.innerHTML = `<strong>${label}:</strong> ${value}`;
+        return infoElement;
+      }
+    </script>
+  </body>
+</html>

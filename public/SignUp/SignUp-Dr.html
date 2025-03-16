@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="SignUp-Dr.css" />
+    <link rel="stylesheet" href="/Main.css" />
+    <link rel="stylesheet" href="/Preheader/Preheader.css" />
+    <script src="/Prefooter/Prefooter.js"></script>
+    <script src="/ValidationAccs.js"></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="/Home/HomePage.html">Home</a>
+        <a href="/About-us/About-usPre.html">About us</a>
+        <a href="/HelpPage/Help.html">Help</a>
+      </nav>
+      <div class="dropdown">
+        <button class="dropdown-button">
+          Sign up <span class="arrow">&#9660;</span>
+        </button>
+        <div class="dropdown-content">
+          <a href="/Login-OTP/UserLogin.html">Login</a>
+          <a href="/CreateAccount/CreateAccount.html">Sign up</a>
+        </div>
+      </div>
+    </header>
+    <!-- dr sign up form -->
+    <div class="form-container">
+      <a href="/CreateAccount/CreateAccount.html" class="back-link"
+        >&larr; Back</a
+      >
+      <h2>Doctor Create Account</h2>
+      <form id="signupForm">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="Please enter a valid email"
+        />
+
+        <label for="password"> Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          placeholder="Please use a strong password"
+        />
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          required
+          placeholder="Please re-enter your password"
+        />
+
+        <label for="name">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="Enter your full name"
+        />
+
+        <label for="title">Title</label>
+        <select id="title" name="title">
+          <option value="" disabled selected>Select Title</option>
+          <option value="Mr.">Mr.</option>
+          <option value="Mrs.">Mrs.</option>
+          <option value="Ms.">Ms.</option>
+          <option value="Miss">Miss</option>
+          <option value="Dr.">Dr.</option>
+          <option value="Prof.">Prof.</option>
+        </select>
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender">
+          <option value="" disabled selected>Select Your Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          type="tel"
+          id="phoneNumber"
+          name="phoneNumber"
+          required
+          placeholder="+966"
+        />
+
+        <label for="dateOfBirth">Date Of Birth</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" required />
+
+        <label for="nationality">Nationality</label>
+        <select id="nationality" name="nationality">
+          <option value="" disabled selected>Select your nationality</option>
+
+          <optgroup label="A">
+            <option value="nati1">Afghan</option>
+            <option value="nati2">Albanian</option>
+            <option value="nati3">Algerian</option>
+            <option value="nati4">American</option>
+            <option value="nati5">Andorran</option>
+            <option value="nati6">Angolan</option>
+            <option value="nati7">Anguillan</option>
+            <option value="nati8">Citizen of Antigua and Barbuda</option>
+            <option value="nati9">Argentine</option>
+            <option value="nati10">Armenian</option>
+            <option value="nati7">Australian</option>
+            <option value="nati8">Austrian</option>
+            <option value="nati9">Azerbaijani</option>
+          </optgroup>
+
+          <optgroup label="B">
+            <option value="nati10">Bahamian</option>
+            <option value="nati11">Bahraini</option>
+            <option value="nati12">Bangladeshi</option>
+            <option value="nati13">Barbadian</option>
+            <option value="nati14">Belarusian</option>
+            <option value="nati15">Belgian</option>
+            <option value="nati16">Belizean</option>
+            <option value="nati17">Beninese</option>
+            <option value="nati18">Bermudian</option>
+            <option value="nati19">Bhutanese</option>
+            <option value="nati20">Bolivian</option>
+            <option value="nati21">Citizen of Bosnia and Herzegovina</option>
+            <option value="nati22">Botswanan</option>
+            <option value="nati23">Brazilian</option>
+            <option value="nati24">British</option>
+            <option value="nati25">British Virgin Islander</option>
+            <option value="nati26">Bruneian</option>
+            <option value="nati27">Bulgarian</option>
+            <option value="nati28">Burkinan</option>
+            <option value="nati29">Burmese</option>
+            <option value="nati30">Burundian</option>
+          </optgroup>
+
+          <optgroup label="C">
+            <option value="nati31">Cambodian</option>
+            <option value="nati32">Cameroonian</option>
+            <option value="nati33">Canadian</option>
+            <option value="nati34">Cape Verdean</option>
+            <option value="nati35">Cayman Islander</option>
+            <option value="nati36">Central African</option>
+            <option value="nati37">Chadian</option>
+            <option value="nati38">Chilean</option>
+            <option value="nati39">Chinese</option>
+            <option value="nati40">Colombian</option>
+            <option value="nati41">Comoran</option>
+            <option value="nati42">Congolese (Congo)</option>
+            <option value="nati43">Congolese (DRC)</option>
+            <option value="nati44">Cook Islander</option>
+            <option value="nati45">Costa Rican</option>
+            <option value="nati46">Croatian</option>
+            <option value="nati47">Cuban</option>
+            <option value="nati48">Cymraes</option>
+            <option value="nati49">Cymro</option>
+            <option value="nati50">Cypriot</option>
+            <option value="nati51">Czech</option>
+          </optgroup>
+
+          <optgroup label="D">
+            <option value="nati52">Danish</option>
+            <option value="nati53">Djiboutian</option>
+            <option value="nati54">Dominican</option>
+            <option value="nati55">Citizen of the Dominican Republic</option>
+            <option value="nati56">Dutch</option>
+          </optgroup>
+
+          <optgroup label="E">
+            <option value="nati57">East Timorese</option>
+            <option value="nati58">Ecuadorean</option>
+            <option value="nati59">Egyptian</option>
+            <option value="nati60">Emirati</option>
+            <option value="nati61">English</option>
+            <option value="nati62">Equatorial Guinean</option>
+            <option value="nati63">Eritrean</option>
+            <option value="nati64">Estonian</option>
+            <option value="nati65">Ethiopian</option>
+          </optgroup>
+
+          <optgroup label="F">
+            <option value="nati66">Faroese</option>
+            <option value="nati67">Fijian</option>
+            <option value="nati68">Filipino</option>
+            <option value="nati69">Finnish</option>
+            <option value="nati70">French</option>
+          </optgroup>
+
+          <optgroup label="G">
+            <option value="nati71">Gabonese</option>
+            <option value="nati72">Gambian</option>
+            <option value="nati73">Georgian</option>
+            <option value="nati74">German</option>
+            <option value="nati75">Ghanaian</option>
+            <option value="nati76">Gibraltarian</option>
+            <option value="nati77">Greek</option>
+            <option value="nati78">Greenlandic</option>
+            <option value="nati79">Grenadian</option>
+            <option value="nati80">Guamanian</option>
+            <option value="nati81">Guatemalan</option>
+            <option value="nati82">Citizen of Guinea-Bissau</option>
+            <option value="nati83">Guinean</option>
+            <option value="nati84">Guyanese</option>
+          </optgroup>
+
+          <optgroup label="H">
+            <option value="nati85">Haitian</option>
+            <option value="nati86">Honduran</option>
+            <option value="nati87">Hong Konger</option>
+            <option value="nati88">Hungarian</option>
+          </optgroup>
+
+          <optgroup label="I">
+            <option value="nati89">Icelandic</option>
+            <option value="nati90">Indian</option>
+            <option value="nati91">Indonesian</option>
+            <option value="nati92">Iranian</option>
+            <option value="nati93">Iraqi</option>
+            <option value="nati94">Irish</option>
+            <option value="nati95">Italian</option>
+            <option value="nati96">Ivorian</option>
+          </optgroup>
+
+          <optgroup label="J">
+            <option value="nati97">Jamaican</option>
+            <option value="nati98">Japanese</option>
+            <option value="nati99">Jordanian</option>
+          </optgroup>
+
+          <optgroup label="K">
+            <option value="nati100">Kazakh</option>
+            <option value="nati101">Kenyan</option>
+            <option value="nati102">Kittitian</option>
+            <option value="nati103">Citizen of Kiribati</option>
+            <option value="nati104">Kosovan</option>
+            <option value="nati105">Kuwaiti</option>
+            <option value="nati106">Kyrgyz</option>
+          </optgroup>
+
+          <optgroup label="L">
+            <option value="nati107">Lao</option>
+            <option value="nati108">Latvian</option>
+            <option value="nati109">Lebanese</option>
+            <option value="nati110">Liberian</option>
+            <option value="nati112">Libyan</option>
+            <option value="nati113">Liechtenstein citizen</option>
+            <option value="nati114">Lithuanian</option>
+            <option value="nati115">Luxembourger</option>
+          </optgroup>
+
+          <optgroup label="M">
+            <option value="nati116">Macanese</option>
+            <option value="nati117">Macedonian</option>
+            <option value="nati118">Malagasy</option>
+            <option value="nati119">Malawian</option>
+            <option value="nati120">Malaysian</option>
+            <option value="nati121">Maldivian</option>
+            <option value="nati122">Malian</option>
+            <option value="nati123">Maltese</option>
+            <option value="nati124">Marshallese</option>
+            <option value="nati125">Martiniquais</option>
+            <option value="nati126">Mauritanian</option>
+            <option value="nati127">Mauritian</option>
+            <option value="nati128">Mexican</option>
+            <option value="nati129">Micronesian</option>
+            <option value="nati130">Moldovan</option>
+            <option value="nati131">Monegasque</option>
+            <option value="nati132">Mongolian</option>
+            <option value="nati133">Montenegrin</option>
+            <option value="nati134">Montserratian</option>
+            <option value="nati135">Moroccan</option>
+            <option value="nati136">Mosotho</option>
+            <option value="nati137">Mozambican</option>
+          </optgroup>
+
+          <optgroup label="N">
+            <option value="nati138">Namibian</option>
+            <option value="nati139">Nauruan</option>
+            <option value="nati140">Nepalese</option>
+            <option value="nati140">New Zealander</option>
+            <option value="nati141">Nicaraguan</option>
+            <option value="nati142">Nigerian</option>
+            <option value="nati143">Nigerien</option>
+            <option value="nati144">Niuean</option>
+            <option value="nati145">North Korean</option>
+            <option value="nati146">Northern Irish</option>
+            <option value="nati147">Norwegian</option>
+          </optgroup>
+
+          <optgroup label="O">
+            <option value="nati148">Omani</option>
+          </optgroup>
+
+          <optgroup label="P">
+            <option value="nati149">Pakistani</option>
+            <option value="nati150">Palauan</option>
+            <option value="nati151">Palestinian</option>
+            <option value="nati152">Panamanian</option>
+            <option value="nati153">Papua New Guinean</option>
+            <option value="nati154">Paraguayan</option>
+            <option value="nati155">Peruvian</option>
+            <option value="nati156">Pitcairn Islander</option>
+            <option value="nati157">Polish</option>
+            <option value="nati158">Portuguese</option>
+            <option value="nati159">Prydeinig</option>
+            <option value="nati160">Puerto Rican</option>
+          </optgroup>
+
+          <optgroup label="Q">
+            <option value="nati161">Qatari</option>
+          </optgroup>
+
+          <optgroup label="R">
+            <option value="nati162">Romanian</option>
+            <option value="nati163">Russian</option>
+            <option value="nati164">Rwandan</option>
+          </optgroup>
+
+          <optgroup label="S">
+            <option value="nati165">Salvadorean</option>
+            <option value="nati166">Sammarinese</option>
+            <option value="nati167">Samoan</option>
+            <option value="nati168">Sao Tomean</option>
+            <option value="nati169">Saudi Arabian</option>
+            <option value="nati170">Scottish</option>
+            <option value="nati171">Senegalese</option>
+            <option value="nati172">Serbian</option>
+            <option value="nati173">Citizen of Seychelles</option>
+            <option value="nati174">Sierra Leonean</option>
+            <option value="nati175">Singaporean</option>
+            <option value="nati176">Slovak</option>
+            <option value="nati177">Slovenian</option>
+            <option value="nati178">Solomon Islander</option>
+            <option value="nati179">Somali</option>
+            <option value="nati180">South African</option>
+            <option value="nati181">South Korean</option>
+            <option value="nati182">South Sudanese</option>
+            <option value="nati183">Spanish</option>
+            <option value="nati184">Sri Lankan</option>
+            <option value="nati185">St Helenian</option>
+            <option value="nati186">St Lucian</option>
+            <option value="nati187">Stateless</option>
+            <option value="nati188">Sudanese</option>
+            <option value="nati189">Surinamese</option>
+            <option value="nati190">Swazi</option>
+            <option value="nati191">Swedish</option>
+            <option value="nati192">Swiss</option>
+            <option value="nati193">Syrian</option>
+          </optgroup>
+
+          <optgroup label="T">
+            <option value="nati194">Taiwanese</option>
+            <option value="nati195">Tajik</option>
+            <option value="nati196">Tanzanian</option>
+            <option value="nati197">Thai</option>
+            <option value="nati198">Togolese</option>
+            <option value="nati199">Tongan</option>
+            <option value="nati200">Trinidadian</option>
+            <option value="nati201">Tristanian</option>
+            <option value="nati202">Tunisian</option>
+            <option value="nati203">Turkish</option>
+            <option value="nati204">Turkmen</option>
+            <option value="nati205">Turks and Caicos Islander</option>
+            <option value="nati206">Tuvaluan</option>
+          </optgroup>
+
+          <optgroup label="U">
+            <option value="nati207">Ugandan</option>
+            <option value="nati208">Ukrainian</option>
+            <option value="nati209">Uruguayan</option>
+            <option value="nati210">Uzbek</option>
+          </optgroup>
+
+          <optgroup label="V">
+            <option value="nati211">Vatican citizen</option>
+            <option value="nati212">Citizen of Vanuatu</option>
+            <option value="nati213">Venezuelan</option>
+            <option value="nati214">Vietnamese</option>
+            <option value="nati215">Vincentian</option>
+          </optgroup>
+
+          <optgroup label="W">
+            <option value="nati216">Wallisian</option>
+            <option value="nati217">Welsh</option>
+          </optgroup>
+
+          <optgroup label="Y">
+            <option value="nati218">Yemeni</option>
+          </optgroup>
+
+          <optgroup label="Z">
+            <option value="nati219">Zambian</option>
+            <option value="nati220">Zimbabwean</option>
+          </optgroup>
+        </select>
+
+        <label for="pointOfContact">Point of Contact with Patients</label>
+        <input
+          type="text"
+          id="pointOfContact"
+          name="pointOfContact"
+          placeholder="e.g., Email: example@gmail.com"
+        />
+
+        <label for="specialization">Specialization/Field of Research</label>
+        <input
+          type="text"
+          id="specialization"
+          name="specialization"
+          placeholder="e.g., Oncology"
+        />
+
+        <label for="institute">Institution of Affiliation</label>
+        <input
+          type="text"
+          id="institute"
+          name="institute"
+          placeholder="e.g., KAUST"
+        />
+
+        <label for="license">Professional License</label>
+        <input type="file" id="license" name="license" accept="image/*" />
+
+        <label for="riskLevel">Clinical Trial Risk Level</label>
+        <select id="riskLevel" name="riskLevel" required>
+          <option value="" disabled selected>Select</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <label for="trialDescription">Trial Description</label>
+        <textarea id="trialDescription" name="trialDescription"></textarea>
+
+        <label for="trialRequirements">Patient Requirements</label>
+        <textarea
+          id="trialRequirements"
+          name="trialRequirements"
+          placeholder="e.g., Patient must be 30+ years old"
+        ></textarea>
+
+        <label>Clinical Trial Start Date</label>
+        <input type="date" name="trialStart" />
+
+        <label>Clinical Trial End Date</label>
+        <input type="date" name="trialEnd" />
+
+        <label for="region">Region</label>
+        <select id="region" name="region" required>
+          <option value="">Select Current Region</option>
+          <option value="riyadh">Riyadh</option>
+          <option value="jeddah">Jeddah</option>
+          <option value="dammam">Dammam</option>
+          <option value="medina">Medina</option>
+          <option value="mecca">Mecca</option>
+          <option value="abha">Abha</option>
+          <option value="tabuk">Tabuk</option>
+          <option value="al-khobar">Al-Khobar</option>
+          <option value="jubail">Jubail</option>
+          <option value="hail">Hail</option>
+          <option value="najran">Najran</option>
+          <option value="yanbu">Yanbu</option>
+          <option value="buraydah">Buraydah</option>
+          <option value="sakaka">Sakaka</option>
+          <option value="jizan">Jizan</option>
+          <option value="taif">Taif</option>
+          <option value="khafji">Khafji</option>
+          <option value="qassim">Qassim</option>
+        </select>
+        <div class="checkbox-container">
+          <input type="checkbox" id="terms" required />
+          <label for="terms">
+            I agree to the
+            <a href="#" id="terms-link" style="text-decoration: underline"
+              >terms and conditions</a
+            >
+          </label>
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+      <div id="terms-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Terms and Conditions</h2>
+          <div class="terms-text">
+            <p>1. Introduction</p>
+            <p>
+              Welcome to Tadawi, a platform dedicated to matching patients to
+              clinical trials and facilitating participation in clinical trials.
+              By accessing or using our Website, you agree to comply with these
+              Terms and Conditions. If you do not agree with any part of these
+              Terms, please discontinue your use of the Website.
+            </p>
+
+            <p>2. Purpose of the Website</p>
+            <p>This Website is intended to:</p>
+            <ul>
+              <li>
+                Provide general information about ongoing and upcoming clinical
+                trials.
+              </li>
+              <li>
+                Facilitate participant registration and engagement in clinical
+                research studies.
+              </li>
+              <li>
+                Promote awareness of clinical research and its potential
+                benefits.
+              </li>
+            </ul>
+            <p>
+              The information provided on this Website is for informational
+              purposes only and should not be considered medical advice.
+            </p>
+
+            <p>3. Eligibility</p>
+            <p>By using this Website, you confirm that you:</p>
+            <ul>
+              <li>
+                Are at least 18 years of age or have the consent of a legal
+                guardian.
+              </li>
+              <li>
+                Are providing accurate, truthful, and complete information
+                during registration.
+              </li>
+              <li>
+                Understand and agree to participate in clinical trials
+                voluntarily, if applicable.
+              </li>
+            </ul>
+
+            <p>4. Disclaimer of Medical Advice</p>
+            <p>
+              The content provided on this Website does not constitute medical
+              advice, diagnosis, or treatment. Always consult with your
+              healthcare provider or a qualified medical professional regarding
+              any medical conditions or concerns. Participation in any clinical
+              trial should be done under the guidance of a licensed physician.
+            </p>
+
+            <p>5. Participant Responsibilities</p>
+            <p>
+              If you choose to participate in a clinical trial through our
+              Website, you agree to:
+            </p>
+            <ul>
+              <li>
+                Follow all instructions provided by the clinical trial team.
+              </li>
+              <li>
+                Disclose accurate health and medical information during the
+                screening and registration process.
+              </li>
+              <li>
+                Inform the clinical trial team of any changes in your health
+                during the trial.
+              </li>
+            </ul>
+
+            <p>6. Data Collection and Privacy</p>
+            <p>
+              We prioritize the confidentiality and security of your personal
+              and medical information. By using our Website, you consent to the
+              collection and processing of your data in accordance with our
+              Privacy Policy. Key points include:
+            </p>
+            <ul>
+              <li>
+                Personal data will only be used for clinical trial purposes and
+                related communications.
+              </li>
+              <li>
+                Data may be shared with authorized clinical trial teams but will
+                not be sold to third parties.
+              </li>
+              <li>For more details, refer to our full Privacy Policy.</li>
+            </ul>
+
+            <p>7. Intellectual Property</p>
+            <p>
+              All content, including text, graphics, logos, and design, on this
+              Website is the intellectual property of Tadawi. Unauthorized use,
+              reproduction, or distribution of this content is prohibited.
+            </p>
+
+            <p>8. Limitation of Liability</p>
+            <p>
+              To the fullest extent permitted by law, Tadawi and its affiliates
+              are not liable for any damages, injuries, or losses arising from:
+            </p>
+            <ul>
+              <li>Participation in clinical trials listed on the Website.</li>
+              <li>
+                Errors or inaccuracies in the information provided on the
+                Website.
+              </li>
+              <li>Technical failures or interruptions of the Website.</li>
+            </ul>
+
+            <p>9. External Links</p>
+            <p>
+              Our Website may include links to third-party websites. We are not
+              responsible for the content, policies, or practices of these
+              websites. Visiting these links is at your own risk.
+            </p>
+
+            <p>10. Modification of Terms</p>
+            <p>
+              We reserve the right to update or modify these Terms and
+              Conditions at any time without prior notice. Changes will be
+              effective immediately upon posting to this page. Your continued
+              use of the Website constitutes acceptance of the updated Terms.
+            </p>
+
+            <p>11. Governing Law</p>
+            <p>
+              These Terms and Conditions are governed by the laws of Saudi
+              Arabia, without regard to its conflict of law provisions. Any
+              disputes arising from these Terms shall be resolved in the courts
+              of Saudi Arabia.
+            </p>
+
+            <p>12. Contact Us</p>
+            <p>
+              If you have any questions, concerns, or feedback regarding these
+              Terms and Conditions, please contact us at:
+            </p>
+            <p>Email: Tadawi.contact@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module">
+    import { handleFileUpload } from '/js/file-upload.js';
+    import { fetchData, postData } from '/js/http-calls.js';
+
+    const termsLink = document.getElementById('terms-link');
+    const termsModal = document.getElementById('terms-modal');
+    const closeModal = document.querySelector('.close');
+
+    termsLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      termsModal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', function () {
+      termsModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (e) {
+      if (e.target === termsModal) {
+        termsModal.style.display = 'none';
+      }
+    });
+
+    //#region Form handling
+    document.addEventListener('DOMContentLoaded', init);
+
+    function init() {
+      const form = document.getElementById('signupForm');
+
+      // handle submission
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // remove previous server error
+        form.querySelector('.error[data-server-error]')?.remove();
+
+        const formData = new FormData(form);
+
+        const userDetails = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          password: formData.get('password'),
+          confirmPassword: formData.get('confirmPassword'),
+          gender: formData.get('gender'),
+          region: formData.get('region'),
+          dateOfBirth: formData.get('dateOfBirth'),
+          phoneNumber: formData.get('phoneNumber'),
+          title: formData.get('title'),
+          nationality: formData.get('nationality'),
+        };
+
+        const trialDetails = {
+          trialDescription: formData.get('trialDescription'),
+          trialRequirements: formData.get('trialRequirements'),
+          trialStart: formData.get('trialStart'),
+          trialEnd: formData.get('trialEnd'),
+          riskLevel: formData.get('riskLevel'),
+        };
+
+        const doctorDetails = {
+          specialization: formData.get('specialization'),
+          institute: formData.get('institute'),
+          pointOfContact: formData.get('pointOfContact'),
+        };
+
+        const licenseFile = form.querySelector('input[type="file"]');
+        if (licenseFile.files.length > 0) {
+          const licenseUploadResponse = await handleFileUpload(
+            licenseFile.files[0]
+          );
+          if (licenseUploadResponse.isOk) {
+            doctorDetails.license = licenseUploadResponse.data;
+          } else {
+            // show error. License file upload failed
+          }
+        } else {
+          // show error. License file is required
+        }
+
+        // TODO: validate form data
+
+        const response = await postData('/api/auth/signup', {
+          userType: 'doctor',
+          userDetails,
+          doctorDetails,
+          trialDetails,
+        });
+
+        if (response.isOk) {
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          window.location.href = '/SignUp/Dr-ConfirmSignUp.html';
+        } else {
+          const errorDiv = document.createElement('div');
+          errorDiv.classList.add('error');
+          errorDiv.setAttribute('data-server-error', '');
+          errorDiv.innerHTML = `${response.message.split('\n').join('<br>')}`;
+          form.prepend(errorDiv);
+          errorDiv.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+        }
+      });
+    }
+
+    //#endregion
+  </script>
+</html>

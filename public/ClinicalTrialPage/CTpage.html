@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="CTpage.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.js" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <!--<div class="container" id="trials-container"></div> to retrieve the info from db-->
+        <a href="../Home/HomePage-Patient.html">Home</a>
+        <a href="../ClinicalTrialPage/CTpage.html">Clinical Trials</a>
+        <a href="../MatchesPage/PatientMatchesPage.html">Matches</a>
+        <a href="../About-us/About-usPostPatient.html">About us</a>
+        <a href="../HelpPage/Help-Patient.html">Help</a>
+        <a href="../NotificationsPage/P-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <a href="../Chatbox/Patient-Chatbox.html" id="chatbox">
+          <button>ChatBox</button>
+        </a>
+
+        <!-- Sign Out Button -->
+        <a href="../Home/HomePage.html" id="signout-btn">
+          <button>Sign Out</button>
+        </a>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Patient.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+
+    <div class="filter-container">
+      <label for="filter"><strong>Filter:</strong></label>
+      <input type="text" id="filter" placeholder="ex: age, gender, disease" />
+    </div>
+
+    <div class="container" id="trialsContainer">
+      <div
+        class="card"
+        data-disease="sickel cell"
+        data-risk="high"
+        data-startdate="15/02/2027"
+      >
+        <p><strong>Name: DR. Somayh Ahmad</strong></p>
+        <p><strong>Duration: Two Years</strong></p>
+        <p><strong>Disease: Sickel Cell</strong></p>
+        <p><strong>Risk Level: High </strong></p>
+        <p><strong>Start Date: 15/02/2027 </strong></p>
+        <div class="buttons">
+          <button class="match">Match</button>
+          <button class="inquire">Inquire</button>
+        </div>
+      </div>
+
+      <div
+        class="card"
+        data-disease="Breast Cancer"
+        data-risk="Low"
+        data-startdate="22/02/2025"
+      >
+        <p><strong>Name: DR. Mahmoud Ali</strong></p>
+        <p><strong>Duration: Six Months</strong></p>
+        <p><strong>Disease: Breast Cancer</strong></p>
+        <p><strong>Risk Level: Low </strong></p>
+        <p><strong>Start Date: 22/02/2025 </strong></p>
+        <div class="buttons">
+          <button class="match">Match</button>
+          <button class="inquire">Inquire</button>
+        </div>
+      </div>
+
+      <div
+        class="card"
+        data-disease="Tuberculosis"
+        data-risk="High"
+        data-startdate="22/02/2025"
+      >
+        <p><strong>Name: DR. Bassam Alqahtani</strong></p>
+        <p><strong>Duration: Three Weeks</strong></p>
+        <p><strong>Disease: Tuberculosis</strong></p>
+        <p><strong>Risk Level: High </strong></p>
+        <p><strong>Start Date: 22/06/2025 </strong></p>
+        <div class="buttons">
+          <button class="match">Match</button>
+          <button class="inquire">Inquire</button>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { fetchData } from '/js/http-calls.js';
+
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.inquire').forEach((button) => {
+          button.addEventListener('click', function () {
+            window.location.href = '../matchespage/PcontactDr.html';
+          });
+        });
+
+        document.querySelectorAll('.match').forEach((button) => {
+          button.addEventListener('click', function () {
+            alert('You are now matched with this clinical trial.');
+            window.location.href = 'patientconfirmmatch.html';
+          });
+        });
+      });
+
+      document
+        .getElementById('signout-btn')
+        .addEventListener('click', function (event) {
+          event.preventDefault(); // Prevent immediate redirection
+          alert('You have signed out!');
+          window.location.href = '../Home/HomePage.html'; // Redirect after alert, same effect as the signout redirect in html in header
+        });
+
+      //underline the current tab
+      document.addEventListener('DOMContentLoaded', function () {
+        let currentLocation = window.location.pathname.split('/').pop();
+        let navLinks = document.querySelectorAll('.nav a');
+
+        navLinks.forEach((link) => {
+          if (link.getAttribute('href').includes(currentLocation)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        document
+          .getElementById('filter')
+          .addEventListener('input', function () {
+            const filterValue = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach((card) => {
+              const disease = card.getAttribute('data-disease').toLowerCase();
+              const risk = card.getAttribute('data-risk').toLowerCase();
+              const startDate = card
+                .getAttribute('data-startdate')
+                .toLowerCase();
+
+              if (
+                disease.includes(filterValue) ||
+                risk.includes(filterValue) ||
+                startDate.includes(filterValue)
+              ) {
+                card.style.display = 'block';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
+      });
+
+      //# API CALLS
+      document.addEventListener('DOMContentLoaded', init);
+
+      async function init() {
+        const doctorsResponse = await fetchData('/api/doctors');
+        const doctors = doctorsResponse.data;
+
+        const container = document.getElementById('trialsContainer');
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+
+        if (doctors.length === 0) {
+          const noDoctors = document.createElement('p');
+          noDoctors.innerHTML = 'No doctors found.';
+          container.appendChild(noDoctors);
+          return;
+        }
+
+        doctors.forEach((doctor) => {
+          const card = document.createElement('div');
+          card.classList.add('card');
+          card.setAttribute('data-disease', doctor.specialization);
+          card.setAttribute('data-risk', doctor.riskLevel);
+          card.setAttribute('data-startdate', doctor.startDate);
+
+          const name = document.createElement('p');
+          name.innerHTML = `<strong>Name: ${doctor.name}</strong>`;
+          card.appendChild(name);
+
+          const duration = document.createElement('p');
+          duration.innerHTML = `<strong>Duration: ${formatDuration(doctor.duration)}</strong>`;
+
+          card.appendChild(duration);
+
+          const disease = document.createElement('p');
+          disease.innerHTML = `<strong>Disease: ${doctor.specialization}</strong>`;
+          card.appendChild(disease);
+
+          const risk = document.createElement('p');
+          risk.innerHTML = `<strong>Risk Level: ${doctor.riskLevel}</strong>`;
+          card.appendChild(risk);
+
+          const buttons = document.createElement('div');
+          buttons.classList.add('buttons');
+
+          const matchButton = document.createElement('button');
+          matchButton.classList.add('match');
+          matchButton.innerHTML = 'Match';
+          buttons.appendChild(matchButton);
+
+          matchButton.addEventListener('click', function () {
+            window.location.href =
+              'patientconfirmmatch.html?doctorId=' + doctor.userId;
+          });
+
+          const inquireButton = document.createElement('button');
+          inquireButton.classList.add('inquire');
+          inquireButton.innerHTML = 'Inquire';
+          buttons.appendChild(inquireButton);
+
+          card.appendChild(buttons);
+
+          container.appendChild(card);
+        });
+      }
+
+      function formatDuration(ms) {
+        const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+        if (days >= 365) {
+          const years = Math.floor(days / 365);
+          return `${years} ${years === 1 ? 'Year' : 'Years'}`;
+        } else if (days >= 30) {
+          const months = Math.floor(days / 30);
+          return `${months} ${months === 1 ? 'Month' : 'Months'}`;
+        } else if (days >= 7) {
+          const weeks = Math.floor(days / 7);
+          return `${weeks} ${weeks === 1 ? 'Week' : 'Weeks'}`;
+        } else {
+          return `${days} ${days === 1 ? 'Day' : 'Days'}`;
+        }
+      }
+    </script>
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <h3>Providers</h3>
+          <p>MedNova Pharma</p>
+          <p>BioGenesis Pharma</p>
+          <p>CureTech Solutions</p>
+          <p>LifeBridge Investments</p>
+          <p>MedStrive Holdings</p>
+          <p>SummitCare Hospital</p>
+        </div>
+        <div class="column">
+          <h3>Publications</h3>
+          <p>The Journal of Global Health Insights</p>
+          <p>Biotech Review</p>
+          <p>PharmaProgress</p>
+          <p>Innovative Medical Research</p>
+          <p>Future of Healthcare</p>
+        </div>
+        <div class="column">
+          <h3>Investors</h3>
+          <p>CapitalCore Ventures</p>
+          <p>SilverStone Investments</p>
+          <p>Pioneer Growth Partners</p>
+          <p>Summit Ridge Capital</p>
+          <p>Horizon Equity Group</p>
+        </div>
+      </div>
+      <div class="contact">
+        Contact us at :
+        <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+      </div>
+      <div class="logos">
+        <img
+          src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png"
+          alt="Logo 2"
+        />
+        <img src="../img/logo (1).png" alt="Logo 3" />
+        <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+      </div>
+    </footer>
+  </body>
+</html>

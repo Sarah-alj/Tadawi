@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="PostHeader.css">
+</head>
+
+<body> 
+    <header class="header">
+        <div class="header-logo">
+            <span>T</span>ADAWI
+        </div>
+        <nav class="nav">
+            <a href="../Home/HomePage-Patient.html">Home</a>
+            <a href="../ClinicalTrialPage/CTpage.html">Clinical Trials</a>
+            <a href="../MatchesPage/PatientMatchesPage.html">Matches</a>
+            <a href="../About-us/About-usPostPatient.html">About us</a>
+            <a href="../HelpPage/Help-Patient.html">Help</a>
+            <a href="../NotificationsPage/P-NotifPage.html">Notifications</a>
+        </nav>
+        
+        <div class="buttons-container">
+            <img src="../img/download.png" alt="Notifications" id="notif-bell">
+
+            <!-- Sign Out Button -->
+            <a href="../Home/HomePage.html" id="signout-btn">
+                <button>Sign Out</button>
+            </a>
+
+            <!-- Edit Profile Button -->
+            <a href="../EditProfile/EditProfile-Patient.html">
+                <button id="edit-btn">Edit Profile</button>
+            </a>
+        </div>
+    </header>
+
+    <script>
+        document.getElementById("signout-btn").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent immediate redirection
+            alert("You have signed out!"); 
+            window.location.href = "../Home/HomePage-Patient.html"; // Redirect after alert, same thing as the signout redirect in html
+        });
+    </script>
+</body>
+</html>

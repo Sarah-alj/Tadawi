@@ -1,0 +1,57 @@
+body{
+    background-color: #dceaff;
+}
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #0f2f76;
+    text-decoration: none;
+}
+h1 {
+    color: #0f2f76;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+h2 {
+    color: #18375d;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+ul, ol {
+    padding-left: 20px;
+    font-size: 18px;
+}
+li {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+strong {
+    color: #0f2f76;
+}
+.faq, .glossary {
+    margin-top: 30px;
+}
+.glossary ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.glossary li {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+p {
+    font-size: 20px;
+    color: #18375d;
+    margin-top: 20px;
+    text-align: center;
+}
