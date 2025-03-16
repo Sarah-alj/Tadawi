@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="NewDonation.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Main.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Donor.html">Home</a>
+        <a href="../About-us/About-usPostDonor.html">About us</a>
+        <a href="../DonationsPgae/DonationsPage.html">Donations</a>
+        <a href="../HelpPage/Help-Donor.html">Help</a>
+        <a href="NewDonation.html">New Donation</a>
+        <a href="../NotificationsPage/Donor-NotifPage.html">Notifications</a>
+      </nav>
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <!-- Sign Out Button -->
+        <a href="../Home/HomePage.html" id="signout-btn">
+          <button>Sign Out</button>
+        </a>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Donor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <!-- form for new donations -->
+    <div class="container">
+      <a href="DonationsPage.html" class="back">← Back</a>
+      <h1>New Donation Form</h1>
+      <form id="equipmentForm">
+        <label for="equipmentName">Equipment Name</label>
+        <input
+          type="text"
+          id="equipmentName"
+          name="equipmentName"
+          placeholder="Enter equipment name"
+          required
+        />
+
+        <label for="equipmentDescription">Equipment Description</label>
+        <input
+          type="text"
+          id="equipmentDescription"
+          name="equipmentDescription"
+          placeholder="Enter equipment details"
+          required
+        />
+
+        <label for="yearsOfUse">Years of Use</label>
+        <select id="yearsOfUse" name="yearsOfUse" required>
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 Year</option>
+          <option value="2">2 Years</option>
+          <option value="3">3+ Years</option>
+        </select>
+
+        <label for="warrantyDetails">Warranty Details</label>
+        <input
+          type="text"
+          id="warrantyDetails"
+          name="warrantyDetails"
+          placeholder="Enter warranty details"
+        />
+
+        <label for="defects">Defects:</label>
+        <input
+          type="text"
+          id="defects"
+          name="defects"
+          placeholder="Mention any defects"
+        />
+
+        <label for="pointOfContact">Point of Contact</label>
+        <input
+          type="text"
+          id="pointOfContact"
+          name="pointOfContact"
+          placeholder="Phone/Email"
+          required
+        />
+
+        <label for="details">Additional Details</label>
+        <input
+          type="text"
+          id="details"
+          name="details"
+          placeholder="Provide additional details"
+        />
+
+        <button type="submit">Publish</button>
+      </form>
+
+      <script type="module">
+        import { postData } from '/js/http-calls.js';
+
+        document
+          .getElementById('signout-btn')
+          .addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent immediate redirection
+            alert('You have signed out!');
+            window.location.href = '../Home/HomePage.html'; // Redirect after alert, same effect as the signout redirect in html in header
+          });
+
+        //underline the current tab
+        document.addEventListener('DOMContentLoaded', function () {
+          let currentLocation = window.location.pathname.split('/').pop();
+          let navLinks = document.querySelectorAll('.nav a');
+
+          navLinks.forEach((link) => {
+            if (link.getAttribute('href').includes(currentLocation)) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        });
+
+        const successUrl = 'ConfirmNewDonation.html';
+
+        const form = document.getElementById('equipmentForm');
+
+        form.addEventListener('submit', handleSubmit);
+
+        async function handleSubmit(event) {
+          event.preventDefault();
+
+          form.querySelector('.error[data-server-error]')?.remove();
+
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData);
+
+          const postResponse = await postData('/api/donations', data);
+
+          if (postResponse.isOk) {
+            alert('Donation has been successfully published!');
+            window.location.href = successUrl;
+          } else {
+            const error = document.createElement('div');
+            error.classList.add('error');
+            error.setAttribute('data-server-error', '');
+            error.textContent = postResponse.message;
+            form.prepend(error);
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

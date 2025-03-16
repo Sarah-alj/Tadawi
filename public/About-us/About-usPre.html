@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="about-us.css">
+    <link rel="stylesheet" href="../Preheader/Preheader.css">
+    <link rel="stylesheet" href="../Prefooter/Prefooter.css">
+    <link rel="stylesheet" href="../Prefooter/Prefooter.js">
+</head>
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <span>T</span>ADAWI
+        </div>
+        <nav class="nav">
+            <a href="../Home/HomePage.html">Home</a>
+            <a href="About-usPre.html">About us</a>
+            <a href="../HelpPage/Help.html" class="active">Help</a>
+        </nav>
+        <div class="dropdown">
+            <button class="dropdown-button">Sign up <span class="arrow">&#9660;</span></button>
+            <div class="dropdown-content">
+                <a href="../Login-OTP/UserLogin.html">Login</a>
+                <a href="../CreateAccount/CreateAccount.html">Sign up</a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h2>About Us</h2>
+        <p>Welcome to Tadawi, a groundbreaking platform that aims to connect patients with clinical trials and donated medical equipment. Our goal is to make it easier for individuals to access essential healthcare resources by simplifying the process of connecting patients with these opportunities.</p>
+        
+        <h2>What We Do</h2>
+        <p>Tadawi is designed to assist patients in finding appropriate clinical trials for their medical conditions in a secure and user-friendly manner. From matching trials to connecting with doctors, we provide a smooth experience. We also have a special donations feature where patients can request donated medical equipment, ensuring that everyone can access the care they need.</p>
+        
+        <h2>Our Vision</h2>
+        <p>Our goal is to utilize technology to improve access to healthcare, increase transparency, and enhance efficiency by simplifying the process of recruiting for clinical trials, engaging patients, and facilitating healthcare donations. Tadawi is dedicated to providing multilingual support and ensuring accessibility so that people from all backgrounds can take advantage of the platform's services.</p>
+        
+        <h2>Our Values</h2>
+        <p>Inclusivity is our top priority, providing a platform that welcomes patients, doctors, and donors from diverse backgrounds. Communication is key, with verified trial information and clear transparency on equipment donations. Your security is paramount to us. Tadawi ensures the highest data protection standards, including compliance with HIPAA and PDPL, to safeguard your personal and medical information.</p>
+        
+        <h2>Innovation</h2>
+        <p>At Tadawi, our focus is on innovation to enhance healthcare access through technology, leading to improved patient outcomes and efficiency in healthcare. We are dedicated to improving every aspect of the healthcare journey, ensuring that medical resources are available to those who need them most. Come join us in our mission to create a more connected, compassionate, and accessible healthcare system.</p>
+    </div>
+    <footer class="footer">
+        <div class="columns">
+            <div class="column">
+                <h3>Providers</h3>
+                <p>MedNova Pharma</p>
+                <p>BioGenesis Pharma</p>
+                <p>CureTech Solutions</p>
+                <p>LifeBridge Investments</p>
+                <p>MedStrive Holdings</p>
+                <p>SummitCare Hospital</p>
+            </div>
+            <div class="column">
+                <h3>Publications</h3>
+                <p>The Journal of Global Health Insights</p>
+                <p>Biotech Review</p>
+                <p>PharmaProgress</p>
+                <p>Innovative Medical Research</p>
+                <p>Future of Healthcare</p>
+            </div>
+            <div class="column">
+                <h3>Investors</h3>
+                <p>CapitalCore Ventures</p>
+                <p>SilverStone Investments</p>
+                <p>Pioneer Growth Partners</p>
+                <p>Summit Ridge Capital</p>
+                <p>Horizon Equity Group</p>
+            </div>
+        </div>
+        <div class="contact">
+            Contact us at : <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+        </div>
+        <div class="logos">
+           
+            <img src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2">
+            <img src="../img/logo (1).png" alt="Logo 3">
+            <img src="../img/image-removebg-preview.png" alt="Logo 4">
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    console.log("Tadawi About Us page loaded successfully");
+    
+    //Changing header color on hover
+    const headers = document.querySelectorAll("h2");
+    headers.forEach(header => {
+        header.addEventListener("mouseover", function() {
+            this.style.color = "#6a0dad";
+        });
+        header.addEventListener("mouseout", function() {
+            this.style.color = "#2c3e50";
+        });
+    });
+});
+
+//underline the current tab
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentLocation = window.location.pathname.split("/").pop();
+        let navLinks = document.querySelectorAll(".nav a");
+        navLinks.forEach(link => {
+            if (link.getAttribute("href").includes(currentLocation)) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    });
+
+</script>
+</body>
+</html>
+
+
+
+<!--body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    color: #2c3e50;
+    border-bottom: 3px solid #6a0dad;
+    padding-bottom: 5px;
+}
+p {
+    line-height: 1.6;
+}-->
+
+<script>document.addEventListener("DOMContentLoaded", function () {
+    // Dropdown toggle functionality
+    const dropdownButton = document.querySelector(".dropdown-button");
+    const dropdownMenu = document.querySelector(".dropdown-content");
+    const dropdown = document.querySelector(".dropdown");
+
+    if (dropdownButton) {
+        dropdownButton.addEventListener("click", function (event) {
+            event.stopPropagation(); // Prevent closing when clicking the button
+            dropdown.classList.toggle("open");
+        });
+
+        // Close dropdown if clicking outside
+        document.addEventListener("click", function (event) {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove("open");
+            }
+        });
+    }
+
+    // Highlight active navigation tab
+    let currentLocation = window.location.pathname.split("/").pop();
+    let navLinks = document.querySelectorAll(".nav a");
+
+    navLinks.forEach(link => {
+        if (link.getAttribute("href").includes(currentLocation)) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
+
+    // GSAP animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(".hero h1", { opacity: 0, y: -50, duration: 1.2 });
+    gsap.from(".hero p", { opacity: 0, y: 30, duration: 1, delay: 0.5 });
+    gsap.from(".hero-btn", { opacity: 0, scale: 0.8, duration: 1, delay: 1 });
+
+    gsap.from(".info-box", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        stagger: 0.3,
+        scrollTrigger: {
+            trigger: ".info",
+            start: "top 75%",
+            toggleActions: "play none none none"
+        }
+    });
+});
+</script>

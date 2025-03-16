@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0px;
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background-color: #dceaff;
+    color: #0f2f76;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;  /* Ensures the header stays at the top */
+    top: 0;
+    left: 0;
+    width: 100%;  /* Makes it span the full width */
+    z-index: 1000; /* Ensures it stays above other content */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+
+.chat-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.user-list {
+    width: 25%;
+    background: #070064;
+    color: white;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.user-list h2 {
+    text-align: center;
+}
+
+.user {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ffffff33;
+}
+
+.user:hover {
+    background: #4e6ca3;
+}
+
+.chat-box {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-left: 2px solid #ccc;
+}
+
+.chat-header {
+    padding: 15px;
+    background: #18375d;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+.messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 60%;
+}
+
+.sent {
+    align-self: flex-end;
+    background: #4e6ca3;
+    color: white;
+}
+
+.received {
+    align-self: flex-start;
+    background: #ccc;
+}
+
+.message-input {
+    display: flex;
+    padding: 10px;
+    background: #eee;
+    border-top: 1px solid #ccc;
+}
+
+.message-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.message-input button {
+    padding: 10px 15px;
+    border: none;
+    background: #18375d;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.message-input button:hover {
+    background: #4e6ca3;
+}
