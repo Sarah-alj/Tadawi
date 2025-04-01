@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="../EditProfile/EditProfile.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Dr.html">Home</a>
+        <a href="../PatientsTabPage/PatientTabPage.html">Patients</a>
+        <a href="../MatchesPage/DrMatches.html">Matches</a>
+        <a href="../About-us/About-usPostDr.html">About us</a>
+        <a href="../LabPage/Lab.html">Labs</a>
+        <a href="../MyLabsPage/MyLabsPage.html">My Labs</a>
+        <a href="../HelpPage/Help-Dr.html">Help</a>
+        <a href="../NotificationsPage/DR-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+        <a href="../EditProfile/EditProfile-Doctor.html"> <button id="edit-btn">Edit Profile</button></a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <form id="editProfileForm">
+          <div>
+            <div class="container">
+              <div class="header-second">
+                <a href="../Home/HomePage-Dr.html" class="back">← Back</a>
+                <h2>Edit Doctor Profile</h2>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Please enter a valid email" />
+
+                <label for="newpass"> Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  placeholder="Please use a strong password"
+                />
+
+                <label for="confpass">Confirm Password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  required
+                  placeholder="Please re-enter your password"
+                />
+
+                <label for="fullname">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+
+                <label for="title">Title</label>
+                <select id="title" name="title">
+                  <option value="" disabled selected>Select Title</option>
+                  <option value="Mr.">Mr.</option>
+                  <option value="Mrs.">Mrs.</option>
+                  <option value="Ms.">Ms.</option>
+                  <option value="Miss">Miss</option>
+                  <option value="Dr.">Dr.</option>
+                  <option value="Prof.">Prof.</option>
+                </select>
+
+                <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+          <option value="" disabled selected>Select Your Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
+                <label for="phoneNumber">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  required
+                  title="Please enter a valid phone number, e.g., +966XXXXXXXXX"
+                  placeholder="+966"
+                />
+
+                <label for="dateOfBirth">Date Of Birth</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" required />
+
+                <label for="nationality">Nationality</label>
+                <select id="nationality" name="nationality">
+                  <option value="" disabled selected>Select Your Nationality</option>
+                
+                  <optgroup label="A">
+                    <option value="Afghan">Afghan</option>
+                    <option value="Albanian">Albanian</option>
+                    <option value="Algerian">Algerian</option>
+                    <option value="American">American</option>
+                    <option value="Andorran">Andorran</option>
+                    <option value="Angolan">Angolan</option>
+                    <option value="Anguillan">Anguillan</option>
+                    <option value="Citizen of Antigua and Barbuda">Citizen of Antigua and Barbuda</option>
+                    <option value="Argentine">Argentine</option>
+                    <option value="Armenian">Armenian</option>
+                    <option value="Australian">Australian</option>
+                    <option value="Austrian">Austrian</option>
+                    <option value="Azerbaijani">Azerbaijani</option>
+                  </optgroup>
+                
+                  <optgroup label="B">
+                    <option value="Bahamian">Bahamian</option>
+                    <option value="Bahraini">Bahraini</option>
+                    <option value="Bangladeshi">Bangladeshi</option>
+                    <option value="Barbadian">Barbadian</option>
+                    <option value="Belarusian">Belarusian</option>
+                    <option value="Belgian">Belgian</option>
+                    <option value="Belizean">Belizean</option>
+                    <option value="Beninese">Beninese</option>
+                    <option value="Bermudian">Bermudian</option>
+                    <option value="Bhutanese">Bhutanese</option>
+                    <option value="Bolivian">Bolivian</option>
+                    <option value="Citizen of Bosnia and Herzegovina">Citizen of Bosnia and Herzegovina</option>
+                    <option value="Botswanan">Botswanan</option>
+                    <option value="Brazilian">Brazilian</option>
+                    <option value="British">British</option>
+                    <option value="British Virgin Islander">British Virgin Islander</option>
+                    <option value="Bruneian">Bruneian</option>
+                    <option value="Bulgarian">Bulgarian</option>
+                    <option value="Burkinan">Burkinan</option>
+                    <option value="Burmese">Burmese</option>
+                    <option value="Burundian">Burundian</option>
+                  </optgroup>
+                  <optgroup label="C">
+                    <option value="Cambodian">Cambodian</option>
+                    <option value="Cameroonian">Cameroonian</option>
+                    <option value="Canadian">Canadian</option>
+                    <option value="Cape Verdean">Cape Verdean</option>
+                    <option value="Cayman Islander">Cayman Islander</option>
+                    <option value="Central African">Central African</option>
+                    <option value="Chadian">Chadian</option>
+                    <option value="Chilean">Chilean</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Colombian">Colombian</option>
+                    <option value="Comoran">Comoran</option>
+                    <option value="Congolese (Congo)">Congolese (Congo)</option>
+                    <option value="Congolese (DRC)">Congolese (DRC)</option>
+                    <option value="Cook Islander">Cook Islander</option>
+                    <option value="Costa Rican">Costa Rican</option>
+                    <option value="Croatian">Croatian</option>
+                    <option value="Cuban">Cuban</option>
+                    <option value="Cymraes">Cymraes</option>
+                    <option value="Cymro">Cymro</option>
+                    <option value="Cypriot">Cypriot</option>
+                    <option value="Czech">Czech</option>
+                  </optgroup>
+                
+                  <optgroup label="D">
+                    <option value="Danish">Danish</option>
+                    <option value="Djiboutian">Djiboutian</option>
+                    <option value="Dominican">Dominican</option>
+                    <option value="Citizen of the Dominican Republic">Citizen of the Dominican Republic</option>
+                    <option value="Dutch">Dutch</option>
+                  </optgroup>
+                  <optgroup label="E">
+                    <option value="East Timorese">East Timorese</option>
+                    <option value="Ecuadorean">Ecuadorean</option>
+                    <option value="Egyptian">Egyptian</option>
+                    <option value="Emirati">Emirati</option>
+                    <option value="English">English</option>
+                    <option value="Equatorial Guinean">Equatorial Guinean</option>
+                    <option value="Eritrean">Eritrean</option>
+                    <option value="Estonian">Estonian</option>
+                    <option value="Ethiopian">Ethiopian</option>
+                  </optgroup>
+                
+                  <optgroup label="F">
+                    <option value="Faroese">Faroese</option>
+                    <option value="Fijian">Fijian</option>
+                    <option value="Filipino">Filipino</option>
+                    <option value="Finnish">Finnish</option>
+                    <option value="French">French</option>
+                  </optgroup>
+                
+                  <optgroup label="G">
+                    <option value="Gabonese">Gabonese</option>
+                    <option value="Gambian">Gambian</option>
+                    <option value="Georgian">Georgian</option>
+                    <option value="German">German</option>
+                    <option value="Ghanaian">Ghanaian</option>
+                    <option value="Gibraltarian">Gibraltarian</option>
+                    <option value="Greek">Greek</option>
+                    <option value="Greenlandic">Greenlandic</option>
+                    <option value="Grenadian">Grenadian</option>
+                    <option value="Guamanian">Guamanian</option>
+                    <option value="Guatemalan">Guatemalan</option>
+                    <option value="Citizen of Guinea-Bissau">Citizen of Guinea-Bissau</option>
+                    <option value="Guinean">Guinean</option>
+                    <option value="Guyanese">Guyanese</option>
+                  </optgroup>
+                  <optgroup label="H">
+                    <option value="Haitian">Haitian</option>
+                    <option value="Honduran">Honduran</option>
+                    <option value="Hong Konger">Hong Konger</option>
+                    <option value="Hungarian">Hungarian</option>
+                  </optgroup>
+                
+                  <optgroup label="I">
+                    <option value="Icelandic">Icelandic</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Indonesian">Indonesian</option>
+                    <option value="Iranian">Iranian</option>
+                    <option value="Iraqi">Iraqi</option>
+                    <option value="Irish">Irish</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Ivorian">Ivorian</option>
+                  </optgroup>
+                
+                  <optgroup label="J">
+                    <option value="Jamaican">Jamaican</option>
+                    <option value="Japanese">Japanese</option>
+                    <option value="Jordanian">Jordanian</option>
+                  </optgroup>
+                
+                  <optgroup label="K">
+                    <option value="Kazakh">Kazakh</option>
+                    <option value="Kenyan">Kenyan</option>
+                    <option value="Kittitian">Kittitian</option>
+                    <option value="Citizen of Kiribati">Citizen of Kiribati</option>
+                    <option value="Kosovan">Kosovan</option>
+                    <option value="Kuwaiti">Kuwaiti</option>
+                    <option value="Kyrgyz">Kyrgyz</option>
+                  </optgroup>
+                  <optgroup label="L">
+                    <option value="Lao">Lao</option>
+                    <option value="Latvian">Latvian</option>
+                    <option value="Lebanese">Lebanese</option>
+                    <option value="Liberian">Liberian</option>
+                    <option value="Libyan">Libyan</option>
+                    <option value="Liechtenstein citizen">Liechtenstein citizen</option>
+                    <option value="Lithuanian">Lithuanian</option>
+                    <option value="Luxembourger">Luxembourger</option>
+                  </optgroup>
+                
+                  <optgroup label="M">
+                    <option value="Macanese">Macanese</option>
+                    <option value="Macedonian">Macedonian</option>
+                    <option value="Malagasy">Malagasy</option>
+                    <option value="Malawian">Malawian</option>
+                    <option value="Malaysian">Malaysian</option>
+                    <option value="Maldivian">Maldivian</option>
+                    <option value="Malian">Malian</option>
+                    <option value="Maltese">Maltese</option>
+                    <option value="Marshallese">Marshallese</option>
+                    <option value="Martiniquais">Martiniquais</option>
+                    <option value="Mauritanian">Mauritanian</option>
+                    <option value="Mauritian">Mauritian</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Micronesian">Micronesian</option>
+                    <option value="Moldovan">Moldovan</option>
+                    <option value="Monegasque">Monegasque</option>
+                    <option value="Mongolian">Mongolian</option>
+                    <option value="Montenegrin">Montenegrin</option>
+                    <option value="Montserratian">Montserratian</option>
+                    <option value="Moroccan">Moroccan</option>
+                    <option value="Mosotho">Mosotho</option>
+                    <option value="Mozambican">Mozambican</option>
+                  </optgroup>
+                  <optgroup label="N">
+                    <option value="Namibian">Namibian</option>
+                    <option value="Nauruan">Nauruan</option>
+                    <option value="Nepalese">Nepalese</option>
+                    <option value="New Zealander">New Zealander</option>
+                    <option value="Nicaraguan">Nicaraguan</option>
+                    <option value="Nigerian">Nigerian</option>
+                    <option value="Nigerien">Nigerien</option>
+                    <option value="Niuean">Niuean</option>
+                    <option value="North Korean">North Korean</option>
+                    <option value="Northern Irish">Northern Irish</option>
+                    <option value="Norwegian">Norwegian</option>
+                  </optgroup>
+                
+                  <optgroup label="O">
+                    <option value="Omani">Omani</option>
+                  </optgroup>
+                
+                  <optgroup label="P">
+                    <option value="Pakistani">Pakistani</option>
+                    <option value="Palauan">Palauan</option>
+                    <option value="Palestinian">Palestinian</option>
+                    <option value="Panamanian">Panamanian</option>
+                    <option value="Papua New Guinean">Papua New Guinean</option>
+                    <option value="Paraguayan">Paraguayan</option>
+                    <option value="Peruvian">Peruvian</option>
+                    <option value="Pitcairn Islander">Pitcairn Islander</option>
+                    <option value="Polish">Polish</option>
+                    <option value="Portuguese">Portuguese</option>
+                    <option value="Prydeinig">Prydeinig</option>
+                    <option value="Puerto Rican">Puerto Rican</option>
+                  </optgroup>
+                  <optgroup label="Q">
+                    <option value="Qatari">Qatari</option>
+                  </optgroup>
+                
+                  <optgroup label="R">
+                    <option value="Romanian">Romanian</option>
+                    <option value="Russian">Russian</option>
+                    <option value="Rwandan">Rwandan</option>
+                  </optgroup>
+                
+                  <optgroup label="S">
+                    <option value="Salvadorean">Salvadorean</option>
+                    <option value="Sammarinese">Sammarinese</option>
+                    <option value="Samoan">Samoan</option>
+                    <option value="Sao Tomean">Sao Tomean</option>
+                    <option value="Saudi Arabian">Saudi Arabian</option>
+                    <option value="Scottish">Scottish</option>
+                    <option value="Senegalese">Senegalese</option>
+                    <option value="Serbian">Serbian</option>
+                    <option value="Citizen of Seychelles">Citizen of Seychelles</option>
+                    <option value="Sierra Leonean">Sierra Leonean</option>
+                    <option value="Singaporean">Singaporean</option>
+                    <option value="Slovak">Slovak</option>
+                    <option value="Slovenian">Slovenian</option>
+                    <option value="Solomon Islander">Solomon Islander</option>
+                    <option value="Somali">Somali</option>
+                    <option value="South African">South African</option>
+                    <option value="South Korean">South Korean</option>
+                    <option value="South Sudanese">South Sudanese</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="Sri Lankan">Sri Lankan</option>
+                    <option value="St Helenian">St Helenian</option>
+                    <option value="St Lucian">St Lucian</option>
+                    <option value="Stateless">Stateless</option>
+                    <option value="Sudanese">Sudanese</option>
+                    <option value="Surinamese">Surinamese</option>
+                    <option value="Swazi">Swazi</option>
+                    <option value="Swedish">Swedish</option>
+                    <option value="Swiss">Swiss</option>
+                    <option value="Syrian">Syrian</option>
+                  </optgroup>
+                  <optgroup label="T">
+                    <option value="Taiwanese">Taiwanese</option>
+                    <option value="Tajik">Tajik</option>
+                    <option value="Tanzanian">Tanzanian</option>
+                    <option value="Thai">Thai</option>
+                    <option value="Togolese">Togolese</option>
+                    <option value="Tongan">Tongan</option>
+                    <option value="Trinidadian">Trinidadian</option>
+                    <option value="Tristanian">Tristanian</option>
+                    <option value="Tunisian">Tunisian</option>
+                    <option value="Turkish">Turkish</option>
+                    <option value="Turkmen">Turkmen</option>
+                    <option value="Turks and Caicos Islander">Turks and Caicos Islander</option>
+                    <option value="Tuvaluan">Tuvaluan</option>
+                  </optgroup>
+                
+                  <optgroup label="U">
+                    <option value="Ugandan">Ugandan</option>
+                    <option value="Ukrainian">Ukrainian</option>
+                    <option value="Uruguayan">Uruguayan</option>
+                    <option value="Uzbek">Uzbek</option>
+                  </optgroup>
+                
+                  <optgroup label="V">
+                    <option value="Vatican citizen">Vatican citizen</option>
+                    <option value="Citizen of Vanuatu">Citizen of Vanuatu</option>
+                    <option value="Venezuelan">Venezuelan</option>
+                    <option value="Vietnamese">Vietnamese</option>
+                    <option value="Vincentian">Vincentian</option>
+                  </optgroup>
+                
+                  <optgroup label="W">
+                    <option value="Wallisian">Wallisian</option>
+                    <option value="Welsh">Welsh</option>
+                  </optgroup>
+                
+                  <optgroup label="Y">
+                    <option value="Yemeni">Yemeni</option>
+                  </optgroup>
+                
+                  <optgroup label="Z">
+                    <option value="Zambian">Zambian</option>
+                    <option value="Zimbabwean">Zimbabwean</option>
+                  </optgroup>
+                </select>
+
+                <label for="pointOfContact">Point of Contact with Patients</label>
+                <input
+                  type="text"
+                  id="pointOfContact"
+                  name="pointOfContact"
+                  placeholder="e.g., Email: example@gmail.com"
+                />
+
+                <label for="specialization">Specialization/Field of Research</label>
+                <input type="text" id="specialization" name="specialization" placeholder="e.g., Oncology" />
+
+                <label for="institute">Institution of Affiliation</label>
+                <input type="text" id="institute" name="institute" placeholder="e.g., KAUST" />
+
+                <label for="license">Professional License</label>
+                <input type="file" id="license" name="license" accept="image/*" />
+
+                <label for="riskLevel">Clinical Trial Risk Level</label>
+                <select id="riskLevel" name="riskLevel" required="">
+                  <option value="">Select</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+
+                <label for="trialDescription">Trial Description</label>
+                <textarea id="trialDescription" name="trialDescription"></textarea>
+
+                <label for="trialRequirements">Patient Requirements</label>
+                <textarea
+                  id="trialRequirements"
+                  name="trialRequirements"
+                  placeholder="e.g., Patient must be 30+ years old"
+                ></textarea>
+
+                <label>Clinical Trial Start Date</label>
+                <input type="date" name="trialStart" />
+
+                <label>Clinical Trial End Date</label>
+                <input type="date" name="trialEnd" />
+
+                
+                  <label for="region">Region</label>
+                  <select id="region" name="region">
+                    <option value="" disabled selected>Select Current Region</option>
+                    <option value="Abha">Abha</option>
+                    <option value="Al Bahah">Al Bahah</option>
+                    <option value="Sakaka">Sakaka</option>
+                    <option value="Buraidah">Buraidah</option>
+                    <option value="Dammam">Dammam</option>
+                    <option value="Jazan">Jazan</option>
+                    <option value="Makkah">Makkah</option>
+                    <option value="Madinah">Madinah</option>
+                    <option value="Najran">Najran</option>
+                    <option value="Arar">Arar</option>
+                    <option value="Riyadh">Riyadh</option>
+                    <option value="Tabuk">Tabuk</option>
+                    <option value="Hail">Hail</option>
+                  </select>
+                
+                
+
+                <div>
+                  <button type="submit">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+
+  <script type="module">
+    import { handleFileUpload } from '/js/file-upload.js';
+    import { fetchData, updateData } from '/js/api.js';
+
+    const SUCCESS_URL = '/EditProfile/Dr-confirmEdit.html';
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    async function init() {
+      await fetchDataAndUpdateUI();
+
+      const form = document.getElementById('editProfileForm');
+      form.addEventListener('submit', handleSubmit);
+    }
+
+    async function handleSubmit(event) {
+      const form = event.target;
+      event.preventDefault();
+
+      // remove previous server error
+      form.querySelector('.error[data-server-error]')?.remove();
+
+      const formData = new FormData(form);
+
+      const userDetails = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password'),
+        confirmPassword: formData.get('confirmPassword'),
+        gender: formData.get('gender'),
+        region: formData.get('region'),
+        dateOfBirth: formData.get('dateOfBirth'),
+        phoneNumber: formData.get('phoneNumber'),
+        title: formData.get('title'),
+        nationality: formData.get('nationality'),
+      };
+
+      const trialDetails = {
+        trialDescription: formData.get('trialDescription'),
+        trialRequirements: formData.get('trialRequirements'),
+        // trialStart: formData.get('trialStart'),
+        // trialEnd: formData.get('trialEnd'),
+        riskLevel: formData.get('riskLevel'),
+      };
+
+      if (formData.get('trialStart')) {
+        trialDetails.trialStart = formData.get('trialStart');
+      }
+
+      if (formData.get('trialEnd')) {
+        trialDetails.trialEnd = formData.get('trialEnd');
+      }
+
+      const doctorDetails = {
+        specialization: formData.get('specialization'),
+        institute: formData.get('institute'),
+        pointOfContact: formData.get('pointOfContact'),
+      };
+
+      const licenseFile = form.querySelector('input[type="file"]');
+      if (licenseFile.files.length > 0) {
+        const licenseUploadResponse = await handleFileUpload(licenseFile.files[0]);
+        if (licenseUploadResponse.isOk) {
+          doctorDetails.license = licenseUploadResponse.data;
+        } else {
+          // show error. License file upload failed
+        }
+      } else {
+        // show error. License file is required
+      }
+
+      const updateResponse = await updateData('/api/users/my-profile/update', {
+        userType: 'doctor',
+        userDetails: userDetails,
+        doctorDetails: doctorDetails,
+        trialDetails: trialDetails,
+      });
+
+      if (updateResponse.isOk) {
+        alert('Profile updated successfully!');
+        window.location.href = SUCCESS_URL;
+      } else {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error';
+        errorDiv.setAttribute('data-server-error', '');
+        errorDiv.textContent = updateResponse.message || 'Failed to update profile. Please try again.';
+        form.prepend(errorDiv);
+        errorDiv.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }
+
+    async function fetchDataAndUpdateUI() {
+      const fetchResponse = await fetchData('/api/users/my-profile');
+
+      if (!fetchResponse.isOk) {
+        alert(fetchResponse.message);
+        return;
+      }
+
+      const data = fetchResponse.data;
+
+      const editProfileForm = document.getElementById('editProfileForm');
+      const emailInput = editProfileForm.querySelector('input[name="email"]');
+      const nameInput = editProfileForm.querySelector('input[name="name"]');
+      const titleSelect = editProfileForm.querySelector('select[name="title"]');
+      const genderSelect = editProfileForm.querySelector('select[name="gender"]');
+      const phoneNumberInput = editProfileForm.querySelector('input[name="phoneNumber"]');
+      const dateOfBirthInput = editProfileForm.querySelector('input[name="dateOfBirth"]');
+      const nationalitySelect = editProfileForm.querySelector('select[name="nationality"]');
+      const regionSelect = editProfileForm.querySelector('select[name="region"]');
+
+      const pointOfContactInput = editProfileForm.querySelector('input[name="pointOfContact"]');
+      const specializationInput = editProfileForm.querySelector('input[name="specialization"]');
+      const instituteInput = editProfileForm.querySelector('input[name="institute"]');
+
+      const trialDescriptionInput = editProfileForm.querySelector('textarea[name="trialDescription"]');
+      const trialRequirementsInput = editProfileForm.querySelector('textarea[name="trialRequirements"]');
+      const riskLevelSelect = editProfileForm.querySelector('select[name="riskLevel"]');
+
+      emailInput.value = data.user.email;
+      nameInput.value = data.user.name;
+      titleSelect.value = data.user.title;
+      genderSelect.value = data.user.gender;
+      phoneNumberInput.value = data.user.phoneNumber;
+      dateOfBirthInput.value = new Date(data.user.dateOfBirth).toISOString().split('T')[0];
+      nationalitySelect.value = data.user.nationality;
+      regionSelect.value = data.user.region;
+
+      pointOfContactInput.value = data.doctorProfile.pointOfContact;
+      specializationInput.value = data.doctorProfile.specialization;
+      instituteInput.value = data.doctorProfile.institute;
+
+      trialDescriptionInput.value = data.doctorTrials.trialDescription;
+      trialRequirementsInput.value = data.doctorTrials.trialRequirements;
+      riskLevelSelect.value = data.doctorTrials.riskLevel;
+    }
+  </script>
+</html>
+
+<!-- Dr-confirmEdit.html -->

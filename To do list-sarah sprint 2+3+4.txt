@@ -1,0 +1,58 @@
+NOT DONE/WON'T DO:
+-light and dark mode
+-offer booking for consultations (patient books an in real life consultation appointment with a doctor they matched to)
+--------------------------------
+DONE:
+-ReadME 
+-documentation fix (added key features, testing for all sprints, "additional supporting material", "WCAG Compliance", softwares/tools used, multiple txt files for AI ML..etc)
+-fix er n schema
+-<th>status</th><!--should show if the donation is done or pending--> in db
+-include more info for each card in the clinical trials and patients tab
+-add animations to icons (ex: loading icon)
+-redirect sign up to login not signed in home page
+-change the deny options for drdenymatch
+-make a category list of items that can be donated to limit what can be donated
+-edit donations form for donors/acquirers
+-a My Donations tab for donors to see what they have donated/are donating now
+-add the @media responsive to all css
+-fix header of dr/patient/donor edit profile 
+-add post footer (feedback) to home pages all
+-fix footer of all about us post 
+-<a href="LogIn.html"> /*here, the link should take the user to the home page of the specific user type (if its a dr loging in ti should take him to dr home, but idk how to do it yet*/ (otp page)
+-in schema n er we have two trial description(one in dr table n one in trial table) remove one 
+-fix header of home page patient,dr,donor 
+-fix terms and conditions box on dr sign up & patient sign up 
+-add id form to patient sign up, and DofDisease? (ig let user describe theire symptoms) 
+-Add region to donor sign up 
+-add new logo in header n remove old logo from footer (done ish, im not changing the header logo)
+-put space between the navs/boxs (ex: in labs and about page, space between footer and the about us box then between the header and the about us box...etc)check all other pages) 
+-add risk lvl input for dr sign up 
+-in lab, make the bloodwork a dropdown menu 
+-fix class diagrams attributes 
+-dr confrim and cointact button should ask if dr wants to contact patient after confirming match. 
+-labs submiut confirmation page 
+-give labs 9 patient limit sign up 
+-edit profile inputs, fix like sign up 
+-new donations page header fix 
+-header on donations page
+-notif system 
+-PT-US17: As a patient, If a match is mutual (approved by the doctor), I want a confirmation message on the status in the "matches" tab. 
+-add filter box for patientstabpage, its implemented but doesnt show up, add also to ctpage n donationspage 
+-notifications tab:  automatic suggestion matching(say that: Dr bla bla's clinical trial is a suitable match)
+-notifications tab should show to patient that a dr has booked a lab for them(include all details such as date and time, and the labratory booked, bloodwork type...)
+-allow users to upload pics and pdfs in the chatbox 
+-chatgpt open api (AI chatbox to help users navigate,use and understand the website so it doesnt answer questions about specific drs, patients, clinical trials) (chatgpt api key)
+-a My Labs tab for drs to see all the labs theyve booked
+-make a category list of items that can be donated to limit what can be donated(this is done in html,css,js, the change is in the NewDonation.html under the DonationsPage folder)
+-edit donations form for donors/acquirers
+-allow donors to delete the donation in the MyDonations page
+-a My Donations tab for donors to see what they have donated/are donating now
+-make all filter boxes a drop down menu(make sure it works)
+-include more info for each card in the clinical trials and patients tab
+----------------------------------------------------------------------
+INFO ON TECH STACK USED:
+-we used compass n atlas but mainly atlas(compass is for local)
+-used express js
+-mvc model in the controllers giving logic for every user
+-database connection is in config file 
+-we used const uri = process.env.MONGO_URI; to connect to env file from the config file

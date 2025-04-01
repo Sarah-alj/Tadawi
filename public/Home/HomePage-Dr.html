@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="HomePage.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../PostFooter/PostFooter.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Dr.html">
+          <div id="home-icon" style="width: 30px; height: 30px; display: inline-block; vertical-align: middle;"></div>
+          Home
+        </a> 
+        <a href="../PatientsTabPage/PatientTabPage.html">Patients</a>
+        <a href="../MatchesPage/DrMatches.html">Matches</a>
+        <a href="../About-us/About-usPostDr.html">About us</a>
+        <a href="../LabPage/Lab.html">Labs</a>
+        <a href="../MyLabsPage/MyLabsPage.html">My Labs</a>
+        <a href="../HelpPage/Help-Dr.html">Help</a>
+        <a href="../NotificationsPage/DR-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div>
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Doctor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Advancing Medicine & helping patients</h1>
+        <p>Find your clinical trial match now</p><div> 
+        <a href="../About-us/About-usPostDr.html">
+          <button class="hero-btn">Learn More</button>
+        </a></div>
+        <div> 
+        <a href="../AIchatBox/AIchatBoxDr.html">
+          <button class="hero-btn">Chat with our AI assistant</button>
+        </a></div>
+      </div>
+    </section>
+
+    <!-- Info Section 
+    <section class="info">
+        <div class="info-box">
+            <h2>Data-Driven Healthcare for betterment</h2>
+            <p>Our technology harnesses vast amounts of data to provide personalized treatment plans.</p>
+        </div>
+        <div class="info-box">
+            <h2>Convenience, Privacy, & Assisstance</h2>
+            <p>Our users are our priority.</p>
+        </div>
+    </section>-->
+    <div class="top-animated-block">
+      <div class="middle-content-anime">
+        <img
+          class="background-image"
+          src="https://www.tempus.com/wp-content/uploads/2025/01/tempus.webp"
+          alt="image description"
+        />
+        <div class="wrap">
+          <div class="row flex">
+            <div class="col-xs-12 col-md-6">
+              <div class="box start-a">
+                <h2 class="header-02">With the power of Tadawi, we now have the ability to</h2>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <div class="box start-a1">
+                <ul>
+                  <li>
+                    <h5>Accelerate</h5>
+                    <p>the discovery of novel targets</p>
+                  </li>
+                  <li>
+                    <h5>Find</h5>
+                    <p>Donated medical equipment</p>
+                  </li>
+                  <li>
+                    <h5>Help</h5>
+                    <p>Bridge gaps between patients & clinical trials</p>
+                  </li>
+                  <li>
+                    <h5>Diagnose</h5>
+                    <p>Multiple diseases earlier</p>
+                  </li>
+                </ul>
+                <div class="show-content-area"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <!-- Feedback Form -->
+        <div class="feedback-container">
+          <h2>Feedback form:</h2>
+          <form id="feedbackForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="comments">Comments:</label>
+            <textarea
+              id="comments"
+              name="comments"
+              placeholder="e.g., finding the right clinical trial for me is difficult"
+              required
+            ></textarea>
+
+            <button type="submit">Submit</button>
+          </form>
+
+          <script src="./feedback.js" type="module"></script>
+        </div>
+
+        <!-- Contact and Logos (Centered) -->
+        <div class="contact-column">
+          <div class="contact">Contact us at: <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a></div>
+          <div class="logos">
+            <img src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2" />
+            <img src="../img/logo (1).png" alt="Logo 3" />
+            <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      //underline the current tab
+      document.addEventListener('DOMContentLoaded', function () {
+        let currentLocation = window.location.pathname.split('/').pop();
+        let navLinks = document.querySelectorAll('.nav a');
+
+        navLinks.forEach((link) => {
+          if (link.getAttribute('href').includes(currentLocation)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+    <!--loading the lottie library-->
+    <script src="https://unpkg.com/lottie-web@5.7.13/build/player/lottie.min.js"></script>
+    <!--js code for home icon animation-->
+    <script>
+      lottie.loadAnimation({
+        container: document.getElementById('home-icon'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: '/animations/home-icon.json' // this path must match the location of your file
+      });
+    </script>
+    <style>
+      .header-logo {
+        display: flex;
+        align-items: center;
+        /* Ensures proper alignment */
+      }
+
+      .header-logo img {
+        height: 50px;
+        /* Adjust height as needed */
+        width: auto;
+        /* Maintain aspect ratio */
+      }
+
+      #signout-btn {
+        padding: 10px 15px;
+      }
+    </style>
+  </body>
+</html>

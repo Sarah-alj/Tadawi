@@ -1,0 +1,294 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    color: #32616d;
+    background-image: url('../img/64784793768.png'); 
+    background-size: cover; /* Ensures the image covers the whole page */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the image fixed when scrolling */
+} 
+
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.cta-button {
+    padding: 10px 20px;
+    background: #2f6c83;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 600px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero h1 {
+    font-size: 4rem;
+}
+
+.hero p {
+    font-size: 2rem;
+    margin: 20px 0;
+}
+
+.hero-btn {
+    padding: 12px 25px;
+    background: #00AEEF;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/*
+ Info Section 
+.info {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 100px 10%;
+}
+
+.info-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.info-box:hover {
+    transform: translateY(-10px);
+}
+*/
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #000;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Top Animated Block Section */
+.top-animated-block {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.middle-content-anime {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+
+/* Layout for the content */
+.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.col-xs-12 {
+    width: 100%;
+}
+
+.col-md-6 {
+    width: 50%;
+    padding: 20px;
+}
+
+/* Left side (empty block for alignment, can add animation or decoration later btw) */
+.start-a {
+    height: 100%;
+}
+
+/* Right side content */
+.start-a1 {
+    position: absolute;
+    top: 50%; /* Moves it down to the middle */
+    right: 5%; /* Keeps it towards the right */
+    transform: translateY(-50%); /* Perfect vertical centering */
+    text-align: right; /* Align text to the right */
+}
+/* Adjustments for the list items (Help, Diagnose, etc.) */
+.start-a1 ul {
+    list-style: none;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.8); /* Matches the color of the header text */
+    text-align: left; /* Left-align the list items */
+}
+
+.start-a1 li {
+    margin-bottom: 30px; /* Increase spacing between elements */
+}
+
+.start-a1 h5 {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.start-a1 p {
+    font-size: 1.5rem;
+    opacity: 0.9;
+    max-width: 600px;
+    text-align: left; /* Left-align the paragraph text */
+}
+
+
+
+
+
+
+
+
+
+/* Optional!!!!!: Style the show-content-area if needed */
+.show-content-area {
+    margin-top: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .col-md-6 {
+        width: 100%;
+        padding: 10px;
+    }
+    .middle-content-anime {
+        padding: 30px 15px;
+    }
+}
+
+
+
+/* Matching styles for the header-02 text */
+.header-02 {
+    font-size: 2.7rem; /* Same font size as the words "Accelerate " , " Find", etc    */
+    font-family: Arial, sans-serif; /* Same font as the list items */
+    color: rgba(255, 255, 255, 0.8); /* Same color as the list items */
+    text-align: left; /* Left-align the text */
+    position: absolute;
+    top: 50%; /* Moves it vertically to the middle */
+    left: 5%; /* Aligns it to the left side of the screen */
+    transform: translateY(-50%); /* Adjusts for perfect vertical centering */
+    z-index: 1; /* Ensures it appears above the background image */
+}
+/* Optional btw: Adjustments for better responsiveness */
+@media (max-width: 768px) {
+    .header-02 {
+        font-size: 2rem; /* Adjust font size on smaller screens */
+    }
+    .start-a1 h5 {
+        font-size: 2rem; /* Adjust the size of the list item headings */
+    }
+}
+
+
+
+/* Tablet (iPad) Viewport Adjustments */
+@media (max-width: 1024px) {
+    body {
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 90%;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .content {
+        padding: 10px;
+    }
+}
+
+/* Mobile (iPhone) Viewport Adjustments */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+    .container {
+        max-width: 100%;
+        padding: 5px;
+    }
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+    .button {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+    }
+}

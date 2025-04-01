@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="NotifPage.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Patient.html">Home</a>
+        <a href="../ClinicalTrialPage/CTpage.html">Clinical Trials</a>
+        <a href="../MatchesPage/PatientMatchesPage.html">Matches</a>
+        <a href="../About-us/About-usPostPatient.html">About us</a>
+        <a href="../HelpPage/Help-Patient.html">Help</a>
+        <a href="../NotificationsPage/P-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Patient.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <div class="notifications-container">
+      <h2>Patient Notifications</h2>
+      <button class="clear-btn" data-clear-notifications-button>Clear All</button>
+      <ul id="patient-notifications" data-notifications-list></ul>
+    </div>
+
+    <script>
+      //underline the current tab
+      document.addEventListener('DOMContentLoaded', function () {
+        let currentLocation = window.location.pathname.split('/').pop();
+        let navLinks = document.querySelectorAll('.nav a');
+
+        navLinks.forEach((link) => {
+          if (link.getAttribute('href').includes(currentLocation)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      });
+    </script>
+  </body>
+  <script src="./notifications.js" type="module"></script>
+</html>

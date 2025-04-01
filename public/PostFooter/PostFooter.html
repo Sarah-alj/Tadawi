@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../PostFooter/PostFooter.css" />
+
+    <footer class="footer">
+      <div class="footer-content">
+        <!-- Feedback Form -->
+        <div class="feedback-container">
+          <h2>Feedback form:</h2>
+          <form action="http://your-backend-url/submit-feedback" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="comments">Comments:</label>
+            <textarea
+              id="comments"
+              name="comments"
+              placeholder="Ex: finding the right clinical trial for me is difficult"
+              required
+            ></textarea>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <!-- Contact and Logos (Centered) -->
+        <div class="contact-column">
+          <div class="contact">Contact us at: <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a></div>
+          <div class="logos">
+            <img src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2" />
+            <img src="../img/logo (1).png" alt="Logo 3" />
+            <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+          </div>
+        </div>
+      </div>
+    </footer>
+  </head>
+</html>

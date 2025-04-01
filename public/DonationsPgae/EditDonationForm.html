@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="NewDonation.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Main.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Donor.html">Home</a>
+        <a href="../About-us/About-usPostDonor.html">About us</a>
+        <a href="../DonationsPgae/DonationsPage.html">Donations</a>
+        <a href="NewDonation.html">New Donation</a>
+        <a href="../DonationsPgae/MyDonations.html">My Donations</a>
+        <a href="../HelpPage/Help-Donor.html">Help</a>
+        <a href="../NotificationsPage/Donor-NotifPage.html">Notifications</a>
+      </nav>
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Donor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <!-- form for new donations -->
+    <div class="container">
+      <a href="DonationsPage.html" class="back">← Back</a>
+      <h1>Edit Donation Form</h1>
+      <form id="equipmentForm">
+        <label for="equipmentName">Equipment Name</label>
+        <select id="equipmentName" name="equipmentName" required>
+          <option value="" disabled selected>Select Equipment</option>
+
+          <!-- Monitoring Devices -->
+          <optgroup label="Monitoring Devices">
+            <option value="Blood Pressure Monitor">Blood Pressure Monitor</option>
+            <option value="Glucose Meter">Glucose Meter</option>
+            <option value="Pulse Oximeter">Pulse Oximeter</option>
+            <option value="Thermometer">Thermometer</option>
+          </optgroup>
+
+          <!-- Breathing & Respiratory -->
+          <optgroup label="Respiratory Equipment">
+            <option value="Nebulizer">Nebulizer</option>
+            <option value="Oxygen Concentrator">Oxygen Concentrator</option>
+            <option value="Portable Suction Machine">Portable Suction Machine</option>
+          </optgroup>
+
+          <!-- Patient Care Equipment -->
+          <optgroup label="Patient Care Equipment">
+            <option value="Patient Monitor">Patient Monitor</option>
+            <option value="Defibrillator">Defibrillator</option>
+            <option value="Infusion Pump">Infusion Pump</option>
+          </optgroup>
+
+          <!-- Mobility Aids -->
+          <optgroup label="Mobility Aids">
+            <option value="Wheelchair">Wheelchair</option>
+            <option value="Walker/Rollator">Walker/Rollator</option>
+            <option value="Crutches">Crutches</option>
+            <option value="Walking Cane">Walking Cane</option>
+          </optgroup>
+
+          <!-- Laboratory Equipment -->
+          <optgroup label="Laboratory Equipment">
+            <option value="Microscope">Microscope</option>
+            <option value="Centrifuge">Centrifuge</option>
+            <option value="Incubator">Incubator</option>
+            <option value="Spectrophotometer">Spectrophotometer</option>
+            <option value="Blood Analyzer">Blood Analyzer</option>
+          </optgroup>
+
+          <!-- Comfort & Support -->
+          <optgroup label="Comfort & Support">
+            <option value="Hospital Bed">Hospital Bed</option>
+            <option value="Shower Chair">Shower Chair</option>
+            <option value="Bedside Commode">Bedside Commode</option>
+            <option value="Elevated Toilet Seat">Elevated Toilet Seat</option>
+          </optgroup>
+
+          <!-- Rehabilitation Equipment -->
+          <optgroup label="Rehabilitation Equipment">
+            <option value="Walking Frame">Walking Frame</option>
+
+            <option value="Prosthetic Limb">Prosthetic Limb</option>
+            <option value="Physical Therapy Table">Physical Therapy Table</option>
+            <option value="Exercise Bike">Exercise Bike</option>
+            <option value="Cold Therapy Pack">Cold Therapy Pack</option>
+          </optgroup>
+        </select>
+
+        <label for="equipmentDescription">Equipment Description</label>
+        <input
+          type="text"
+          id="equipmentDescription"
+          name="equipmentDescription"
+          placeholder="Enter equipment details"
+          required
+        />
+
+        <label for="yearsOfUse">Years of Use</label>
+        <select id="yearsOfUse" name="yearsOfUse" required>
+          <option value="" disabled selected>Select</option>
+          <option value="1">1 Year</option>
+          <option value="2">2 Years</option>
+          <option value="3">3+ Years</option>
+        </select>
+
+        <label for="warrantyDetails">Warranty Details</label>
+        <input type="text" id="warrantyDetails" name="warrantyDetails" placeholder="Enter warranty details" />
+
+        <label for="defects">Defects</label>
+        <input type="text" id="defects" name="defects" placeholder="Mention any defects" />
+
+        <label for="pointOfContact">Point of Contact</label>
+        <input type="text" id="pointOfContact" name="pointOfContact" placeholder="Phone/Email" required />
+
+        <label for="details">Additional Details</label>
+        <input type="text" id="details" name="details" placeholder="Provide additional details" />
+
+        <button type="submit">Save</button>
+      </form>
+
+      <script type="module">
+        import { updateData, fetchData } from '/js/api.js';
+
+        const successUrl = 'MyDonations.html';
+
+        //underline the current tab
+        document.addEventListener('DOMContentLoaded', function () {
+          let currentLocation = window.location.pathname.split('/').pop();
+          let navLinks = document.querySelectorAll('.nav a');
+
+          navLinks.forEach((link) => {
+            if (link.getAttribute('href').includes(currentLocation)) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        });
+
+        document.addEventListener('DOMContentLoaded', initForm);
+
+        async function initForm() {
+          const form = document.getElementById('equipmentForm');
+          const urlParams = new URLSearchParams(window.location.search);
+          const donationId = urlParams.get('id');
+
+          // FETCH THE DONATION
+          const fetchResponse = await fetchData(`/api/donations/${donationId}`);
+          if (!fetchResponse.isOk) {
+            alert(fetchResponse.message);
+            return;
+          }
+          const donation = fetchResponse.data;
+
+          // POPULATE THE FORM
+          populateForm(donation);
+          // Add submit handler
+          form.addEventListener('submit', (event) => handleSubmit(event, donationId));
+        }
+
+        async function populateForm(donation) {
+          const form = document.getElementById('equipmentForm');
+
+          const equipmentName = form.querySelector('select[name="equipmentName"]');
+          const equipmentDescription = form.querySelector('input[name="equipmentDescription"]');
+          const yearsOfUse = form.querySelector('select[name="yearsOfUse"]');
+          const warrantyDetails = form.querySelector('input[name="warrantyDetails"]');
+          const defects = form.querySelector('input[name="defects"]');
+          const pointOfContact = form.querySelector('input[name="pointOfContact"]');
+          const details = form.querySelector('input[name="details"]');
+
+          equipmentName.value = donation.equipmentName;
+          equipmentDescription.value = donation.equipmentDescription;
+          yearsOfUse.value = donation.yearsOfUse;
+          warrantyDetails.value = donation.warrantyDetails;
+          defects.value = donation.defects;
+          pointOfContact.value = donation.pointOfContact;
+          details.value = donation.details;
+          form.querySelector('.error[data-server-error]')?.remove(); // Clear any previous errors
+        }
+
+        async function handleSubmit(event, donationId) {
+          event.preventDefault();
+          const form = event.target;
+          form.querySelector('.error[data-server-error]')?.remove();
+
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData);
+
+          const equipmentNameSelect = form.querySelector('select[name="equipmentName"]');
+          const selectedOption = equipmentNameSelect.options[equipmentNameSelect.selectedIndex];
+          data.equipmentType = selectedOption.parentNode.label;
+
+          const postResponse = await updateData(`/api/donations/${donationId}`, data);
+
+          if (postResponse.isOk) {
+            alert('Donation has been successfully updated!');
+            window.location.href = successUrl;
+          } else {
+            const error = document.createElement('div');
+            error.classList.add('error');
+            error.setAttribute('data-server-error', '');
+            error.textContent = postResponse.message;
+            form.prepend(error);
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

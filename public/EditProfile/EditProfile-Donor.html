@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="../EditProfile/EditProfile.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage.html">Home</a>
+        <a href="../About-us/About-usPostDonor.html">About us</a>
+        <a href="../DonationsPgae/DonationsPage.html">Donations</a>
+        <a href="../HelpPage/Help-Donor.html">Help</a>
+        <a href="../NotificationsPage/Donor-NotifPage.html">Notifications</a>
+      </nav>
+      <div class="buttons-container">
+        <img src="" id="" />
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+        <a href="../EditProfile/EditProfile-Donor.html"> <button id="edit-btn">Edit Profile</button></a>
+      </div>
+    </header>
+
+    <form id="edit-profile-form">
+      <div>
+        <div class="container">
+          <div class="header-second">
+            <a href="../Home/HomePage-Donor.html" class="back">← Back</a>
+            <h2>Edit Donor Profile</h2>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Please Enter a valid email" required="" />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Please use a strong password" required="" />
+            <span class="error" id="error-message"></span>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" placeholder="Please re-enter your password" required="" />
+
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" placeholder="Enter your full name" required="" />
+
+            <label for="title">Title</label>
+            <select id="title" name="title">
+              <option value="" disabled="" selected="">Select Title</option>
+              <option value="Mr.">Mr.</option>
+              <option value="Mrs.">Mrs.</option>
+              <option value="Ms.">Ms.</option>
+              <option value="Miss">Miss</option>
+              <option value="Dr.">Dr.</option>
+              <option value="Prof.">Prof.</option>
+            </select>
+
+            <label for="Role">Role</label>
+            <select id="Role" required="">
+              <option value="" disabled selected>Select Your User Role</option>
+              <option value="Donor">Donor</option>
+              <option value="Acquirer">Acquirer</option>
+              <option value="Both">Both</option>
+            </select>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+966" required="" />
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" required="" />
+
+            <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+          <option value="" disabled selected>Select Your Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
+            <div>
+              <label for="region">Region</label>
+              <select id="region" name="region">
+                <option value="" disabled selected>Select Current Region</option>
+                <option value="Abha">Abha</option>
+                <option value="Al Bahah">Al Bahah</option>
+                <option value="Sakaka">Sakaka</option>
+                <option value="Buraidah">Buraidah</option>
+                <option value="Dammam">Dammam</option>
+                <option value="Jazan">Jazan</option>
+                <option value="Makkah">Makkah</option>
+                <option value="Madinah">Madinah</option>
+                <option value="Najran">Najran</option>
+                <option value="Arar">Arar</option>
+                <option value="Riyadh">Riyadh</option>
+                <option value="Tabuk">Tabuk</option>
+                <option value="Hail">Hail</option>
+              </select>
+            </div>
+            
+
+            <label for="nationality">Nationality</label>
+            <select id="nationality" required="">
+              <option value="" disabled="" selected="">Select Your Nationality</option>
+              <option value="saudi">Saudi</option>
+              <option value="other">Other</option>
+            </select>
+
+            <div>
+              <button type="submit">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+
+  <script type="module">
+    import { fetchData, updateData } from '/js/api.js';
+
+    const SUCCESS_URL = 'Donor-confirmEdit.html';
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    async function init() {
+      const form = document.getElementById('edit-profile-form');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirm-password');
+      const nameInput = document.getElementById('full-name');
+      const titleInput = document.getElementById('title');
+      const roleSelect = document.getElementById('Role');
+      const phoneInput = document.getElementById('phone');
+      const dateOfBirthInput = document.getElementById('dob');
+      const genderSelect = document.getElementById('gender');
+      const regionSelect = document.getElementById('region');
+      const nationalitySelect = document.getElementById('nationality');
+
+      // fetch data
+      const fetchResponse = await fetchData('/api/users/my-profile');
+      if (!fetchResponse.isOk) {
+        alert('Failed to fetch data');
+        return;
+      }
+
+      // update the fields with the fetched data
+      const user = fetchResponse.data.user;
+      const donorAcquirerProfile = fetchResponse.data.donorAcquirerProfile;
+
+      emailInput.value = user.email;
+      nameInput.value = user.name;
+      titleInput.value = user.title;
+      roleSelect.value = donorAcquirerProfile.role;
+      phoneInput.value = user.phoneNumber;
+      dateOfBirthInput.value = new Date(user.dateOfBirth).toISOString().split('T')[0];
+      genderSelect.value = user.gender;
+      regionSelect.value = user.region;
+      nationalitySelect.value = user.nationality;
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const userDetails = {
+          name: nameInput.value,
+          email: emailInput.value,
+          password: passwordInput.value,
+          confirmPassword: confirmPasswordInput.value,
+          gender: genderSelect.value,
+          region: regionSelect.value,
+          dateOfBirth: dateOfBirthInput.value,
+          phoneNumber: phoneInput.value,
+          title: titleInput.value,
+          nationality: nationalitySelect.value,
+        };
+
+        const donorAcquirerDetails = {
+          role: roleSelect.value,
+        };
+
+        const updateResponse = await updateData('/api/users/my-profile/update', {
+          userType: 'donorAcquirer',
+          userDetails: userDetails,
+          donorAcquirerDetails: donorAcquirerDetails,
+        });
+
+        if (updateResponse.isOk) {
+          window.location.href = SUCCESS_URL;
+        } else {
+          const errorDiv = document.createElement('div');
+          errorDiv.classList.add('error');
+          errorDiv.setAttribute('data-server-error', '');
+          errorDiv.innerHTML = `${updateResponse.message.split('\n').join('<br>')}`;
+          form.prepend(errorDiv);
+          errorDiv.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+        }
+      });
+    }
+  </script>
+</html>

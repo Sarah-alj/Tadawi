@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="PostHeader.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-logo">
+        <img src="../img/rorotad-07.png" alt="TADAWI Logo" />
+      </div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Donor.html">Home</a>
+        <a href="../About-us/About-usPostDonor.html">About us</a>
+        <a href="../DonationsPgae/DonationsPage.html">Donations</a>
+        <a href="../HelpPage/Help-Donor.html">Help</a>
+        <a href="../NotificationsPage/Donor-NotifPage.html">Notifications</a>
+      </nav>
+      <div class="buttons-container">
+        <!-- Notification Bell -->
+        <div class="notif-container">
+          <img src="../img/download.png" alt="Notifications" id="notif-bell" />
+          <div class="notif-dropdown" id="notif-dropdown">
+            <!-- Notifications will be dynamically added here -->
+          </div>
+        </div>
+
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Patient.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+
+    <script>
+      // Toggle Notification Dropdown
+      document.getElementById('notif-bell').addEventListener('click', function (event) {
+        event.stopPropagation();
+        const dropdown = document.getElementById('notif-dropdown');
+
+        // If there are no notifications, show a default message
+        if (dropdown.innerHTML.trim() === '') {
+          dropdown.innerHTML = '<p>No new notifications</p>';
+        }
+
+        dropdown.classList.toggle('show');
+      });
+
+      // Close dropdown when clicking outside
+      window.addEventListener('click', function (event) {
+        const dropdown = document.getElementById('notif-dropdown');
+        if (!document.getElementById('notif-bell').contains(event.target)) {
+          dropdown.classList.remove('show');
+        }
+      });
+    </script>
+  </body>
+</html>

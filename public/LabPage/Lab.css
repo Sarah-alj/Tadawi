@@ -1,0 +1,131 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eaf2fc;
+  margin: 40px;
+  padding: 0;
+}
+
+.appointment-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #d8e6f9;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 18px;
+  color: #0f2f76;
+  margin-bottom: 10px;
+}
+
+.labs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.lab-btn {
+  background-color: #4e6ca3;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.lab-btn:hover {
+  background-color: #9bc8ff;
+}
+
+.calendar {
+  margin-bottom: 20px;
+}
+
+#appointment-date {
+  padding: 10px;
+  border: 1px solid #0f2f76;
+  border-radius: 5px;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form label {
+  font-weight: bold;
+  color: #0f2f76;
+}
+
+form input,
+form select,
+form button {
+  padding: 10px;
+  border: 1px solid #0f2f76;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+form input:focus,
+form select:focus {
+  outline: none;
+  border-color: #4e6ca3;
+}
+
+#confirm-btn {
+  background-color: #4e6ca3;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+#confirm-btn:hover {
+  background-color: #9bc8ff;
+}
+
+/* Tablet (iPad) Viewport Adjustments */
+@media (max-width: 1024px) {
+  body {
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+  }
+  .container {
+      max-width: 90%;
+  }
+  .navbar {
+      flex-direction: column;
+      align-items: center;
+  }
+  .content {
+      padding: 10px;
+  }
+}
+
+/* Mobile (iPhone) Viewport Adjustments */
+@media (max-width: 480px) {
+  body {
+      font-size: 12px;
+  }
+  .container {
+      max-width: 100%;
+      padding: 5px;
+  }
+  .navbar {
+      flex-direction: column;
+      text-align: center;
+  }
+  .button {
+      width: 100%;
+      display: block;
+      margin-bottom: 10px;
+  }
+}

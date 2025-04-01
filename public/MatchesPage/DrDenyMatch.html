@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="DrDenyMatch.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Request Denied</h2>
+      <p class="subtext">Please specify the reason for denial:</p>
+      <select name="denialReason" id="denialReason">
+        <option value="trial_full">Clinical trial is full</option>
+        <option value="not_eligible">Patient does not meet the eligibility criteria</option>
+        <option value="medical_reasons">Medical Reasons</option>
+        <option value="other">Other</option>
+      </select>
+
+      <p class="subtext">Do you want to add any additional notes?</p>
+      <textarea id="additional-notes" placeholder="Enter your notes here..."></textarea>
+
+      <button id="submit-btn">Submit</button>
+    </div>
+
+    <script type="module">
+      import { postData } from '/js/api.js';
+
+      const search = new URLSearchParams(window.location.search);
+      const matchId = search.get('matchId');
+
+      if (!matchId) {
+        alert('Invalid match ID.');
+        window.history.back();
+      }
+
+      const submitBtn = document.getElementById('submit-btn');
+
+      submitBtn.addEventListener('click', async () => {
+        const denialReason = document.getElementById('denial-reason').value;
+        const additionalNotes = document.getElementById('additional-notes').value;
+
+        if (!denialReason) {
+          alert('Please select a denial reason.');
+          return;
+        }
+
+        const postResponse = await postData(`/api/matches/${matchId}/deny`, {
+          matchId,
+          rejectReason: denialReason,
+          additionalNotes,
+        });
+
+        if (postResponse.isOk) {
+          alert('Match has been denied successfully.');
+          window.location.href = '/MatchesPage/DrMatches.html';
+        } else {
+          alert(postResponse.message);
+        }
+      });
+    </script>
+  </body>
+</html>

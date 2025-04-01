@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="DonationsPage.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.js" />
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+      </head>
+
+      <body>
+        <header class="header">
+          <div class="header-logo"><span>T</span>ADAWI</div>
+          <nav class="nav">
+            <a href="../Home/HomePage-Donor.html">Home</a>
+            <a href="../About-us/About-usPostDonor.html">About us</a>
+            <a href="../DonationsPgae/DonationsPage.html">Donations</a>
+            <a href="NewDonation.html">New Donation</a>
+            <a href="../DonationsPgae/MyDonations.html">My Donations</a>
+            <a href="../HelpPage/Help-Donor.html">Help</a>
+            <a href="../NotificationsPage/Donor-NotifPage.html">Notifications</a>
+          </nav>
+          <div class="buttons-container">
+            <img src="" id="" />
+
+            <!-- Sign Out Button -->
+            <button id="signout-btn" data-signoutBtn>Sign Out</button>
+            <script src="/js/signout.js" type="module"></script>
+
+            <!-- Edit Profile Button -->
+            <a href="../EditProfile/EditProfile-Donor.html">
+              <button id="edit-btn">Edit Profile</button>
+            </a>
+          </div>
+        </header>
+
+        <div class="filter-container">
+          <!-- Equipment Filter -->
+          <!-- Equipment Filter by Category -->
+          <label for="equipmentFilter">Equipment :</label>
+          <select id="equipmentFilter">
+            <option value="">All</option>
+            <option value="Monitoring Devices">Monitoring Devices</option>
+            <option value="Respiratory Equipment">Respiratory Equipment</option>
+            <option value="Patient Care Equipment">Patient Care Equipment</option>
+            <option value="Mobility Aids">Mobility Aids</option>
+            <option value="Laboratory Equipment">Laboratory Equipment</option>
+            <option value="Comfort & Support">Comfort & Support</option>
+            <option value="Rehabilitation Equipment">Rehabilitation Equipment</option>
+          </select>
+
+          <!-- Years of Use -->
+          <label for="useFilter">Years of Use:</label>
+          <select id="useFilter">
+            <option value="">All</option>
+            <option value="1">1 Year</option>
+            <option value="2">2 Years</option>
+            <option value="3+">3+ Years</option>
+          </select>
+        </div>
+
+        <div class="container" id="donations-container">
+          <!-- Donations will be added here -->
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.contact').forEach((button) => {
+              button.addEventListener('click', function () {
+                window.location.href = 'contacttoacquire.html';
+              });
+            });
+          });
+
+          //underline the current tab
+          document.addEventListener('DOMContentLoaded', function () {
+            let currentLocation = window.location.pathname.split('/').pop();
+            let navLinks = document.querySelectorAll('.nav a');
+
+            navLinks.forEach((link) => {
+              if (link.getAttribute('href').includes(currentLocation)) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          });
+        </script>
+        <footer class="footer">
+          <div class="columns">
+            <div class="column">
+              <h3>Providers</h3>
+              <p>MedNova Pharma</p>
+              <p>BioGenesis Pharma</p>
+              <p>CureTech Solutions</p>
+              <p>LifeBridge Investments</p>
+              <p>MedStrive Holdings</p>
+              <p>SummitCare Hospital</p>
+            </div>
+            <div class="column">
+              <h3>Publications</h3>
+              <p>The Journal of Global Health Insights</p>
+              <p>Biotech Review</p>
+              <p>PharmaProgress</p>
+              <p>Innovative Medical Research</p>
+              <p>Future of Healthcare</p>
+            </div>
+            <div class="column">
+              <h3>Investors</h3>
+              <p>CapitalCore Ventures</p>
+              <p>SilverStone Investments</p>
+              <p>Pioneer Growth Partners</p>
+              <p>Summit Ridge Capital</p>
+              <p>Horizon Equity Group</p>
+            </div>
+          </div>
+          <div class="contact">
+            Contact us at :
+            <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+          </div>
+          <div class="logos">
+            <img src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2" />
+            <img src="../img/logo (1).png" alt="Logo 3" />
+            <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+          </div>
+        </footer>
+      </body>
+    </html>
+  </body>
+  <script type="module">
+    import { fetchData } from '/js/api.js';
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    async function init() {
+      // FETCH DONATIONS
+      const fetchResponse = await fetchData('/api/donations?type=not-by-me&is-taken=false');
+      if (!fetchResponse.isOk) {
+        alert(fetchResponse.message);
+        return;
+      }
+      const initialDonations = fetchResponse.data;
+
+      // INITIAL RENDER OF DONATIONS
+      renderDonations(initialDonations);
+
+      // ADD EVENT LISTENERS TO FILTERS
+      document.getElementById('equipmentFilter').addEventListener('change', emitFilterEvent);
+      document.getElementById('useFilter').addEventListener('change', emitFilterEvent);
+
+      // ADD EVENT LISTENER TO FILTER DONATIONS
+      document.addEventListener('filter', async function (event) {
+        const equipment = event.detail.equipment;
+        const years = event.detail.years;
+
+        const filteredDonations = initialDonations.filter((donation) => {
+          if (equipment && equipment !== donation.equipmentType) {
+            return false;
+          }
+
+          if (years) {
+            const donationYears = parseInt(donation.yearsOfUse);
+            if (years === '3+') {
+              if (donationYears < 3) return false;
+            } else if (donationYears !== parseInt(years)) {
+              return false;
+            }
+          }
+
+          return true;
+        });
+
+        renderDonations(filteredDonations);
+      });
+    }
+
+    function emitFilterEvent() {
+      document.dispatchEvent(
+        new CustomEvent('filter', {
+          detail: {
+            equipment: document.getElementById('equipmentFilter').value,
+            years: document.getElementById('useFilter').value,
+          },
+        })
+      );
+    }
+
+    function renderDonations(donations) {
+      const container = document.getElementById('donations-container');
+
+      while (container.firstChild) {
+        container.removeChild(container.firstChild);
+      }
+
+      if (donations.length === 0) {
+        const noDonations = document.createElement('p');
+        noDonations.textContent = 'No donations available';
+        noDonations.style.gridColumn = '1 / -1';
+        noDonations.style.textAlign = 'center';
+        container.appendChild(noDonations);
+        return;
+      }
+
+      donations.forEach((donation) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.setAttribute('data-equipment', donation.equipmentName);
+        card.setAttribute('data-years', donation.yearsOfUse);
+
+        card.appendChild(createDetailElement('Name of Equipment', donation.equipmentName));
+        card.appendChild(createDetailElement('Years of Use', donation.yearsOfUse));
+        card.appendChild(createDetailElement('Reason for Donation', donation.details));
+        card.appendChild(createDetailElement('Warranty Details', donation.warrantyDetails));
+        card.appendChild(createDetailElement('Defects', donation.defects));
+        card.appendChild(createDetailElement('Created At', new Date(donation.createdAt).toLocaleDateString()));
+        card.appendChild(createDetailElement('Equipment Description', donation.equipmentDescription));
+
+        const contactButton = document.createElement('button');
+        contactButton.classList.add('contact');
+        contactButton.textContent = 'Contact';
+        contactButton.addEventListener('click', function () {
+          window.location.href = 'contacttoacquire.html?donationId=' + donation._id;
+        });
+
+        card.appendChild(contactButton);
+
+        container.appendChild(card);
+      });
+    }
+
+    const createDetailElement = (label, value) => {
+      const p = document.createElement('p');
+      p.innerHTML = `<strong>${label}: </strong>${value}`;
+      return p;
+    };
+  </script>
+</html>

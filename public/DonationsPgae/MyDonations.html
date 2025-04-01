@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Donations</title>
+
+    <link rel="stylesheet" href="/Main.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="MyDonations.css" />
+    <!-- Custom Styles for My Donations -->
+  </head>
+  <body>
+    <!--  Navbar/Header -->
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Donor.html">Home</a>
+        <a href="../About-us/About-usPostDonor.html">About us</a>
+        <a href="DonationsPage.html">Donations</a>
+
+        <a href="NewDonation.html">New Donation</a>
+
+        <a href="MyDonations.html" class="active">My Donations</a>
+        <a href="../HelpPage/Help-Donor.html">Help</a>
+        <a href="../NotificationsPage/Donor-NotifPage.html">Notifications</a>
+      </nav>
+      <div>
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+        <a href="../EditProfile/EditProfile-Donor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+      <h1>My Donations</h1>
+      <p>Below is a list of all donations you have made:</p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Equipment</th>
+              <th>Description</th>
+              <th>Years of Use</th>
+              <th>Warranty</th>
+              <th>Defects</th>
+              <th>Contact</th>
+              <th>Additional Info</th>
+              <th>Status</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+
+          <tbody id="donations-table-body">
+            <!-- Donations will be injected here by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script type="module">
+    import { fetchData } from '/js/api.js';
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    async function init() {
+      // FETCH DONATIONS
+      const fetchResponse = await fetchData('/api/donations?type=by-me');
+      if (!fetchResponse.isOk) {
+        alert(fetchResponse.message);
+        return;
+      }
+      const initialDonations = fetchResponse.data;
+
+      renderDonations(initialDonations);
+    }
+
+    function renderDonations(donations) {
+      const donationsTableBody = document.getElementById('donations-table-body');
+
+      if (donations.length === 0) {
+        donationsTableBody.innerHTML = "<tr><td colspan='10'>No donations found.</td></tr>";
+        return;
+      }
+
+      donations.forEach((donation) => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+          <td>${donation.equipmentName}</td>
+          <td>${donation.equipmentDescription}</td>
+          <td>${donation.yearsOfUse} Years</td>
+          <td>${donation.warrantyDetails || '-'}</td>
+          <td>${donation.defects || '-'}</td>
+          <td>${donation.pointOfContact || '-'}</td>
+          <td>${donation.details || '-'}</td>
+          <td>${donation.isTaken ? 'Acquired' : 'Pending'}</td>
+          <td>
+            <a href="EditDonationForm.html?id=${donation._id}" class="action-btn edit-btn">
+              ✏️ Edit
+            </a>
+          </td>
+          <td>
+            <a href="ConfirmDeleteDonation.html?id=${donation._id}" class="action-btn delete-btn">
+              🗑️ Delete
+            </a>
+          </td>
+        `;
+
+        donationsTableBody.appendChild(row);
+      });
+    }
+  </script>
+</html>

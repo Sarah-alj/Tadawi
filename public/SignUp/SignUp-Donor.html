@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="SignUp-Donor.css" />
+    <link rel="stylesheet" href="/Preheader/Preheader.css" />
+    <link rel="stylesheet" href="/Main.css" />
+    <script src="/Prefooter/Prefooter.js"></script>
+    <script src="/ValidationAccs.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="/Home/HomePage.html">Home</a>
+        <a href="/About-us/About-usPre.html">About us</a>
+        <a href="/HelpPage/Help.html">Help</a>
+      </nav>
+      <div class="dropdown">
+        <button class="dropdown-button">Sign up <span class="arrow">&#9660;</span></button>
+        <div class="dropdown-content">
+          <a href="/Login-OTP/UserLogin.html">Login</a>
+          <a href="/CreateAccount/CreateAccount.html">Sign up</a>
+        </div>
+      </div>
+    </header>
+    <!-- form for user sign up -->
+    <div class="container">
+      <a href="/CreateAccount/CreateAccount.html" class="back">← Back</a>
+      <h1>Donor/Acquirer Create Account</h1>
+      <form id="signupForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Please Enter a valid email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Please use a strong password" required />
+        <span class="error" id="error-message"></span>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Please re-enter your password"
+          required
+        />
+
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+
+        <label for="title">Title</label>
+        <select id="title" name="title">
+          <option value="" disabled selected>Select Title</option>
+          <option value="Mr.">Mr.</option>
+          <option value="Mrs.">Mrs.</option>
+          <option value="Ms.">Ms.</option>
+          <option value="Miss">Miss</option>
+          <option value="Dr.">Dr.</option>
+          <option value="Prof.">Prof.</option>
+        </select>
+
+        <label for="Role">Role</label>
+            <select id="Role" required="">
+              <option value="" disabled selected>Select Your User Role</option>
+              <option value="Donor">Donor</option>
+              <option value="Acquirer">Acquirer</option>
+              <option value="Both">Both</option>
+            </select>
+
+        <label for="phoneNumber">Phone Number</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+966" required />
+
+        <label for="dateOfBirth">Date of Birth</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" required />
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+          <option value="" disabled selected>Select Your Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
+        <div>
+          <label for="region">Region</label>
+          <select id="region" name="region">
+            <option value="" disabled selected>Select Current Region</option>
+            <option value="Abha">Abha</option>
+            <option value="Al Bahah">Al Bahah</option>
+            <option value="Sakaka">Sakaka</option>
+            <option value="Buraidah">Buraidah</option>
+            <option value="Dammam">Dammam</option>
+            <option value="Jazan">Jazan</option>
+            <option value="Makkah">Makkah</option>
+            <option value="Madinah">Madinah</option>
+            <option value="Najran">Najran</option>
+            <option value="Arar">Arar</option>
+            <option value="Riyadh">Riyadh</option>
+            <option value="Tabuk">Tabuk</option>
+            <option value="Hail">Hail</option>
+          </select>
+        </div>
+        
+
+        <label for="nationality">Nationality</label>
+        <select id="nationality" name="nationality" required>
+          <option value="" disabled selected>Select Your Nationality</option>
+          <option value="saudi">Saudi</option>
+          <option value="other">Other</option>
+        </select>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="terms" required />
+          <label for="terms">
+            I agree to the
+            <a href="#" id="terms-link" style="text-decoration: underline; color: #18375d">terms and conditions</a>
+          </label>
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+      <div id="terms-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Terms and Conditions</h2>
+          <div class="terms-text">
+            <p>1. Introduction</p>
+            <p>
+              Welcome to Tadawi, a platform dedicated to matching patients to clinical trials and facilitating
+              participation in clinical trials. By accessing or using our Website, you agree to comply with these Terms
+              and Conditions. If you do not agree with any part of these Terms, please discontinue your use of the
+              Website.
+            </p>
+
+            <p>2. Purpose of the Website</p>
+            <p>This Website is intended to:</p>
+            <ul>
+              <li>Provide general information about ongoing and upcoming clinical trials.</li>
+              <li>Facilitate participant registration and engagement in clinical research studies.</li>
+              <li>Promote awareness of clinical research and its potential benefits.</li>
+            </ul>
+            <p>
+              The information provided on this Website is for informational purposes only and should not be considered
+              medical advice.
+            </p>
+
+            <p>3. Eligibility</p>
+            <p>By using this Website, you confirm that you:</p>
+            <ul>
+              <li>Are at least 18 years of age or have the consent of a legal guardian.</li>
+              <li>Are providing accurate, truthful, and complete information during registration.</li>
+              <li>Understand and agree to participate in clinical trials voluntarily, if applicable.</li>
+            </ul>
+
+            <p>4. Disclaimer of Medical Advice</p>
+            <p>
+              The content provided on this Website does not constitute medical advice, diagnosis, or treatment. Always
+              consult with your healthcare provider or a qualified medical professional regarding any medical conditions
+              or concerns. Participation in any clinical trial should be done under the guidance of a licensed
+              physician.
+            </p>
+
+            <p>5. Participant Responsibilities</p>
+            <p>If you choose to participate in a clinical trial through our Website, you agree to:</p>
+            <ul>
+              <li>Follow all instructions provided by the clinical trial team.</li>
+              <li>Disclose accurate health and medical information during the screening and registration process.</li>
+              <li>Inform the clinical trial team of any changes in your health during the trial.</li>
+            </ul>
+
+            <p>6. Data Collection and Privacy</p>
+            <p>
+              We prioritize the confidentiality and security of your personal and medical information. By using our
+              Website, you consent to the collection and processing of your data in accordance with our Privacy Policy.
+              Key points include:
+            </p>
+            <ul>
+              <li>Personal data will only be used for clinical trial purposes and related communications.</li>
+              <li>Data may be shared with authorized clinical trial teams but will not be sold to third parties.</li>
+              <li>For more details, refer to our full Privacy Policy.</li>
+            </ul>
+
+            <p>7. Intellectual Property</p>
+            <p>
+              All content, including text, graphics, logos, and design, on this Website is the intellectual property of
+              Tadawi. Unauthorized use, reproduction, or distribution of this content is prohibited.
+            </p>
+
+            <p>8. Limitation of Liability</p>
+            <p>
+              To the fullest extent permitted by law, Tadawi and its affiliates are not liable for any damages,
+              injuries, or losses arising from:
+            </p>
+            <ul>
+              <li>Participation in clinical trials listed on the Website.</li>
+              <li>Errors or inaccuracies in the information provided on the Website.</li>
+              <li>Technical failures or interruptions of the Website.</li>
+            </ul>
+
+            <p>9. External Links</p>
+            <p>
+              Our Website may include links to third-party websites. We are not responsible for the content, policies,
+              or practices of these websites. Visiting these links is at your own risk.
+            </p>
+
+            <p>10. Modification of Terms</p>
+            <p>
+              We reserve the right to update or modify these Terms and Conditions at any time without prior notice.
+              Changes will be effective immediately upon posting to this page. Your continued use of the Website
+              constitutes acceptance of the updated Terms.
+            </p>
+
+            <p>11. Governing Law</p>
+            <p>
+              These Terms and Conditions are governed by the laws of Saudi Arabia, without regard to its conflict of law
+              provisions. Any disputes arising from these Terms shall be resolved in the courts of Saudi Arabia.
+            </p>
+
+            <p>12. Contact Us</p>
+            <p>
+              If you have any questions, concerns, or feedback regarding these Terms and Conditions, please contact us
+              at:
+            </p>
+            <p>Email: Tadawi.contact@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module">
+    import { postData } from '/js/api.js';
+
+    //terms and conditions modal
+    const termsLink = document.getElementById('terms-link');
+    const termsModal = document.getElementById('terms-modal');
+    const closeModal = document.querySelector('.close');
+
+    termsLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      termsModal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', function () {
+      termsModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (e) {
+      if (e.target === termsModal) {
+        termsModal.style.display = 'none';
+      }
+    });
+
+    //#region form handling
+    document.addEventListener('DOMContentLoaded', init);
+
+    function init() {
+      const form = document.getElementById('signupForm');
+
+      // handle submission
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // remove previous server error
+        form.querySelector('.error[data-server-error]')?.remove();
+
+        const formData = new FormData(form);
+
+        const userDetails = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          password: formData.get('password'),
+          confirmPassword: formData.get('confirmPassword'),
+          gender: formData.get('gender'),
+          region: formData.get('region'),
+          dateOfBirth: formData.get('dateOfBirth'),
+          phoneNumber: formData.get('phoneNumber'),
+          title: formData.get('title'),
+          nationality: formData.get('nationality'),
+        };
+
+        const donorAcquirerDetails = {
+          role: formData.get('role'),
+        };
+
+        // TODO: Form Validation
+
+        const response = await postData('/api/auth/signup', {
+          userType: 'donorAcquirer',
+          userDetails,
+          donorAcquirerDetails,
+        });
+
+        if (response.isOk) {
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          window.location.href = '/SignUp/Dn-ConfirmSignUp.html';
+        } else {
+          const errorDiv = document.createElement('div');
+          errorDiv.classList.add('error');
+          errorDiv.setAttribute('data-server-error', '');
+          errorDiv.innerHTML = `${response.message.split('\n').join('<br>')}`;
+          form.prepend(errorDiv);
+          errorDiv.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+        }
+      });
+    }
+  </script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="Login.css" />
+    <link rel="stylesheet" href="../Main.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <a href="../Home/HomePage.html" class="back">&larr; Back</a>
+      </div>
+
+      <h1>Login</h1>
+      <form id="loginForm">
+        <input type="text" placeholder="Email" name="email" required />
+        <input type="password" placeholder="Password" name="password" required />
+        <a href="../ForgotPassword/ResetPassword.html">Forgot password?</a>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+  <script type="module">
+    import { login } from '/js/login.js';
+
+    document.getElementById('loginForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.target;
+
+      form.querySelector('.error')?.remove();
+
+      const email = form.email.value;
+      const password = form.password.value;
+
+      const loginResponse = await login({
+        email,
+        password,
+        userType: 'doctor',
+      });
+
+      const errorElement = document.createElement('p');
+      errorElement.classList.add('error');
+      errorElement.textContent = loginResponse.message;
+
+      form.prepend(errorElement);
+    });
+  </script>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="DrMatches.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.js" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Dr.html">Home</a>
+        <a href="../PatientsTabPage/PatientTabPage.html">Patients</a>
+        <a href="../MatchesPage/DrMatches.html" class="active">Matches</a>
+        <a href="../About-us/About-usPostDr.html">About us</a>
+        <a href="../LabPage/Lab.html">Labs</a>
+        <a href="../MyLabsPage/MyLabsPage.html">My Labs</a>
+        <a href="../HelpPage/Help-Dr.html">Help</a>
+        <a href="../NotificationsPage/DR-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <a href="../Chatbox/Dr-Chatbox.html" id="chatbox">
+          <button>ChatBox</button>
+        </a>
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Doctor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <div class="filter-container">
+      <!-- Age Filter -->
+      <div>
+        <label for="ageFilter">Age:</label>
+        <select id="ageFilter">
+          <option value="">All</option>
+          <option value="18-25">18-25</option>
+          <option value="26-40">26-40</option>
+          <option value="41-60">41-60</option>
+          <option value="60+">60+</option>
+        </select>
+      </div>
+
+      <div>
+        <!-- Gender Filter -->
+        <label for="genderFilter">Gender:</label>
+        <select id="genderFilter">
+          <option value="">All</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+      <div>
+        <!-- Disease Filter -->
+        <label for="diseaseFilter">Disease:</label>
+        <select id="diseaseFilter">
+          <option value="">All</option>
+          <option value="Infectious Diseases">Infectious Diseases</option>
+          <option value="Genetic Disorders">Genetic Disorders</option>
+          <option value="Autoimmune Diseases">Autoimmune Diseases</option>
+          <option value="Oncology (Cancer)">Oncology (Cancer)</option>
+          <option value="Cardiovascular Diseases">Cardiovascular Diseases</option>
+          <option value="Neurological Disorders">Neurological Disorders</option>
+        </select>
+      </div>
+    </div>
+    <div class="container" id="matchesContainer"></div>
+
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <h3>Providers</h3>
+          <p>MedNova Pharma</p>
+          <p>BioGenesis Pharma</p>
+          <p>CureTech Solutions</p>
+          <p>LifeBridge Investments</p>
+          <p>MedStrive Holdings</p>
+          <p>SummitCare Hospital</p>
+        </div>
+        <div class="column">
+          <h3>Publications</h3>
+          <p>The Journal of Global Health Insights</p>
+          <p>Biotech Review</p>
+          <p>PharmaProgress</p>
+          <p>Innovative Medical Research</p>
+          <p>Future of Healthcare</p>
+        </div>
+        <div class="column">
+          <h3>Investors</h3>
+          <p>CapitalCore Ventures</p>
+          <p>SilverStone Investments</p>
+          <p>Pioneer Growth Partners</p>
+          <p>Summit Ridge Capital</p>
+          <p>Horizon Equity Group</p>
+        </div>
+      </div>
+      <div class="contact">
+        Contact us at :
+        <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+      </div>
+      <div class="logos">
+        <img src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2" />
+        <img src="../img/logo (1).png" alt="Logo 3" />
+        <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+      </div>
+    </footer>
+  </body>
+  <script type="module">
+    import { fetchData } from '/js/api.js';
+
+    //underline the current tab
+    document.addEventListener('DOMContentLoaded', function () {
+      let currentLocation = window.location.pathname.split('/').pop();
+      let navLinks = document.querySelectorAll('.nav a');
+
+      navLinks.forEach((link) => {
+        if (link.getAttribute('href').includes(currentLocation)) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    async function init() {
+      const fetchResponse = await fetchData('/api/matches/my-matches');
+      if (!fetchResponse.isOk) {
+        alert('Failed to fetch matches');
+        return;
+      }
+      const initialMatches = fetchResponse.data;
+
+      // Render initial matches
+      renderMatches(initialMatches);
+
+      // Initialize filters
+      initializeFilters(initialMatches);
+
+      // Add event listeners to filters
+      document.addEventListener('filter', function (event) {
+        const { age, gender, disease } = event.detail;
+        const minAge = age ? parseInt(age.split('-')[0]) || 0 : 0;
+        const maxAge = age ? parseInt(age.split('-')[1]) || Infinity : Infinity;
+
+        const genderNormalized = gender ? gender.toLowerCase() : null;
+        const diseaseNormalized = disease ? disease.toLowerCase() : null;
+
+        const filteredMatches = initialMatches.filter((match) => {
+          const matchesAge = minAge <= match.user.age && match.user.age <= maxAge;
+
+          const matchesGender = genderNormalized ? match.user.gender.toLowerCase() === genderNormalized : true;
+          const matchesDisease = diseaseNormalized
+            ? match.medicalHistory.disease.type.toLowerCase() === diseaseNormalized
+            : true;
+          return matchesAge && matchesGender && matchesDisease;
+        });
+
+        renderMatches(filteredMatches); // Assuming filteredMatches is defined
+      });
+    }
+
+    function renderMatches(matches) {
+      const matchesContainer = document.getElementById('matchesContainer');
+
+      while (matchesContainer.firstChild) {
+        matchesContainer.removeChild(matchesContainer.firstChild);
+      }
+
+      if (matches.length === 0) {
+        matchesContainer.appendChild(
+          createElement('p', 'no-matches-message', 'No matches found', {
+            style: 'text-align: center; grid-column: 1 / -1;',
+          })
+        );
+        return;
+      }
+
+      matches.forEach((match) => {
+        const matchCard = createMatchCard(match);
+        matchesContainer.appendChild(matchCard);
+      });
+    }
+
+    function initializeFilters(matches) {
+      const ageFilter = document.getElementById('ageFilter');
+      const genderFilter = document.getElementById('genderFilter');
+      const diseaseFilter = document.getElementById('diseaseFilter');
+
+      const diseaseTypes = Array.from(new Set(matches.map((match) => match.medicalHistory.disease.type)));
+
+      while (diseaseFilter.firstChild) {
+        diseaseFilter.removeChild(diseaseFilter.firstChild);
+      }
+
+      diseaseFilter.appendChild(createElement('option', null, 'All', { value: '' }));
+      diseaseTypes.forEach((disease) => {
+        const option = createElement('option', null, disease, { value: disease });
+        diseaseFilter.appendChild(option);
+      });
+
+      ageFilter.addEventListener('change', emitFilterEvent);
+      genderFilter.addEventListener('change', emitFilterEvent);
+      diseaseFilter.addEventListener('change', emitFilterEvent);
+    }
+
+    function emitFilterEvent() {
+      document.dispatchEvent(
+        new CustomEvent('filter', {
+          detail: {
+            age: document.getElementById('ageFilter').value,
+            gender: document.getElementById('genderFilter').value,
+            disease: document.getElementById('diseaseFilter').value,
+          },
+        })
+      );
+    }
+
+    function createMatchCard(match) {
+      const patientCard = document.createElement('div');
+      patientCard.classList.add('card');
+
+      const userSection = createElement('div', 'section', [
+        createHeaderElement('User Information'),
+
+        createKeyValueElement('Name', match.user.name),
+        createKeyValueElement('Age', match.user.age),
+        createKeyValueElement('Gender', match.user.gender),
+        createKeyValueElement('Region', match.user.region),
+        createKeyValueElement('Nationality', match.user.nationality),
+      ]);
+
+      const profileSection = createElement('div', 'section', [
+        createHeaderElement('Profile Information'),
+        createKeyValueElement('Allergies', match.profile.allergies),
+        createKeyValueElement('Height', match.profile.height),
+        createKeyValueElement('Weight', match.profile.weight),
+        createKeyValueElement('Lifestyle', match.profile.lifestyle),
+      ]);
+
+      const medicalHistorySection = createElement('div', 'section', [
+        createHeaderElement('Medical History'),
+        createKeyValueElement('Disease', match.medicalHistory.disease.name),
+        createKeyValueElement('Medical History', match.medicalHistory.medicalHistory),
+        createKeyValueElement('Medicinal History', match.medicalHistory.medicinalHistory),
+        createKeyValueElement('Family History', match.medicalHistory.familyHistory),
+        createKeyValueElement('Current Experienced Symptoms', match.medicalHistory.currentExperiencedSymptoms),
+      ]);
+
+      const matchStatusSection = createElement('div', 'section', [
+        createHeaderElement('Match Status'),
+        createKeyValueElement(
+          'Status',
+          match.status === 'accepted'
+            ? '✅ Match confirmed'
+            : match.status === 'rejected'
+            ? '❌ Match denied'
+            : 'Pending'
+        ),
+        createKeyValueElement(
+          'Sender',
+          match.sentByMe ? '📤 You sent this match request' : '📩 You receive this match request'
+        ),
+      ]);
+
+      // Append the match status section to the patient card
+      patientCard.appendChild(userSection);
+      patientCard.appendChild(profileSection);
+      patientCard.appendChild(medicalHistorySection);
+      patientCard.appendChild(matchStatusSection);
+
+      // Add buttons for pending matches
+      if (match.status === 'pending' && !match.sentByMe) {
+        const buttonsContainer = createElement('div', 'actions', [
+          createElement('a', 'button confirm', '✅ Confirm & Contact', {
+            href: '../patientstabpage/drconfirmmatch.html?matchId=' + match.matchId,
+          }),
+          createElement('a', 'button deny', '❌ Deny', {
+            href: '../patientstabpage/drdenymatch.html?matchId=' + match.matchId,
+          }),
+        ]);
+        patientCard.appendChild(buttonsContainer);
+      }
+
+      return patientCard;
+    }
+
+    function createHeaderElement(text) {
+      return createElement('h3', 'header-text', text);
+    }
+
+    function createKeyValueElement(key, value) {
+      return createElement('p', 'key-value', [
+        createElement('strong', null, key + ': '),
+        createElement('span', null, value),
+      ]);
+    }
+
+    function createElement(tag, className, children = [], attributes = {}) {
+      const element = document.createElement(tag);
+
+      if (className) {
+        element.className = className;
+      }
+
+      if (children) {
+        if (Array.isArray(children)) {
+          element.append(...children);
+        } else if (children instanceof HTMLElement) {
+          element.appendChild(children);
+        } else {
+          element.textContent = children;
+        }
+      }
+
+      for (const [key, value] of Object.entries(attributes)) {
+        element.setAttribute(key, value);
+      }
+
+      return element;
+    }
+  </script>
+</html>

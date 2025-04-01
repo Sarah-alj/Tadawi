@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noImplicitAny": true,
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "target": "ESNext",
+
+    "esModuleInterop": true,
+    "strict": true
+  },
+  "exclude": ["node_modules", "public"]
+}

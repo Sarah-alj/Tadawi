@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="OTPpage.css" />
+    <link rel="stylesheet" href="../Main.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <a href="../Login-OTP/Dr-Login.html" class="back">← Back</a>
+      </div>
+
+      <h1>Enter <b>OTP (One Time Password)</b></h1>
+      <form id="otpForm">
+        <input type="text" placeholder="OTP" name="otp" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+  <script type="module">
+    import { submitOtp } from '/js/login.js';
+
+    document.getElementById('otpForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.target;
+
+      form.querySelector('.error')?.remove();
+
+      const otp = form.otp.value;
+
+      const loginResponse = await submitOtp({
+        otp,
+      });
+
+      const errorElement = document.createElement('p');
+      errorElement.classList.add('error');
+      errorElement.textContent = loginResponse.message;
+
+      form.prepend(errorElement);
+    });
+  </script>
+</html>

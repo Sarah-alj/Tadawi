@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../MyLabsPage/MyLabsPage.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.js" />
+    <script src="../MyLabsPage/MyLabsPage.js" type="module"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Dr.html">Home</a>
+        <a href="../PatientsTabPage/PatientTabPage.html">Patients</a>
+        <a href="../MatchesPage/DrMatches.html">Matches</a>
+        <a href="../About-us/About-usPostDr.html">About us</a>
+        <a href="../LabPage/Lab.html">Labs</a>
+        <a href="../MyLabsPage/MyLabsPage.html">My Labs</a>
+        <a href="../HelpPage/Help-Dr.html">Help</a>
+        <a href="../NotificationsPage/DR-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Doctor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>My Labs</h1>
+      <p>Below is a list of all lab appointments you have signed up for:</p>
+
+      <!-- Table to display lab data -->
+      <table>
+        <thead>
+          <tr>
+            <th>Patient Name</th>
+            <th>Lab Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Bloodwork Requested</th>
+          </tr>
+        </thead>
+        <tbody id="labs-table-body">
+          <!-- Lab details will be injected here by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script>
+    // Underline the current tab
+    document.addEventListener('DOMContentLoaded', function () {
+      let currentLocation = window.location.pathname.split('/').pop();
+      let navLinks = document.querySelectorAll('.nav a');
+
+      navLinks.forEach((link) => {
+        if (link.getAttribute('href').includes(currentLocation)) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</html>

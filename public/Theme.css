@@ -1,0 +1,36 @@
+/* LIGHT THEME (default) */
+/*:root {
+    --bg-color: initial;
+    --text-color: initial;
+    --card-bg: initial;
+    --button-bg: initial;
+    --button-text: initial;
+  }
+  
+  /* DARK THEME OVERRIDES 
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #f1f1f1;
+    --card-bg: #1e1e1e;
+    --button-bg: #333;
+    --button-text: #fff;
+  }
+  
+  /* Apply theme globally 
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  .card, .box, .form-container, .navbar, .container {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--text-color);
+  }
+  
+  button, .btn {
+    background-color: var(--button-bg) !important;
+    color: var(--button-text) !important;
+    border: none;
+  }
+  */

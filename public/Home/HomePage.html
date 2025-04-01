@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/Home/HomePage.css" />
+    <link rel="stylesheet" href="/Preheader/Preheader.css" />
+    <link rel="stylesheet" href="/Prefooter/Prefooter.css" />
+    <link rel="stylesheet" href="/Prefooter/Prefooter.js" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage.html">
+          <div id="home-icon" style="width: 30px; height: 30px; display: inline-block; vertical-align: middle;"></div>
+          Home
+        </a>
+        <a href="/About-us/About-usPre.html">About us</a>
+        <a href="/HelpPage/Help.html" class="active">Help</a>
+      </nav>
+      <div class="dropdown">
+        <button class="dropdown-button">Sign up <span class="arrow">&#9660;</span></button>
+        <div class="dropdown-content">
+          <a href="/Login-OTP/UserLogin.html">Login</a>
+          <a href="/CreateAccount/CreateAccount.html">Sign up</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Advancing Medicine & helping patients</h1>
+        <p>Find your clinical trial match now</p><div> 
+        <a href="../About-us/About-usPre.html">
+          <button class="hero-btn">Learn More</button>
+        </a></div>
+        <div> 
+        <a href="../AIchatBox/AIchatBox.html">
+          <button class="hero-btn">Chat with our AI assistant</button>
+        </a></div>
+      </div>
+    </section>
+
+    <!-- Info Section 
+    <section class="info">
+        <div class="info-box">
+            <h2>Data-Driven Healthcare for betterment</h2>
+            <p>Our technology harnesses vast amounts of data to provide personalized treatment plans.</p>
+        </div>
+        <div class="info-box">
+            <h2>Convenience, Privacy, & Assisstance</h2>
+            <p>Our users are our priority.</p>
+        </div>
+    </section>-->
+    <div class="top-animated-block">
+      <div class="middle-content-anime">
+        <img
+          class="background-image"
+          src="https://www.tempus.com/wp-content/uploads/2025/01/tempus.webp"
+          alt="image description"
+        />
+        <div class="wrap">
+          <div class="row flex">
+            <div class="col-xs-12 col-md-6">
+              <div class="box start-a">
+                <h2 class="header-02">With the power of Tadawi, we now have the ability to</h2>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <div class="box start-a1">
+                <ul>
+                  <li>
+                    <h5>Accelerate</h5>
+                    <p>the discovery of novel targets</p>
+                  </li>
+                  <li>
+                    <h5>Find</h5>
+                    <p>Donated medical equipment</p>
+                  </li>
+                  <li>
+                    <h5>Help</h5>
+                    <p>Bridge gaps between patients & clinical trials</p>
+                  </li>
+                  <li>
+                    <h5>Diagnose</h5>
+                    <p>Multiple diseases earlier</p>
+                  </li>
+                </ul>
+                <div class="show-content-area"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <h3>Providers</h3>
+          <p>MedNova Pharma</p>
+          <p>BioGenesis Pharma</p>
+          <p>CureTech Solutions</p>
+          <p>LifeBridge Investments</p>
+          <p>MedStrive Holdings</p>
+          <p>SummitCare Hospital</p>
+        </div>
+        <div class="column">
+          <h3>Publications</h3>
+          <p>The Journal of Global Health Insights</p>
+          <p>Biotech Review</p>
+          <p>PharmaProgress</p>
+          <p>Innovative Medical Research</p>
+          <p>Future of Healthcare</p>
+        </div>
+        <div class="column">
+          <h3>Investors</h3>
+          <p>CapitalCore Ventures</p>
+          <p>SilverStone Investments</p>
+          <p>Pioneer Growth Partners</p>
+          <p>Summit Ridge Capital</p>
+          <p>Horizon Equity Group</p>
+        </div>
+      </div>
+      <div class="contact">Contact us at : <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a></div>
+      <div class="logos">
+        <img src="/img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2" />
+        <img src="/img/logo (1).png" alt="Logo 3" />
+        <img src="/img/image-removebg-preview.png" alt="Logo 4" />
+      </div>
+    </footer>
+    <script>
+      //underline the current tab
+      document.addEventListener('DOMContentLoaded', function () {
+        let currentLocation = window.location.pathname.split('/').pop();
+        let navLinks = document.querySelectorAll('.nav a');
+
+        navLinks.forEach((link) => {
+          link.classList.remove('active');
+
+          if (currentLocation === '') {
+            currentLocation = 'HomePage.html';
+          }
+
+          if (link.getAttribute('href').includes(currentLocation)) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Dropdown toggle functionality
+        const dropdownButton = document.querySelector('.dropdown-button');
+        const dropdownMenu = document.querySelector('.dropdown-content');
+        const dropdown = document.querySelector('.dropdown');
+
+        if (dropdownButton) {
+          dropdownButton.addEventListener('click', function (event) {
+            event.stopPropagation(); // Prevent closing when clicking the button
+            dropdown.classList.toggle('open');
+          });
+
+          // Close dropdown if clicking outside
+          document.addEventListener('click', function (event) {
+            if (!dropdown.contains(event.target)) {
+              dropdown.classList.remove('open');
+            }
+          });
+        }
+
+        // GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from('.hero h1', { opacity: 0, y: -50, duration: 1.2 });
+        gsap.from('.hero p', { opacity: 0, y: 30, duration: 1, delay: 0.5 });
+        gsap.from('.hero-btn', { opacity: 0, scale: 0.8, duration: 1, delay: 1 });
+
+        gsap.from('.info-box', {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          stagger: 0.3,
+          scrollTrigger: {
+            trigger: '.info',
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        });
+      });
+    </script>
+    <!--loading the lottie library-->
+    <script src="https://unpkg.com/lottie-web@5.7.13/build/player/lottie.min.js"></script>
+    <!--js code for home icon animation-->
+    <script>
+      lottie.loadAnimation({
+        container: document.getElementById('home-icon'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: '/animations/home-icon.json' // this path must match the location of your file
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="AIchatBox.css" />
+    <link rel="stylesheet" href="../Preheader/Preheader.css" />
+    <link rel="stylesheet" href="/Main.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage.html">Home</a>
+        <a href="../About-us/About-usPre.html">About us</a>
+        <a href="Help.html">Help</a>
+      </nav>
+      <div class="dropdown">
+        <button class="dropdown-button">Sign up <span class="arrow">&#9660;</span></button>
+        <div class="dropdown-content">
+          <a href="../Login-OTP/UserLogin.html">Login</a>
+          <a href="../CreateAccount/CreateAccount.html">Sign up</a>
+        </div>
+      </div>
+    </header>
+    <div class="ai-chat-wrapper">
+      <div class="ai-chat-container">
+        <div class="ai-chat-header">AI Chat Assistant</div>
+        <div class="ai-chat-messages" id="ai-chat-messages"></div>
+        <div class="ai-chat-input">
+          <input type="text" id="ai-message-input" placeholder="Ask something about the website..." />
+          <button id="ai-send-btn">Ask AI</button>
+        </div>
+      </div>
+    </div>
+    <script src="../AIchatBox/AIchatBox.js" type="module"></script>
+  </body>
+</html>

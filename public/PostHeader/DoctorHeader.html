@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="PostHeader.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-logo">
+        <img src="../img/logo Tadawi-05.png" alt="TADAWI Logo" />
+      </div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Dr.html">Home</a>
+        <a href="../PatientsTabPage/PatientTabPage.html">Patients</a>
+        <a href="../MatchesPage/DrMatches.html">Matches</a>
+        <a href="../About-us/About-usPostDr.html">About us</a>
+        <a href="../LabPage/Lab.html">Labs</a>
+        <a href="../HelpPage/Help-Dr.html">Help</a>
+        <a href="../NotificationsPage/DR-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <!-- Notification Bell -->
+        <div class="buttons-container">
+          <img src="" id="" />
+        </div>
+
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Patient.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+
+    <script>
+      // Toggle Notification Dropdown
+      document.getElementById('notif-bell').addEventListener('click', function (event) {
+        event.stopPropagation();
+        const dropdown = document.getElementById('notif-dropdown');
+
+        // If there are no notifications, show a default message
+        if (dropdown.innerHTML.trim() === '') {
+          dropdown.innerHTML = '<p>No new notifications</p>';
+        }
+
+        dropdown.classList.toggle('show');
+      });
+
+      // Close dropdown when clicking outside
+      window.addEventListener('click', function (event) {
+        const dropdown = document.getElementById('notif-dropdown');
+        if (!document.getElementById('notif-bell').contains(event.target)) {
+          dropdown.classList.remove('show');
+        }
+      });
+    </script>
+  </body>
+</html>

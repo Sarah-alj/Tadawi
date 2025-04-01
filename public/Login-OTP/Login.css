@@ -1,0 +1,124 @@
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+
+}
+
+.back {
+    font-size: 18px;
+    color: #0f2f76;
+    text-decoration: none;
+    margin-right: 20px;
+
+}
+
+h1 {
+    color: #0f2f76;
+    font-size: 28px;
+    margin: 0;
+
+}
+
+form {
+    margin-top: 20px;
+
+}
+
+input[type="text"], input[type="password"] {
+    width: 96%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+
+}
+
+a {
+    font-size: 16px;
+    color: #0f2f76;
+    text-decoration: none;
+
+}
+
+a:hover {
+    text-decoration: underline;
+
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    font-size: 18px;
+    background-color: #4e6ca3;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+button:hover {
+    background-color: #9bc8ff;
+    color:white;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 4px #4e6ca3;
+
+}
+
+/* Tablet (iPad) Viewport Adjustments */
+@media (max-width: 1024px) {
+    body {
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 90%;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .content {
+        padding: 10px;
+    }
+}
+
+/* Mobile (iPhone) Viewport Adjustments */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+    .container {
+        max-width: 100%;
+        padding: 5px;
+    }
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+    .button {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+    }
+}

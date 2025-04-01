@@ -1,0 +1,139 @@
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #0f2f76;
+            text-decoration: none;
+        }
+        h1 {
+            color: #0f2f76;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #18375d;
+        }
+        input, select, textarea {
+            width: 96%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border: 1px solid #4e6ca3;
+            border-radius: 4px;
+            background-color: white;
+        }
+        
+        Select{
+            width: 100%;
+        }
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            background-color: #4e6ca3;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #9bc8ff;
+            color:white;
+        }
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 4px #4e6ca3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+        }
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 10px;}
+
+            .nav a.active {
+                text-decoration: none; /* Remove default underline */
+                font-weight: bold;
+                color: #0f2f76; /* Adjust to match your theme */
+                position: relative; /* Allows custom underline positioning */
+            }
+            
+            .nav a.active::after {
+                content: ""; /* Creates a custom underline */
+                position: absolute;
+                left: 0;
+                bottom: -2px; /* Adjust this value to position the underline properly */
+                width: 100%;
+                height: 2px; /* Thickness of underline */
+                background-color: #0f2f76; /* Match text color */
+            }
+            
+            /* Tablet (iPad) Viewport Adjustments */
+@media (max-width: 1024px) {
+    body {
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 90%;
+    }
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .content {
+        padding: 10px;
+    }
+}
+
+/* Mobile (iPhone) Viewport Adjustments */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+    .container {
+        max-width: 100%;
+        padding: 5px;
+    }
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+    .button {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+    }
+}

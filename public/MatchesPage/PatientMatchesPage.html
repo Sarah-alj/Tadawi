@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="PatientMatchesPage.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.js" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <!--<div class="container" id="trials-container"></div> to retrieve the info from db-->
+        <a href="../Home/HomePage-Patient.html">Home</a>
+        <a href="../ClinicalTrialPage/CTpage.html">Clinical Trials</a>
+        <a href="../MatchesPage/PatientMatchesPage.html" class="active">Matches</a>
+        <a href="../About-us/About-usPostPatient.html">About us</a>
+        <a href="../HelpPage/Help-Patient.html">Help</a>
+        <a href="../NotificationsPage/P-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <a href="../Chatbox/Patient-Chatbox.html" id="chatbox">
+          <button>ChatBox</button>
+        </a>
+
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="/js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Patient.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <!-- Disease Filter -->
+    <label for="diseaseFilter">Trial Type:</label>
+    <select id="diseaseFilter">
+      <option value="">All</option>
+      <option value="Infectious Diseases">Infectious Diseases</option>
+      <option value="Genetic Disorders">Genetic Disorders</option>
+      <option value="Autoimmune Diseases">Autoimmune Diseases</option>
+      <option value="Oncology (Cancer)">Oncology (Cancer)</option>
+      <option value="Cardiovascular Diseases">Cardiovascular Diseases</option>
+      <option value="Neurological Disorders">Neurological Disorders</option>
+    </select>
+    <!-- Region Filter -->
+    <div class="filter-container">
+      <div>
+        <label for="regionFilter">Region:</label>
+        <select id="regionFilter">
+          <option value="">All</option>
+          <option value="Riyadh">Riyadh</option>
+          <option value="Jeddah">Jeddah</option>
+          <option value="Medina">Medina</option>
+        </select>
+      </div>
+      <div>
+        <!-- Duration Filter -->
+        <label for="durationFilter">Trial Duration:</label>
+        <select id="durationFilter">
+          <option value="">All</option>
+          <option value="1">1 month</option>
+          <option value="3">3 months</option>
+          <option value="6">6 months</option>
+          <option value="12+">12+ months</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="container" id="matchesContainer"></div>
+
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <h3>Providers</h3>
+          <p>MedNova Pharma</p>
+          <p>BioGenesis Pharma</p>
+          <p>CureTech Solutions</p>
+          <p>LifeBridge Investments</p>
+          <p>MedStrive Holdings</p>
+          <p>SummitCare Hospital</p>
+        </div>
+        <div class="column">
+          <h3>Publications</h3>
+          <p>The Journal of Global Health Insights</p>
+          <p>Biotech Review</p>
+          <p>PharmaProgress</p>
+          <p>Innovative Medical Research</p>
+          <p>Future of Healthcare</p>
+        </div>
+        <div class="column">
+          <h3>Investors</h3>
+          <p>CapitalCore Ventures</p>
+          <p>SilverStone Investments</p>
+          <p>Pioneer Growth Partners</p>
+          <p>Summit Ridge Capital</p>
+          <p>Horizon Equity Group</p>
+        </div>
+      </div>
+      <div class="contact">
+        Contact us at :
+        <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+      </div>
+      <div class="logos">
+        <img src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2" />
+        <img src="../img/logo (1).png" alt="Logo 3" />
+        <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+      </div>
+    </footer>
+  </body>
+
+  <script type="module">
+    import { fetchData } from '/js/api.js';
+
+    // Underline the current tab
+    let currentLocation = window.location.pathname.split('/').pop();
+    let navLinks = document.querySelectorAll('.nav a');
+    navLinks.forEach((link) => {
+      if (link.getAttribute('href').includes(currentLocation)) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    async function init() {
+      const fetchResponse = await fetchData('/api/matches/my-matches');
+      if (!fetchResponse.isOk) {
+        alert('Failed to fetch matches');
+        return;
+      }
+      const initialMatches = fetchResponse.data;
+
+      // Render initial matches
+      renderMatches(initialMatches);
+
+      // Initialize filters
+      initializeFilters(initialMatches);
+
+      // Add event listener for filter changes
+      document.addEventListener('filter', (event) => {
+        const { region, duration } = event.detail;
+        const filteredMatches = initialMatches.filter((match) => {
+          const matchesRegion = region ? match.user.region === region : true;
+          const matchesDuration = duration
+            ? match.trial.duration >= parseInt(duration) * 30 * 24 * 60 * 60 * 1000
+            : true;
+          return matchesRegion && matchesDuration;
+        });
+        renderMatches(filteredMatches);
+      });
+    }
+
+    function renderMatches(matches) {
+      const matchesContainer = document.getElementById('matchesContainer');
+
+      while (matchesContainer.firstChild) {
+        matchesContainer.removeChild(matchesContainer.firstChild);
+      }
+
+      if (matches.length === 0) {
+        matchesContainer.appendChild(
+          createElement('p', 'no-matches-message', 'No matches found', {
+            style: 'text-align: center; grid-column: 1 / -1;',
+          })
+        );
+        return;
+      }
+
+      matches.forEach((match) => {
+        const matchCard = createMatchCard(match);
+        matchesContainer.appendChild(matchCard);
+      });
+    }
+
+    function initializeFilters(matches) {
+      const regionFilter = document.getElementById('regionFilter');
+      const durationFilter = document.getElementById('durationFilter');
+
+      while (regionFilter.firstChild) {
+        regionFilter.removeChild(regionFilter.firstChild);
+      }
+
+      const uniqueRegions = new Set(matches.map((match) => match.user.region));
+      regionFilter.appendChild(createElement('option', null, 'All', { value: '' }));
+      uniqueRegions.forEach((region) => {
+        regionFilter.appendChild(createElement('option', null, region, { value: region }));
+      });
+
+      regionFilter.addEventListener('change', emitFilterEvent);
+      durationFilter.addEventListener('change', emitFilterEvent);
+    }
+
+    function emitFilterEvent() {
+      document.dispatchEvent(
+        new CustomEvent('filter', {
+          detail: {
+            region: document.getElementById('regionFilter').value,
+            duration: document.getElementById('durationFilter').value,
+          },
+        })
+      );
+    }
+
+    function createMatchCard(match) {
+      const doctorCard = document.createElement('div');
+      doctorCard.classList.add('card');
+
+      const userSection = createElement('div', 'section', [
+        createHeaderElement('User Information'),
+
+        createKeyValueElement('Name', match.user.name),
+        createKeyValueElement('Age', match.user.age),
+        createKeyValueElement('Gender', match.user.gender),
+        createKeyValueElement('Region', match.user.region),
+        createKeyValueElement('Nationality', match.user.nationality),
+      ]);
+
+      const profileSection = createElement('div', 'section', [
+        createHeaderElement('Profile Information'),
+        createKeyValueElement('Specialization', match.profile.specialization),
+        createKeyValueElement('Institute', match.profile.institute),
+      ]);
+
+      const medicalHistorySection = createElement('div', 'section', [
+        createHeaderElement('Medical History'),
+        createKeyValueElement('Risk Level', match.trial.riskLevel),
+        createKeyValueElement('Trial Duration', formatDuration(match.trial.duration)),
+        createKeyValueElement('Trial Description', match.trial.trialDescription),
+        createKeyValueElement('Trial Requirements', match.trial.trialRequirements),
+      ]);
+
+      const matchStatusSection = createElement('div', 'section', [
+        createHeaderElement('Match Status'),
+        createKeyValueElement(
+          'Status',
+          match.status === 'accepted'
+            ? '✅ Match confirmed'
+            : match.status === 'rejected'
+            ? '❌ Match denied'
+            : 'Pending'
+        ),
+        createKeyValueElement(
+          'Sender',
+          match.sentByMe ? '📤 You sent this match request' : '📩 You receive this match request'
+        ),
+      ]);
+
+      // Append the match status section to the patient card
+      doctorCard.appendChild(userSection);
+      doctorCard.appendChild(profileSection);
+      doctorCard.appendChild(medicalHistorySection);
+      doctorCard.appendChild(matchStatusSection);
+
+      return doctorCard;
+    }
+
+    function createHeaderElement(text) {
+      return createElement('h3', 'header-text', text);
+    }
+
+    function createKeyValueElement(key, value) {
+      return createElement('p', 'key-value', [
+        createElement('strong', null, key + ': '),
+        createElement('span', null, value),
+      ]);
+    }
+
+    function createElement(tag, className, children = [], attributes = {}) {
+      const element = document.createElement(tag);
+
+      if (className) {
+        element.className = className;
+      }
+
+      if (children) {
+        if (Array.isArray(children)) {
+          element.append(...children);
+        } else if (children instanceof HTMLElement) {
+          element.appendChild(children);
+        } else {
+          element.textContent = children;
+        }
+      }
+
+      for (const [key, value] of Object.entries(attributes)) {
+        element.setAttribute(key, value);
+      }
+
+      return element;
+    }
+
+    function formatDuration(ms) {
+      const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+      if (days >= 365) {
+        const years = Math.floor(days / 365);
+        return `${years} ${years === 1 ? 'Year' : 'Years'}`;
+      } else if (days >= 30) {
+        const months = Math.floor(days / 30);
+        return `${months} ${months === 1 ? 'Month' : 'Months'}`;
+      } else if (days >= 7) {
+        const weeks = Math.floor(days / 7);
+        return `${weeks} ${weeks === 1 ? 'Week' : 'Weeks'}`;
+      } else {
+        return `${days} ${days === 1 ? 'Day' : 'Days'}`;
+      }
+    }
+  </script>
+</html>

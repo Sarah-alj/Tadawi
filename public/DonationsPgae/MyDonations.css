@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #dceaff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ Page Container */
+.container {
+  max-width: 1400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Table Styling */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  min-width: 600px;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background: #007bff;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+tr:hover {
+  background: #e6f7ff;
+}
+
+@media screen and (max-width: 768px) {
+  td,
+  th {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+/* ✅ Buttons */
+.action-btn {
+  display: inline-flex;
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.edit-btn {
+  background-color: #f39c12;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #d68910;
+}
+
+/* ✅ Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  margin-left: 5px;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Tablet (iPad) Viewport Adjustments */
+@media (max-width: 1024px) {
+  body {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 90%;
+  }
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+  .content {
+    padding: 10px;
+  }
+}
+
+/* Mobile (iPhone) Viewport Adjustments */
+@media (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+  .container {
+    max-width: 100%;
+    padding: 5px;
+  }
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+  .button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+}
