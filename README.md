@@ -106,6 +106,9 @@ Although not previously listed, Tadawi includes secure user authentication using
 ### Testing Tools
 - **Selenium WebDriver:** Used for automated testing of features like login, profile editing, and logout.
 - **ChromeDriver:** Simulates browser actions during test cases.
+- **Jest:** JavaScript testing framework mainly used for unit and integration testing.
+- **Supertest:** HTTP assertion library that is commonly used alongside Jest for testing RESTful APIs.
+- **Puppeteer:** headless browser automation tool built by the Chrome team.
 
 ### Animations
 - **GSAP:** (GreenSock Animation Platform) was used to create smooth and engaging animations across the Tadawi interface.
