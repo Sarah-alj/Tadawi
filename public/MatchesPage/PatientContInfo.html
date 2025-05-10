@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="PatientContInfo.css" />
+  </head>
+  <body>
+    <div class="success-container">
+      <h1>Doctor's Contact Information:</h1>
+      <div id="contact-info"></div>
+      <a href="../MatchesPage/PatientMatchesPage.html">
+        <button type="button">Go to Matches Tab</button>
+      </a>
+    </div>
+  </body>
+  <script type="module">
+    import { fetchData } from '/js/api.js';
+
+    // Function to get the doctor ID from the URL
+    function getDoctorId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('doctorId');
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const doctorId = getDoctorId();
+
+      if (!doctorId) {
+        // navigate to the previous page if no doctorId is found
+        window.history.back();
+        return;
+      }
+
+      const container = document.querySelector('#contact-info');
+      const fetchResponse = await fetchData(`/api/doctors/contact-info/${doctorId}`);
+
+      if (!fetchResponse.isOk) {
+        container.innerHTML = `<p>${fetchResponse.message}</p>`;
+        return;
+      }
+
+      const { phoneNumber, email, name } = fetchResponse.data;
+      container.innerHTML = `
+        <p>Name: ${name}</p>
+        <p>Phone: ${phoneNumber}</p>
+        <p>Email: ${email}</p>
+      `;
+    });
+  </script>
+</html>

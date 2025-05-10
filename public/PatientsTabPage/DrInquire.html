@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="drinquire.css" />
+  </head>
+  <body>
+    <div class="success-container">
+      <h1>Please choose perfered method of contact:</h1>
+    </div>
+  </body>
+  <script type="module">
+    import { postData } from '/js/api.js';
+
+    function getPatientId() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('patientId');
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const patientId = getPatientId();
+
+      if (!patientId) {
+        window.history.back();
+        return;
+      }
+
+      const successContainer = document.querySelector('.success-container');
+
+      const chatboxUrl = '../Chatbox/Dr-Chatbox.html';
+
+      successContainer.innerHTML += `
+        <div class="button-container">
+          <button type="button" data-chatbox-button>In-website chatbox</button>
+          <a href="../PatientsTabPage/DrContactInfo.html?patientId=${patientId}" class="button">
+            via Patient's private contact information
+          </a>
+          </button>
+        </div>
+      `;
+
+      const chatboxButton = successContainer.querySelector('[data-chatbox-button]');
+      chatboxButton.addEventListener('click', async () => {
+        const postResponse = await postData('/api/matches/chat-only', {
+          userId: patientId,
+        });
+
+        if (postResponse.isOk) {
+          const chatboxUrlWithParams = `${chatboxUrl}?matchId=${postResponse.data._id}`;
+          window.location.href = chatboxUrlWithParams;
+        } else {
+          alert('Failed to create chat session. Please try again later.');
+        }
+      });
+    });
+  </script>
+</html>

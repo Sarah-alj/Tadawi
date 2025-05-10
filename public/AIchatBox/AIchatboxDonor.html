@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../AIchatBox/AIchatBox.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Main.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Donor.html">Home</a>
+        <a href="../About-us/About-usPostDonor.html">About us</a>
+        <a href="../DonationsPgae/DonationsPage.html">Donations</a>
+        <a href="../DonationsPgae/MyDonations.html">My Donations</a>
+        <a href="../HelpPage/Help-Donor.html">Help</a>
+        <a href="../NotificationsPage/Donor-NotifPage.html">Notifications</a>
+      </nav>
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="../js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Donor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+
+    <div class="ai-chat-wrapper">
+      <div class="ai-chat-container">
+        <div class="ai-chat-header">AI Chat Assistant</div>
+        <div class="ai-chat-messages" id="ai-chat-messages"></div>
+        <div class="ai-chat-input">
+          <input type="text" id="ai-message-input" placeholder="Ask something about the website..." />
+          <button id="ai-send-btn">Ask AI</button>
+        </div>
+      </div>
+    </div>
+    <script src="../AIchatBox/AIchatBox.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Herbal-Medicine Interactions</title>
+ 
+  <link rel="stylesheet" href="../Herbs/Herbs.css"/>
+  <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+  <link rel="stylesheet" href="../Prefooter/Prefooter.css" />
+  <link rel="stylesheet" href="../Prefooter/Prefooter.js" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-logo"><span>T</span>ADAWI</div>
+    <nav class="nav">
+      <!--<div class="container" id="trials-container"></div> to retrieve the info from db-->
+      <a href="../Home/HomePage-Patient.html">Home</a>
+      <a href="../ClinicalTrialPage/CTpage.html" >Clinical Trials</a>
+      <a href="../MatchesPage/PatientMatchesPage.html">Matches</a>
+      <a href="../About-us/About-usPostPatient.html">About us</a>
+      <a href="../HelpPage/Help-Patient.html">Help</a>
+      <a href="../Herbs/Herbs.html"class="active">Herbs</a>
+      <a href="../NotificationsPage/P-NotifPage.html">Notifications</a>
+    </nav>
+
+    <div class="buttons-container">
+      <img src="" id="" />
+
+     
+
+      <!-- Sign Out Button -->
+      <button id="signout-btn" data-signoutBtn>Sign Out</button>
+      <script src="../js/signout.js" type="module"></script>
+
+      <!-- Edit Profile Button -->
+      <a href="../EditProfile/EditProfile-Patient.html">
+        <button id="edit-btn">Edit Profile</button>
+      </a>
+    </div>
+  </header>
+  <main class="page-content">
+    <div class="container">
+      <h1>Herbal & Medicine Interaction Guide</h1>
+  
+
+    <div class="filters">
+      <select id="medicineFilter">
+        <option value="">All Medicines</option>
+      </select>
+      <select id="herbFilter">
+        <option value="">All Herbs</option>
+      </select>
+      <select id="interactionFilter">
+        <option value="">All Interaction Types</option>
+        <option value="avoid">Avoid</option>
+        <option value="delay">Delay</option>
+        <option value="safe">Safe</option>
+      </select>
+    </div>
+
+    <div class="divider"></div>
+
+    <table id="interactionTable">
+      <thead>
+        <tr>
+          <th>Medicine</th>
+          <th>Herb</th>
+          <th>Category</th>
+          <th>Interaction</th>
+          <th>Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Aspirin</td><td>مره (Myrrh)</td><td>Resin</td><td class="avoid">❌ Avoid</td><td>Can increase bleeding risk when combined.</td></tr>
+        <tr><td>Warfarin</td><td>حبة سوداء (Black Seed)</td><td>Seed</td><td class="avoid">❌ Avoid</td><td>Can reduce warfarin’s effectiveness & increase clot risk.</td></tr>
+        <tr><td>Insulin</td><td>قسط هندي (Costus Root)</td><td>Root</td><td class="delay">⏱ Delay</td><td>May cause hypoglycemia when taken together.</td></tr>
+        <tr><td>Metformin</td><td>سنا مكي (Senna)</td><td>Leaf</td><td class="delay">⏱ Delay</td><td>Senna can cause dehydration which affects blood sugar control.</td></tr>
+        <tr><td>Zoloft (Sertraline)</td><td>زعفران (Saffron)</td><td>Stigma</td><td class="avoid">❌ Avoid</td><td>Can dangerously raise serotonin levels.</td></tr>
+        <tr><td>Lipitor (Atorvastatin)</td><td>حلبة (Fenugreek)</td><td>Seed</td><td class="delay">⏱ Delay</td><td>Can affect fat metabolism and blood sugar.</td></tr>
+        <tr><td>Advil (Ibuprofen)</td><td>لبان (Frankincense)</td><td>Resin</td><td class="safe">✔ Safe</td><td>Generally safe, may irritate stomach if overused.</td></tr>
+        <tr><td>Panadol (Paracetamol)</td><td>كركم (Turmeric)</td><td>Root</td><td class="safe">✔ Safe</td><td>Supports liver health, avoid excessive use together.</td></tr>
+        <tr><td>Ferrous Sulfate</td><td>قهوة عربية (Arabic Coffee)</td><td>Beverage</td><td class="delay">⏱ Delay</td><td>Caffeine reduces iron absorption.</td></tr>
+        <tr><td>Ciprofloxacin</td><td>مسمار (Clove)</td><td>Flower Bud</td><td class="delay">⏱ Delay</td><td>Can interfere with antibiotic absorption.</td></tr>
+        <tr><td>Plavix (Clopidogrel)</td><td>مره (Myrrh)</td><td>Resin</td><td class="avoid">❌ Avoid</td><td>Combined blood thinning may cause bleeding.</td></tr>
+        <tr><td>Lantus (Insulin Glargine)</td><td>قسط هندي (Costus Root)</td><td>Root</td><td class="delay">⏱ Delay</td><td>Risk of low blood sugar.</td></tr>
+        <tr><td>Lexapro (Escitalopram)</td><td>زعفران (Saffron)</td><td>Stigma</td><td class="avoid">❌ Avoid</td><td>Increases serotonin too much.</td></tr>
+        <tr><td>Furosemide</td><td>عرق السوس (Licorice)</td><td>Root</td><td class="avoid">❌ Avoid</td><td>May worsen potassium loss.</td></tr>
+        <tr><td>Synthroid (Levothyroxine)</td><td>مرامية (Sage)</td><td>Leaf</td><td class="delay">⏱ Delay</td><td>Sage may interfere with thyroid hormone.</td></tr>
+        <tr><td>Xanax (Alprazolam)</td><td>نعناع (Mint)</td><td>Leaf</td><td class="delay">⏱ Delay</td><td>Can increase drowsiness when combined.</td></tr>
+        <tr><td>Amoxicillin</td><td>يانسون (Anise)</td><td>Seed</td><td class="safe">✔ Safe</td><td>No known serious interaction.</td></tr>
+        <tr><td>Lisinopril</td><td>حرمل (Syrian Rue)</td><td>Seed</td><td class="avoid">❌ Avoid</td><td>Combined use may cause hypotension.</td></tr>
+        <tr><td>Augmentin</td><td>زنجبيل (Ginger)</td><td>Root</td><td class="safe">✔ Safe</td><td>May help nausea, use in moderation.</td></tr>
+        <tr><td>Omeprazole</td><td>زنجبيل (Ginger)</td><td>Root</td><td class="safe">✔ Safe</td><td>Safe but watch for stomach effects.</td></tr>
+        <tr><td>Valium (Diazepam)</td><td>زعتر (Thyme)</td><td>Leaf</td><td class="delay">⏱ Delay</td><td>Thyme may amplify sedation.</td></tr>
+        <tr><td>Prednisone</td><td>حبة سوداء (Black Seed)</td><td>Seed</td><td class="avoid">❌ Avoid</td><td>Black seed may counter steroid effect.</td></tr>
+        <tr><td>Diflucan (Fluconazole)</td><td>لبان (Frankincense)</td><td>Resin</td><td class="delay">⏱ Delay</td><td>Both use liver; space them out.</td></tr>
+        <tr><td>Cozaar (Losartan)</td><td>حرمل (Syrian Rue)</td><td>Seed</td><td class="avoid">❌ Avoid</td><td>Risk of severe blood pressure drop.</td></tr>
+        <tr><td>Zithromax (Azithromycin)</td><td>مسمار (Clove)</td><td>Flower Bud</td><td class="delay">⏱ Delay</td><td>May compete in absorption.</td></tr>
+      </tbody>
+      
+    </table>
+  </div>
+
+  <script>
+    const medicineFilter = document.getElementById('medicineFilter');
+    const herbFilter = document.getElementById('herbFilter');
+    const interactionFilter = document.getElementById('interactionFilter');
+    const rows = document.querySelectorAll('#interactionTable tbody tr');
+
+    function updateFilters() {
+      const selectedMed = medicineFilter.value.toLowerCase();
+      const selectedHerb = herbFilter.value.toLowerCase();
+      const selectedInteraction = interactionFilter.value.toLowerCase();
+
+      rows.forEach(row => {
+        const med = row.children[0].textContent.toLowerCase();
+        const herb = row.children[1].textContent.toLowerCase();
+        const interaction = row.children[3].textContent.toLowerCase();
+
+        const matchesMed = !selectedMed || med.includes(selectedMed);
+        const matchesHerb = !selectedHerb || herb.includes(selectedHerb);
+        const matchesInteraction = !selectedInteraction || interaction.includes(selectedInteraction);
+
+        row.style.display = (matchesMed && matchesHerb && matchesInteraction) ? '' : 'none';
+      });
+    }
+
+    function populateDropdowns() {
+      const meds = new Set();
+      const herbs = new Set();
+
+      rows.forEach(row => {
+        meds.add(row.children[0].textContent);
+        herbs.add(row.children[1].textContent);
+      });
+
+      meds.forEach(med => {
+        const opt = document.createElement('option');
+        opt.value = med;
+        opt.textContent = med;
+        medicineFilter.appendChild(opt);
+      });
+
+      herbs.forEach(herb => {
+        const opt = document.createElement('option');
+        opt.value = herb;
+        opt.textContent = herb;
+        herbFilter.appendChild(opt);
+      });
+    }
+
+    medicineFilter.addEventListener('change', updateFilters);
+    herbFilter.addEventListener('change', updateFilters);
+    interactionFilter.addEventListener('change', updateFilters);
+
+    populateDropdowns();
+  </script>
+  <footer class="footer">
+    <div class="columns">
+      <div class="column">
+        <h3>Providers</h3>
+        <p>MedNova Pharma</p>
+        <p>BioGenesis Pharma</p>
+        <p>CureTech Solutions</p>
+        <p>LifeBridge Investments</p>
+        <p>MedStrive Holdings</p>
+        <p>SummitCare Hospital</p>
+      </div>
+      <div class="column">
+        <h3>Publications</h3>
+        <p>The Journal of Global Health Insights</p>
+        <p>Biotech Review</p>
+        <p>PharmaProgress</p>
+        <p>Innovative Medical Research</p>
+        <p>Future of Healthcare</p>
+      </div>
+      <div class="column">
+        <h3>Investors</h3>
+        <p>CapitalCore Ventures</p>
+        <p>SilverStone Investments</p>
+        <p>Pioneer Growth Partners</p>
+        <p>Summit Ridge Capital</p>
+        <p>Horizon Equity Group</p>
+      </div>
+    </div>
+    <div class="contact">
+      Contact us at :
+      <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+    </div>
+    <div class="logos">
+      <img src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2" />
+      <img src="../img/logo (1).png" alt="Logo 3" />
+      <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+    </div>
+  </main>
+  </footer>
+  
+</body>
+</html>

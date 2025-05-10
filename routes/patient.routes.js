@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { requestHandlerWrapper } from '../lib/app-request-handler.js';
+import { getAllPatients } from '../controllers/patients/get-all-patients.js';
+import { getSinglePatient } from '../controllers/patients/get-single-patient.js';
+import { getPatientContactInfo } from '../controllers/patients/get-patient-contact-info.js';
+const router = Router();
+router.get('/', requestHandlerWrapper(getAllPatients));
+router.get('/:patientId', requestHandlerWrapper(getSinglePatient));
+router.get('/contact-info/:patientId', requestHandlerWrapper(getPatientContactInfo));
+export default router;

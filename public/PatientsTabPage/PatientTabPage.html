@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+
+    <link rel="stylesheet" href="PatientTabPage.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Dr.html">Home</a>
+        <a href="../PatientsTabPage/PatientTabPage.html" class="active">Patients</a>
+        <a href="../MatchesPage/DrMatches.html">Matches</a>
+        <a href="../About-us/About-usPostDr.html">About us</a>
+        <a href="../LabPage/Lab.html">Labs</a>
+        <a href="../MyLabsPage/MyLabsPage.html">My Labs</a>
+        <a href="../HelpPage/Help-Dr.html">Help</a>
+        <a href="../NotificationsPage/DR-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="../js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Doctor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <div class="filter-container">
+      <!-- Age Filter -->
+      <div>
+        <label for="ageFilter">Age:</label>
+        <select id="ageFilter">
+          <option value="">All</option>
+          <option value="18-25">18-25</option>
+          <option value="26-40">26-40</option>
+          <option value="41-60">41-60</option>
+          <option value="60+">60+</option>
+        </select>
+      </div>
+
+      <div>
+        <!-- Gender Filter -->
+        <label for="genderFilter">Gender:</label>
+        <select id="genderFilter">
+          <option value="">All</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+      <div>
+        <!-- Disease Filter -->
+        <label for="diseaseFilter">Disease:</label>
+        <select id="diseaseFilter">
+          <option value="">All</option>
+          <option value="Infectious Diseases">Infectious Diseases</option>
+          <option value="Genetic Disorders">Genetic Disorders</option>
+          <option value="Autoimmune Diseases">Autoimmune Diseases</option>
+          <option value="Oncology (Cancer)">Oncology (Cancer)</option>
+          <option value="Cardiovascular Diseases">Cardiovascular Diseases</option>
+          <option value="Neurological Disorders">Neurological Disorders</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="container" id="patientsContainer"></div>
+
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <h3>Providers</h3>
+          <p>MedNova Pharma</p>
+          <p>BioGenesis Pharma</p>
+          <p>CureTech Solutions</p>
+          <p>LifeBridge Investments</p>
+          <p>MedStrive Holdings</p>
+          <p>SummitCare Hospital</p>
+        </div>
+        <div class="column">
+          <h3>Publications</h3>
+          <p>The Journal of Global Health Insights</p>
+          <p>Biotech Review</p>
+          <p>PharmaProgress</p>
+          <p>Innovative Medical Research</p>
+          <p>Future of Healthcare</p>
+        </div>
+        <div class="column">
+          <h3>Investors</h3>
+          <p>CapitalCore Ventures</p>
+          <p>SilverStone Investments</p>
+          <p>Pioneer Growth Partners</p>
+          <p>Summit Ridge Capital</p>
+          <p>Horizon Equity Group</p>
+        </div>
+      </div>
+      <div class="contact">
+        Contact us at :
+        <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+      </div>
+      <div class="logos">
+        <img src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2" />
+        <img src="../img/logo (1).png" alt="Logo 3" />
+        <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+      </div>
+    </footer>
+
+    <style>
+      .footer {
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        left: 0;
+      }
+
+      .footer .columns {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: auto;
+        padding: 10px 20px;
+      }
+
+      .footer .column {
+        flex: 1;
+        padding: 10px;
+        min-width: 200px;
+      }
+
+      .footer h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .footer p {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+
+      .footer .contact {
+        margin-top: 15px;
+        font-size: 16px;
+      }
+
+      .footer .logos {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .footer .logos img {
+        height: 50px;
+        max-width: 100px;
+      }
+    </style>
+
+    <script type="module">
+      import { fetchData } from '/js/api.js';
+
+      //underline the current tab
+      document.addEventListener('DOMContentLoaded', function () {
+        let currentLocation = window.location.pathname.split('/').pop();
+        let navLinks = document.querySelectorAll('.nav a');
+
+        navLinks.forEach((link) => {
+          if (link.getAttribute('href').includes(currentLocation)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      });
+
+      //for the inquire button
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.inquire').forEach((button) => {
+          button.addEventListener('click', function () {
+            window.location.href = '../patientsTabPage/DrInquire.html';
+          });
+        });
+        //for the match button
+        document.querySelectorAll('.match').forEach((button) => {
+          button.addEventListener('click', function () {
+            alert('You are now matched to this patient.');
+            window.location.href = 'drconfirmmatch.html';
+          });
+        });
+      });
+
+      //# API INTERACTION
+      document.addEventListener('DOMContentLoaded', initApp);
+
+      async function initApp() {
+        const fetchResponse = await fetchData('/api/patients');
+        if (!fetchResponse.isOk) {
+          alert('Failed to fetch patients data');
+          return;
+        }
+        const initialPatients = fetchResponse.data;
+
+        // Render initial patients
+        renderPatients(initialPatients);
+
+        // initialize filters
+        initializeFilters(initialPatients);
+
+        // Add event listener for filter changes
+        document.addEventListener('filter', function (event) {
+          const { age, gender, disease } = event.detail;
+
+          const minAge = age ? parseInt(age.split('-')[0]) || 0 : 0;
+          const maxAge = age ? parseInt(age.split('-')[1]) || Infinity : Infinity;
+
+          const genderNormalized = gender ? gender.toLowerCase() : null;
+          const diseaseNormalized = disease ? disease.toLowerCase() : null;
+
+          const filteredPatients = initialPatients.filter((patient) => {
+            const matchesAge = minAge <= patient.user.age && patient.user.age <= maxAge;
+            const matchesGender = genderNormalized ? patient.user.gender.toLowerCase() === genderNormalized : true;
+            const matchesDisease = diseaseNormalized
+              ? patient.medicalHistory.disease.type.toLowerCase() === diseaseNormalized
+              : true;
+            return matchesAge && matchesGender && matchesDisease;
+          });
+
+          renderPatients(filteredPatients);
+        });
+      }
+
+      function initializeFilters(patients) {
+        const ageFilter = document.getElementById('ageFilter');
+        const genderFilter = document.getElementById('genderFilter');
+        const diseaseFilter = document.getElementById('diseaseFilter');
+
+        const diseaseTypes = Array.from(new Set(patients.map((patient) => patient.medicalHistory.disease.type)));
+
+        while (diseaseFilter.firstChild) {
+          diseaseFilter.removeChild(diseaseFilter.firstChild);
+        }
+
+        diseaseFilter.appendChild(createElement('option', null, 'All', { value: '' }));
+        diseaseTypes.forEach((disease) => {
+          const option = createElement('option', null, disease, { value: disease });
+          diseaseFilter.appendChild(option);
+        });
+
+        ageFilter.addEventListener('change', emitFilterEvent);
+        genderFilter.addEventListener('change', emitFilterEvent);
+        diseaseFilter.addEventListener('change', emitFilterEvent);
+      }
+
+      function emitFilterEvent() {
+        document.dispatchEvent(
+          new CustomEvent('filter', {
+            detail: {
+              age: document.getElementById('ageFilter').value,
+              gender: document.getElementById('genderFilter').value,
+              disease: document.getElementById('diseaseFilter').value,
+            },
+          })
+        );
+      }
+
+      function renderPatients(patients) {
+        const patientsContainer = document.getElementById('patientsContainer');
+        while (patientsContainer.firstChild) {
+          patientsContainer.removeChild(patientsContainer.firstChild);
+        }
+
+        if (patients.length === 0) {
+          patientsContainer.appendChild(
+            createElement('p', 'no-patients-message', 'No patients found', {
+              style: 'text-align: center; grid-column: 1 / -1;',
+            })
+          );
+          return;
+        }
+
+        patients.forEach((patient) => {
+          const patientCard = createPatientCard(patient);
+          patientsContainer.appendChild(patientCard);
+        });
+      }
+
+      function createPatientCard(patient) {
+        const patientCard = document.createElement('div');
+        patientCard.classList.add('card');
+
+        const userSection = createElement('div', 'section', [
+          createHeaderElement('User Information'),
+
+          createKeyValueElement('Name', patient.user.name),
+          createKeyValueElement('Age', patient.user.age),
+          createKeyValueElement('Gender', patient.user.gender),
+          createKeyValueElement('Region', patient.user.region),
+          createKeyValueElement('Nationality', patient.user.nationality),
+        ]);
+
+        const profileSection = createElement('div', 'section', [
+          createHeaderElement('Profile Information'),
+          createKeyValueElement('Allergies', patient.profile.allergies),
+          createKeyValueElement('Height', patient.profile.height),
+          createKeyValueElement('Weight', patient.profile.weight),
+          createKeyValueElement('Lifestyle', patient.profile.lifestyle),
+        ]);
+
+        const medicalHistorySection = createElement('div', 'section', [
+          createHeaderElement('Medical History'),
+          createKeyValueElement('Disease', patient.medicalHistory.disease.name),
+          createKeyValueElement('Medical History', patient.medicalHistory.medicalHistory),
+          createKeyValueElement('Medicinal History', patient.medicalHistory.medicinalHistory),
+          createKeyValueElement('Family History', patient.medicalHistory.familyHistory),
+          createKeyValueElement('Current Experienced Symptoms', patient.medicalHistory.currentExperiencedSymptoms),
+        ]);
+
+        const actionsSection = createElement('div', 'actions-container', [
+          createElement('a', 'button match', 'Match', {
+            href: 'DrConfirmMatch.html?patientId=' + patient.user._id,
+          }),
+          createElement('a', 'button inquire', 'Inquire', {
+            href: 'DrInquire.html?patientId=' + patient.user._id,
+          }),
+        ]);
+
+        // Append sections to the card
+        patientCard.appendChild(userSection);
+        patientCard.appendChild(profileSection);
+        patientCard.appendChild(medicalHistorySection);
+        patientCard.appendChild(actionsSection); // Append actions section to the card
+
+        return patientCard;
+      }
+
+      function createHeaderElement(text) {
+        return createElement('h3', 'header-text', text);
+      }
+
+      function createKeyValueElement(key, value) {
+        return createElement('p', 'key-value', [
+          createElement('strong', null, key + ': '),
+          createElement('span', null, value),
+        ]);
+      }
+
+      function createElement(tag, className, children = [], attributes = {}) {
+        const element = document.createElement(tag);
+
+        if (className) {
+          element.className = className;
+        }
+
+        if (children) {
+          if (Array.isArray(children)) {
+            element.append(...children);
+          } else if (children instanceof HTMLElement) {
+            element.appendChild(children);
+          } else {
+            element.textContent = children;
+          }
+        }
+
+        for (const [key, value] of Object.entries(attributes)) {
+          element.setAttribute(key, value);
+        }
+
+        return element;
+      }
+    </script>
+  </body>
+</html>

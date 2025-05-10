@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="DrContactInfo.css" />
+  </head>
+  <body>
+    <div class="success-container">
+      <h1>Patient's Contact Information:</h1>
+      <p id="name"></p>
+      <p id="phone"></p>
+      <p id="email"></p>
+      <a href="../PatientsTabPage/PatientTabPage.html">
+        <button type="button">Go to Patient's Tab</button>
+      </a>
+    </div>
+  </body>
+  <script type="module">
+    import { fetchData } from '/js/api.js';
+
+    async function init() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const patientId = urlParams.get('patientId');
+      if (patientId) {
+        const patientData = await fetchData(`/api/patients/contact-info/${patientId}`);
+        if (patientData.isOk) {
+          console.log(patientData.data);
+          const patientName = document.getElementById('name');
+          const patientEmail = document.getElementById('email');
+          const patientPhone = document.getElementById('phone');
+          patientName.innerText = 'Name: ' + patientData.data.name;
+          patientPhone.innerText = 'Phone Number: ' + patientData.data.phoneNumber;
+          patientEmail.innerText = 'Email: ' + patientData.data.email;
+        }
+      } else {
+        console.error('No patient ID found in the URL');
+      }
+    }
+
+    init();
+  </script>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "sara-sprint-2",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-async-errors": "^3.1.1",
+    "express-session": "^1.18.1",
+    "mongodb": "^6.14.2",
+    "mongoose": "^8.14.1",
+    "nodemailer": "^6.10.0",
+    "openai": "^4.90.0",
+    "zod": "^3.24.2"
+  }
+}

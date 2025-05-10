@@ -1,0 +1,94 @@
+/* LIGHT THEME (default) */
+:root {
+  --bg-color: #c3d4da; /* Light desaturated blue-gray */
+  --text-color: #22434f; /* Deep blue-gray */
+  --card-bg: #ffffff;
+  --button-bg: #397184; /* Bold teal */
+  --button-text: #ffffff;
+  --accent-color: #88a9b5; /* Soft bluish-gray */
+  --border-color: #22434f; /* Deep blue-gray */
+  --hover-bg: #88a9b5; /* Soft bluish-gray */
+}
+
+/* DARK THEME OVERRIDES */
+[data-theme="dark"] {
+  --bg-color: #22434f; /* Deep blue-gray as background */
+  --text-color: #c3d4da; /* Light desaturated blue-gray as text */
+  --card-bg: #1a343e; /* Darker version of deep blue-gray */
+  --button-bg: #397184; /* Bold teal */
+  --button-text: #ffffff;
+  --accent-color: #88a9b5; /* Soft bluish-gray */
+  --border-color: #c3d4da; /* Light desaturated blue-gray as border */
+  --hover-bg: #4a8194; /* Lighter version of bold teal */
+}
+
+/* Apply theme globally */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card, .box, .form-container, .navbar, .container, .footer {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button, .btn, .dropdown-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover, .dropdown-button:hover {
+  background-color: var(--hover-bg);
+}
+
+.header {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.header-logo {
+  color: var(--text-color);
+}
+
+.header-logo span {
+  color: var(--button-bg);
+}
+
+.nav a {
+  color: var(--text-color);
+}
+
+.nav a.active::after {
+  background-color: var(--accent-color);
+}
+
+.dropdown-content {
+  background-color: var(--card-bg);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content a {
+  color: var(--text-color);
+}
+
+.dropdown-content a:hover {
+  background-color: var(--bg-color);
+}
+
+/* Theme toggle animation */
+.theme-toggle {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--hover-bg);
+}

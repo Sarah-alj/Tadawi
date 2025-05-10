@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="ConfirmDeleteDonation.css" />
+  </head>
+  <body>
+    <div class="success-container">
+      <h1>Are you sure you want to delete the donation?</h1>
+
+      <div class="button-container">
+        <button class="button confirm-btn" data-target="FinalConfirmDelete.html">Yes</button>
+        <a href="MyDonations.html" class="button cancel-btn">No</a>
+      </div>
+
+      <script type="module">
+        import { deleteData } from '/js/api.js';
+        document.addEventListener('DOMContentLoaded', init);
+
+        function init() {
+          const donationId = new URLSearchParams(window.location.search).get('id');
+
+          const confirmBtn = document.querySelector('.confirm-btn');
+          confirmBtn.addEventListener('click', async () => {
+            const deleteResponse = await deleteData(`/api/donations/${donationId}`);
+
+            if (deleteResponse.isOk) {
+              window.location.href = confirmBtn.dataset.target;
+            } else {
+              alert('Failed to delete donation. Please try again.');
+            }
+          });
+        }
+      </script>
+    </div>
+  </body>
+</html>

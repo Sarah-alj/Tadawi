@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="Lab.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    
+    <style>
+      .lab-btn.active {
+        background-color: #f0f0f0;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <a href="../Home/HomePage-Dr.html">Home</a>
+        <a href="../PatientsTabPage/PatientTabPage.html">Patients</a>
+        <a href="../MatchesPage/DrMatches.html">Matches</a>
+        <a href="../About-us/About-usPostDr.html">About us</a>
+        <a href="../LabPage/Lab.html" class="active">Labs</a>
+        <a href="../MyLabsPage/MyLabsPage.html">My Labs</a>
+        <a href="../HelpPage/Help-Dr.html">Help</a>
+        <a href="../NotificationsPage/DR-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="../js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Doctor.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <div class="appointment-container">
+      <h1>1- Choose a laboratory:</h1>
+      <div class="labs">
+        <button class="lab-btn" data-lab="ALBORG">Alborg</button>
+        <button class="lab-btn" data-lab="ALMUHAMADIYA">Almuhamadiyah</button>
+        <button class="lab-btn" data-lab="WAREED">Wareed</button>
+        <button class="lab-btn" data-lab="DELTA">Delta</button>
+        <button class="lab-btn" data-lab="SAUDI AJAL">Saudi Ajal</button>
+        <button class="lab-btn" data-lab="ONE TOUCH">One Touch</button>
+      </div>
+
+      <form id="appointment-form">
+        <input type="hidden" id="lab-name" name="lab-name" />
+
+        <h1>2- Choose a date:</h1>
+        <div class="calendar">
+          <input type="date" id="appointment-date" required />
+        </div>
+
+        <h1>3- Choose a time:</h1>
+        <label for="time-slot">Available time for this specific date: </label>
+        <select id="time-slot" name="appointment-time" disabled>
+          <option value="">Select a time</option>
+        </select>
+
+        <h1>4- Type of bloodwork and patient name:</h1>
+
+        <label for="doctor-name">Full name of Dr:</label>
+        <input type="text" id="doctor-name" placeholder="Full name of Dr" readonly />
+
+        <label for="doctor-email">Doctor's email:</label>
+        <input type="email" id="doctor-email" placeholder="Doctor's email" readonly />
+
+        <label for="patient-name">Select patient:</label>
+        <select id="patient-name" required>
+          <option value="" disabled selected>Select a patient</option>
+          <!-- Patient options will be populated dynamically -->
+        </select>
+
+        <label for="bloodwork">Bloodwork:</label>
+        <select id="bloodwork" required>
+          <option value="" disabled selected>Select a blood test</option>
+
+          <optgroup label="Basic Panels">
+            <option value="cmp">Comprehensive Metabolic Panel (CMP)</option>
+            <option value="bmp">Basic Metabolic Panel (BMP)</option>
+            <option value="cbc">Complete Blood Count (CBC)</option>
+            <option value="electrolytes">Electrolyte Panel</option>
+          </optgroup>
+
+          <optgroup label="Lipid & Heart Health">
+            <option value="lipid">Lipid Panel</option>
+            <option value="cholesterol">Cholesterol Test</option>
+            <option value="triglycerides">Triglycerides Test</option>
+            <option value="ldl_hdl">LDL/HDL Ratio</option>
+            <option value="hs-crp">High-Sensitivity C-Reactive Protein (hs-CRP)</option>
+            <option value="homocysteine">Homocysteine Test</option>
+          </optgroup>
+
+          <optgroup label="Diabetes & Blood Sugar">
+            <option value="a1c">Hemoglobin A1C (HbA1c)</option>
+            <option value="glucose">Fasting Blood Sugar (Glucose Test)</option>
+            <option value="insulin">Insulin Level Test</option>
+          </optgroup>
+
+          <optgroup label="Liver & Kidney Function">
+            <option value="liver">Liver Function Test (LFT)</option>
+            <option value="albumin">Albumin Test</option>
+            <option value="bilirubin">Bilirubin Test</option>
+            <option value="ast_alt">AST & ALT (Liver Enzymes)</option>
+            <option value="alk_phos">Alkaline Phosphatase (ALP)</option>
+            <option value="kidney">Renal Panel (Kidney Function Test)</option>
+            <option value="bun">Blood Urea Nitrogen (BUN)</option>
+            <option value="creatinine">Creatinine Test</option>
+            <option value="gfr">Glomerular Filtration Rate (GFR)</option>
+          </optgroup>
+
+          <optgroup label="Hormones & Endocrine">
+            <option value="thyroid">Thyroid Panel (TSH, T3, T4)</option>
+            <option value="parathyroid">Parathyroid Hormone (PTH)</option>
+            <option value="testosterone">Testosterone Test</option>
+            <option value="estrogen">Estrogen Test</option>
+            <option value="cortisol">Cortisol Test</option>
+            <option value="dhea">DHEA-Sulfate Test</option>
+            <option value="prolactin">Prolactin Test</option>
+          </optgroup>
+
+          <optgroup label="Immune System & Inflammation">
+            <option value="crp">C-Reactive Protein (CRP)</option>
+            <option value="wbc">White Blood Cell Count (WBC)</option>
+            <option value="esr">Erythrocyte Sedimentation Rate (ESR)</option>
+            <option value="ana">Antinuclear Antibody (ANA) Test</option>
+            <option value="rf">Rheumatoid Factor (RF) Test</option>
+          </optgroup>
+
+          <optgroup label="Vitamin & Mineral Levels">
+            <option value="vit_d">Vitamin D Test</option>
+            <option value="vit_b12">Vitamin B12 Test</option>
+            <option value="iron">Iron Panel (Iron, Ferritin, TIBC)</option>
+            <option value="calcium">Calcium Test</option>
+            <option value="magnesium">Magnesium Test</option>
+            <option value="zinc">Zinc Test</option>
+            <option value="potassium">Potassium Test</option>
+          </optgroup>
+
+          <optgroup label="Blood Clotting & Anemia">
+            <option value="pt_inr">Prothrombin Time (PT) & INR</option>
+            <option value="aptt">Activated Partial Thromboplastin Time (aPTT)</option>
+            <option value="fibrinogen">Fibrinogen Test</option>
+            <option value="d-dimer">D-Dimer Test</option>
+            <option value="ferritin">Ferritin Test</option>
+            <option value="transferrin">Transferrin Test</option>
+            <option value="haptoglobin">Haptoglobin Test</option>
+          </optgroup>
+
+          <optgroup label="Infectious Disease & Autoimmune">
+            <option value="hiv">HIV Test</option>
+            <option value="hepatitis">Hepatitis Panel (A, B, C)</option>
+            <option value="syphilis">Syphilis Test</option>
+            <option value="lyme">Lyme Disease Test</option>
+            <option value="mono">Mononucleosis Test</option>
+          </optgroup>
+        </select>
+
+        <!-- <a href="../LabPage/SuccessLab.html"></a> -->
+        <button type="button" id="confirm-btn">Confirm</button>
+      </form>
+    </div>
+
+    
+  </body>
+
+  <script type="module">
+    import { fetchData, postData } from '/js/api.js';
+
+    // Dynamic date selection
+    function checkDate() {
+      const dateInput = document.getElementById('appointment-date');
+      const timeSlot = document.getElementById('time-slot');
+      const selectedDate = new Date(dateInput.value);
+
+      // Enable time slots if a valid date is selected
+      if (selectedDate) {
+        timeSlot.disabled = false;
+        populateTimeSlots();
+      }
+    }
+
+    // Populate time slots dynamically
+    function populateTimeSlots() {
+      const timeSlot = document.getElementById('time-slot');
+      const times = ['09:00 AM', '10:30 AM', '12:00 PM', '01:30 PM', '03:00 PM'];
+      timeSlot.innerHTML = '<option value="">Select a time</option>'; // Reset options
+      times.forEach((time) => {
+        const option = document.createElement('option');
+        option.value = time;
+        option.textContent = time;
+        timeSlot.appendChild(option);
+      });
+    }
+
+    // Underline the current tab
+    document.addEventListener('DOMContentLoaded', function () {
+      let currentLocation = window.location.pathname.split('/').pop();
+      let navLinks = document.querySelectorAll('.nav a');
+
+      navLinks.forEach((link) => {
+        if (link.getAttribute('href').includes(currentLocation)) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', initApp);
+
+    async function initApp() {
+      await fetchDataAndUpdateUi();
+
+      const labNameField = document.getElementById('lab-name');
+      const labButtons = document.querySelectorAll('.lab-btn');
+
+      labButtons.forEach((button) => {
+        button.addEventListener('click', function (e) {
+          labNameField.value = button.dataset.lab;
+          const currentBtn = e.currentTarget;
+
+          labButtons.forEach((btn) => btn.classList.remove('active'));
+          currentBtn.classList.add('active');
+        });
+      });
+
+      const appointmentDate = document.getElementById('appointment-date');
+      appointmentDate.min = new Date().toISOString().split('T')[0];
+      appointmentDate.addEventListener('change', checkDate);
+
+      const appointmentTime = document.getElementById('time-slot');
+      const patientId = document.getElementById('patient-name');
+      const testType = document.getElementById('bloodwork');
+      const confirmButton = document.getElementById('confirm-btn');
+
+      confirmButton.addEventListener('click', async () => {
+        let appointmentTimeIn24HourFormat = '00:00';
+        const timeParts = appointmentTime.value.split(' ');
+        const time = timeParts[0].split(':');
+        const period = timeParts[1];
+        if (period === 'PM' && time[0] !== '12') {
+          appointmentTimeIn24HourFormat = `${parseInt(time[0]) + 12}:${time[1]}`;
+        } else if (period === 'AM' && time[0] === '12') {
+          appointmentTimeIn24HourFormat = `00:${time[1]}`;
+        } else {
+          appointmentTimeIn24HourFormat = `${time[0]}:${time[1]}`;
+        }
+
+        console.log(appointmentTimeIn24HourFormat);
+
+        const appointmentDateTime = new Date(
+          `${appointmentDate.value}T${appointmentTimeIn24HourFormat}:00`
+        ).toUTCString();
+
+        const selectedTestOption = testType.options[testType.selectedIndex];
+        const testTypeName = selectedTestOption.textContent;
+
+        const dataToSend = {
+          appointmentDateTime: appointmentDateTime,
+          patientId: patientId.value,
+          testType: testTypeName,
+          labName: labNameField.value,
+        };
+
+        // Send dataToSend to the server or use it as needed
+
+        const postDataResponse = await postData('/api/labs/create-appointment', dataToSend);
+
+        if (postDataResponse.isOk) {
+          window.location.href = '../LabPage/SuccessLab.html';
+          return;
+        }
+
+        alert(postDataResponse.message);
+      });
+    }
+
+    async function fetchDataAndUpdateUi() {
+      const fetchResponse = await fetchData('/api/labs/get-data-for-lab-page');
+      if (!fetchResponse.isOk) {
+        alert('Failed to fetch data');
+        return;
+      }
+
+      const doctorNameField = document.getElementById('doctor-name');
+      const doctorEmailField = document.getElementById('doctor-email');
+
+      doctorNameField.value = fetchResponse.data.doctorData.name;
+      doctorEmailField.value = fetchResponse.data.doctorData.email;
+
+      const patientsSelect = document.getElementById('patient-name');
+      fetchResponse.data.patients.forEach((patient) => {
+        const option = document.createElement('option');
+        option.value = patient._id;
+        option.textContent = patient.name;
+        patientsSelect.appendChild(option);
+      });
+    }
+  </script>
+</html>

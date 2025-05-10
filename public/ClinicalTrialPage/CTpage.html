@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="CTpage.css" />
+    <link rel="stylesheet" href="../PostHeader/PostHeader.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.css" />
+    <link rel="stylesheet" href="../Prefooter/Prefooter.js" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo"><span>T</span>ADAWI</div>
+      <nav class="nav">
+        <!--<div class="container" id="trials-container"></div> to retrieve the info from db-->
+        <a href="../Home/HomePage-Patient.html">Home</a>
+        <a href="../ClinicalTrialPage/CTpage.html" class="active">Clinical Trials</a>
+        <a href="../MatchesPage/PatientMatchesPage.html">Matches</a>
+        <a href="../About-us/About-usPostPatient.html">About us</a>
+        <a href="../HelpPage/Help-Patient.html">Help</a>
+        <a href="../NotificationsPage/P-NotifPage.html">Notifications</a>
+      </nav>
+
+      <div class="buttons-container">
+        <img src="" id="" />
+
+        <a href="../Chatbox/Patient-Chatbox.html" id="chatbox">
+          <button>ChatBox</button>
+        </a>
+
+        <!-- Sign Out Button -->
+        <button id="signout-btn" data-signoutBtn>Sign Out</button>
+        <script src="../js/signout.js" type="module"></script>
+
+        <!-- Edit Profile Button -->
+        <a href="../EditProfile/EditProfile-Patient.html">
+          <button id="edit-btn">Edit Profile</button>
+        </a>
+      </div>
+    </header>
+    <div class="filter-container">
+      <!-- Disease Filter -->
+      <label for="specializationFilter">Trial Type:</label>
+      <div>
+        <select id="specializationFilter">
+          <option value="">All</option>
+          <option value="Infectious Diseases">Infectious Diseases</option>
+          <option value="Genetic Disorders">Genetic Disorders</option>
+          <option value="Autoimmune Diseases">Autoimmune Diseases</option>
+          <option value="Oncology (Cancer)">Oncology (Cancer)</option>
+          <option value="Cardiovascular Diseases">Cardiovascular Diseases</option>
+          <option value="Neurological Disorders">Neurological Disorders</option>
+        </select>
+      </div>
+      <div>
+        <!-- Region Filter -->
+        <label for="regionFilter">Region:</label>
+        <select id="regionFilter">
+          <option value="">All</option>
+          <option value="Riyadh">Riyadh</option>
+          <option value="Jeddah">Jeddah</option>
+          <option value="Medina">Medina</option>
+        </select>
+      </div>
+      <div>
+        <!-- Duration Filter -->
+        <label for="durationFilter">Trial Duration:</label>
+        <select id="durationFilter">
+          <option value="">All</option>
+          <option value="1">1 month</option>
+          <option value="3">3 months</option>
+          <option value="6">6 months</option>
+          <option value="12+">12+ months</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="container" id="trialsContainer"></div>
+    <script type="module">
+      import { fetchData } from '/js/api.js';
+
+      //underline the current tab
+      document.addEventListener('DOMContentLoaded', function () {
+        let currentLocation = window.location.pathname.split('/').pop();
+        let navLinks = document.querySelectorAll('.nav a');
+
+        navLinks.forEach((link) => {
+          if (link.getAttribute('href').includes(currentLocation)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      });
+
+      document.addEventListener('DOMContentLoaded', init);
+
+      async function init() {
+        const fetchResponse = await fetchData('/api/doctors');
+        if (!fetchResponse.isOk) {
+          alert(fetchResponse.error);
+          return;
+        }
+        const initialDoctors = fetchResponse.data;
+
+        // Render the initial list of doctors
+        renderDoctors(initialDoctors);
+
+        // initialize filters
+        initializeFilters(initialDoctors);
+
+        // Add event listener for filter changes
+        document.addEventListener('filter', (event) => {
+          const { specialization, region, duration } = event.detail;
+
+          const filteredDoctors = initialDoctors.filter((doctor) => {
+            const matchesSpecialization = specialization ? doctor.profile.specialization === specialization : true;
+            const matchesRegion = region ? doctor.user.region === region : true;
+            const matchesDuration = duration ? doctor.trial.duration >= duration * 30 * 24 * 60 * 60 * 1000 : true; // Convert months to milliseconds
+
+            return matchesSpecialization && matchesRegion && matchesDuration;
+          });
+
+          renderDoctors(filteredDoctors);
+        });
+      }
+
+      function renderDoctors(doctors) {
+        const container = document.getElementById('trialsContainer');
+
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+
+        if (doctors.length === 0) {
+          container.appendChild(
+            createElement('p', 'no-doctors-message', 'No doctors found', {
+              style: 'text-align: center; grid-column: 1 / -1;',
+            })
+          );
+        }
+
+        doctors.forEach((doctor) => {
+          const doctorCard = createDoctorCard(doctor);
+          container.appendChild(doctorCard);
+        });
+      }
+
+      function initializeFilters(doctors) {
+        const specializationFilter = document.getElementById('specializationFilter');
+        const regionFilter = document.getElementById('regionFilter');
+        const durationFilter = document.getElementById('durationFilter');
+
+        // Populate region filter with unique regions
+        const uniqueRegions = new Set(doctors.map((doctor) => doctor.user.region));
+        while (regionFilter.firstChild) {
+          regionFilter.removeChild(regionFilter.firstChild);
+        }
+        regionFilter.appendChild(createElement('option', null, 'All', { value: '' }));
+        uniqueRegions.forEach((region) => {
+          regionFilter.appendChild(createElement('option', null, region, { value: region }));
+        });
+
+        // Populate specialization filter with unique specializations
+        const uniqueSpecializations = new Set(doctors.map((doctor) => doctor.profile.specialization));
+        while (specializationFilter.firstChild) {
+          specializationFilter.removeChild(specializationFilter.firstChild);
+        }
+        specializationFilter.appendChild(createElement('option', null, 'All', { value: '' }));
+        uniqueSpecializations.forEach((specialization) => {
+          specializationFilter.appendChild(createElement('option', null, specialization, { value: specialization }));
+        });
+
+        specializationFilter.addEventListener('change', emitFilterEvent);
+        regionFilter.addEventListener('change', emitFilterEvent);
+        durationFilter.addEventListener('change', emitFilterEvent);
+      }
+
+      function emitFilterEvent() {
+        document.dispatchEvent(
+          new CustomEvent('filter', {
+            detail: {
+              specialization: document.getElementById('specializationFilter').value,
+              region: document.getElementById('regionFilter').value,
+              duration: document.getElementById('durationFilter').value,
+            },
+          })
+        );
+      }
+
+      function createDoctorCard(doctor) {
+        const doctorCard = document.createElement('div');
+        doctorCard.classList.add('card');
+
+        const userSection = createElement('div', 'section', [
+          createHeaderElement('User Information'),
+
+          createKeyValueElement('Name', doctor.user.name),
+          createKeyValueElement('Age', doctor.user.age),
+          createKeyValueElement('Gender', doctor.user.gender),
+          createKeyValueElement('Region', doctor.user.region),
+          createKeyValueElement('Nationality', doctor.user.nationality),
+        ]);
+
+        const profileSection = createElement('div', 'section', [
+          createHeaderElement('Profile Information'),
+
+          createKeyValueElement('Specialization', doctor.profile.specialization),
+          createKeyValueElement('Institute', doctor.profile.institute),
+        ]);
+
+        const trialSection = createElement('div', 'section', [
+          createHeaderElement('Trial Information'),
+
+          createKeyValueElement('Trial Description', doctor.trial.trialDescription),
+          createKeyValueElement('Trial Requirements', doctor.trial.trialRequirements),
+          createKeyValueElement('Duration', formatDuration(doctor.trial.duration)),
+          createKeyValueElement('Risk Level', doctor.trial.riskLevel),
+        ]);
+
+        const actionsSection = createElement('div', 'actions-container', [
+          createElement('a', 'button match', 'Match', {
+            href: 'patientconfirmmatch.html?doctorId=' + doctor.user._id,
+          }),
+          createElement('a', 'button inquire', 'Inquire', {
+            href: '../matchespage/PcontactDr.html?doctorId=' + doctor.user._id,
+          }),
+        ]);
+
+        doctorCard.appendChild(userSection);
+        doctorCard.appendChild(profileSection);
+        doctorCard.appendChild(trialSection);
+        doctorCard.appendChild(actionsSection);
+
+        return doctorCard;
+      }
+
+      function createHeaderElement(text) {
+        return createElement('h3', 'header-text', text);
+      }
+
+      function createKeyValueElement(key, value) {
+        return createElement('p', 'key-value', [
+          createElement('strong', null, key + ': '),
+          createElement('span', null, value),
+        ]);
+      }
+
+      function createElement(tag, className, children = [], attributes = {}) {
+        const element = document.createElement(tag);
+
+        if (className) {
+          element.className = className;
+        }
+
+        if (children) {
+          if (Array.isArray(children)) {
+            element.append(...children);
+          } else if (children instanceof HTMLElement) {
+            element.appendChild(children);
+          } else {
+            element.textContent = children;
+          }
+        }
+
+        for (const [key, value] of Object.entries(attributes)) {
+          element.setAttribute(key, value);
+        }
+
+        return element;
+      }
+
+      function formatDuration(ms) {
+        const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+        if (days >= 365) {
+          const years = Math.floor(days / 365);
+          return `${years} ${years === 1 ? 'Year' : 'Years'}`;
+        } else if (days >= 30) {
+          const months = Math.floor(days / 30);
+          return `${months} ${months === 1 ? 'Month' : 'Months'}`;
+        } else if (days >= 7) {
+          const weeks = Math.floor(days / 7);
+          return `${weeks} ${weeks === 1 ? 'Week' : 'Weeks'}`;
+        } else {
+          return `${days} ${days === 1 ? 'Day' : 'Days'}`;
+        }
+      }
+    </script>
+    <footer class="footer">
+      <div class="columns">
+        <div class="column">
+          <h3>Providers</h3>
+          <p>MedNova Pharma</p>
+          <p>BioGenesis Pharma</p>
+          <p>CureTech Solutions</p>
+          <p>LifeBridge Investments</p>
+          <p>MedStrive Holdings</p>
+          <p>SummitCare Hospital</p>
+        </div>
+        <div class="column">
+          <h3>Publications</h3>
+          <p>The Journal of Global Health Insights</p>
+          <p>Biotech Review</p>
+          <p>PharmaProgress</p>
+          <p>Innovative Medical Research</p>
+          <p>Future of Healthcare</p>
+        </div>
+        <div class="column">
+          <h3>Investors</h3>
+          <p>CapitalCore Ventures</p>
+          <p>SilverStone Investments</p>
+          <p>Pioneer Growth Partners</p>
+          <p>Summit Ridge Capital</p>
+          <p>Horizon Equity Group</p>
+        </div>
+      </div>
+      <div class="contact">
+        Contact us at :
+        <a href="mailto:tadawi@gmail.com">tadawi.contact@gmail.com</a>
+      </div>
+      <div class="logos">
+        <img src="../img/vision2030-saudi-arabia-Logo-PNG-Transparent-Background.png" alt="Logo 2" />
+        <img src="../img/logo (1).png" alt="Logo 3" />
+        <img src="../img/image-removebg-preview.png" alt="Logo 4" />
+      </div>
+    </footer>
+  </body>
+</html>

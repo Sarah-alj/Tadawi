@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="PatientConfirmMatch.css" />
+  </head>
+  <body>
+    <div class="success-container">
+      <h1>Are you sure you want to match to <span id="name"></span>:</h1>
+
+      <button type="button" style="margin-bottom: 1rem; display: block" id="confirmButton">Yes</button>
+
+      <a href="CTpage.html">
+        <button type="button">No</button>
+      </a>
+    </div>
+  </body>
+
+  <script type="module">
+    import { fetchData, postData } from '/js/api.js';
+
+    const url = 'PFinalConfirm.html';
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctorId = urlParams.get('doctorId');
+
+    async function init() {
+      if (doctorId) {
+        const doctorsData = await fetchData(`/api/doctors/${doctorId}`);
+        if (doctorsData.isOk) {
+          console.log(doctorsData.data);
+          const patientName = document.getElementById('name');
+          patientName.innerText = doctorsData.data.name;
+        }
+      } else {
+        console.error('No doctor ID found in the URL');
+      }
+    }
+
+    init();
+
+    const confirmButton = document.getElementById('confirmButton');
+
+    confirmButton.addEventListener('click', async () => {
+      const data = {
+        userId: doctorId,
+      };
+      const response = await postData('/api/matches', data);
+      if (response.isOk) {
+        window.location.href = `PFinalConfirm.html?doctorId=${doctorId}`;
+      } else {
+        alert(response.message);
+      }
+    });
+  </script>
+</html>

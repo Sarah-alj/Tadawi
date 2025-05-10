@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="DrConfirmMatch.css" />
+  </head>
+  <body>
+    <div class="success-container">
+      <h1>Match Confirmed!</h1>
+      <h3>Would you like to contact the patient?</h3>
+
+      <a id="confirm-link" style="margin-bottom: 1rem; display: block">
+        <button type="button">Yes</button>
+      </a>
+      <a id="cancel-link">
+        <button type="button">No</button>
+      </a>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const urlParams = new URLSearchParams(window.location.search);
+          const patientId = urlParams.get('patientId');
+          const matchId = urlParams.get('matchId');
+          if (patientId) {
+            document.getElementById('confirm-link').href = `DrContactInfo.html?patientId=${patientId}`;
+            document.getElementById('cancel-link').href = `../MatchesPage/DrMatches.html`;
+          }
+
+          if (matchId) {
+            document.getElementById('confirm-link').href = `DrContactInfo.html?matchId=${matchId}`;
+            document.getElementById('cancel-link').href = `../MatchesPage/DrMatches.html`;
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>

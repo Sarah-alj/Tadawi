@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="contactToAcquire.css" />
+  </head>
+  <body>
+    <div class="success-container"></div>
+    <!-- <div class="success-container">
+      <h1>Donor's Contact Information:</h1>
+      <p id="contactInfo"></p>
+      <a href="DonationsPage.html">
+        <button type="button">Go to Donations Tab</button>
+      </a>
+    </div> -->
+  </body>
+  <script type="module">
+    import { fetchData, postData } from '/js/api.js';
+    const search = new URLSearchParams(window.location.search);
+    const donationId = search.get('donationId');
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    async function init() {
+      const fetchResponse = await fetchData(`/api/donations/${donationId}`);
+      if (!fetchResponse.isOk) {
+        alert(fetchResponse.message);
+        return;
+      }
+      const donation = fetchResponse.data;
+      console.log(donation);
+      const successContainer = document.querySelector('.success-container');
+      successContainer.innerHTML = `
+        <h1>Donor's Contact Information:</h1>
+        <p id="contactInfo">${donation.pointOfContact}</p>
+        <div class="button-container">
+          <button type="button" id="acquireBtn">Acquire</button>
+          <a href="DonationsPage.html">
+            <button type="button">Go to Donations Tab</button>
+          </a>
+        </div>`;
+
+      document.getElementById('acquireBtn').addEventListener('click', async () => {
+        const response = await postData(`/api/donations/${donationId}/accept`);
+        if (response.isOk) {
+          alert('Donation acquired successfully!');
+        } else {
+          alert(response.message);
+        }
+      });
+    }
+  </script>
+</html>
